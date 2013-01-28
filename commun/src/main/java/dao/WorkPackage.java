@@ -1,32 +1,35 @@
-package wp;
+package dao;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.Personne;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
-import ws.WorkSpace;
 
 @Entity
-@Table 
+@Table(name="WORKPACKAGE")
 public class WorkPackage {
-
-	@Id @GeneratedValue
-	@Column(name="id_package")
-	private int id;
-
-	@Column(name="Author", unique=true)
+	
+	@Id
+	@GeneratedValue
+	@Column(name="WORKPACKAGE_ID")
+	private String id;
+	
+	@Column(name="WORKPACKAGE_TITLE")
+	private String title;
+	
+	@Column(name="WORKPACKAGE_STARTDATE")
+	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+	private DateTime startDate;
+	
+	@Column(name="WORKPACKAGE_ENDDATE")
+	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+	private DateTime endDate;
+	
+	/*@Column(name="Author", unique=true)
 	private Personne autheur;
 	@Column
 	private DateTime date;
@@ -37,6 +40,6 @@ public class WorkPackage {
 	
 	private String version;
 	@OneToOne(optional=true)
-	private WorkSpace ws;
+	private WorkSpace ws;*/
 
 }
