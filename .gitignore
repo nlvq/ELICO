@@ -16,6 +16,7 @@
 #################
 
 commun/.checkstyle
+commun/.pmd
 
 
 *.pydevproject
