@@ -1,4 +1,4 @@
-package fr.umlv.elico.ihm;
+package ihm;
 
 import java.awt.*;
 
