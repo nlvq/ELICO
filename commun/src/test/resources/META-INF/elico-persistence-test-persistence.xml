@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+             http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<persistence-unit name="elico-persistence-persistance"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<class>dao.Droit</class>
+		<class>dao.Maturite</class>
+		<class>dao.Objet</class>
+		<class>dao.Organisation</class>
+		<class>dao.Role</class>
+		<class>dao.SavoirFaire</class>
+		<class>dao.Utilisateur</class>
+		<class>dao.Version</class>
+		<class>dao.WorkPackage</class>
+		<class>dao.WorkSpace</class>
+
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.batch_size" value="20" />
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

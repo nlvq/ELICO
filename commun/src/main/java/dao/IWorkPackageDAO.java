@@ -2,11 +2,13 @@ package dao;
 
 import java.util.List;
 
+import fr.umlv.m2.jee.dao.hibernate.IHibernateDAO;
 
 
-public interface IWorkPackageDAO {
-	public void createWorkPackage(WorkPackage wp) ;
-	public void updateWorkPackage(WorkPackage wp) ;
-	public void deleteWorkPackage(WorkPackage wp) ;
-	public List<WorkPackage> findWorkPackage(String id) ;
+
+public interface IWorkPackageDAO extends IHibernateDAO<Long, WorkPackage> {
+	void createWorkPackage(WorkPackage wp);
+	void updateWorkPackage(WorkPackage wp);
+	void deleteWorkPackage(WorkPackage wp);
+	List<WorkPackage> findWorkPackage(String id);
 }

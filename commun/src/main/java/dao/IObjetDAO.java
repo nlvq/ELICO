@@ -1,5 +1,7 @@
 package dao;
 
-public interface IObjetDAO {
+import fr.umlv.m2.jee.dao.hibernate.IHibernateDAO;
+
+public interface IObjetDAO extends IHibernateDAO<Long, Objet> {
 
 }
