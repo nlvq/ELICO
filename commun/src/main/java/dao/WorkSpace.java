@@ -21,7 +21,7 @@ public class WorkSpace {
 	private String id;
 	
 	@Column(name="WORKSPACE_TITLE")
-	private String title;
+	private String title1;
 
 	@OneToOne
 	private WorkSpace parent;
