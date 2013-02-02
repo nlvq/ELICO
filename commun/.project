@@ -3,6 +3,8 @@
 	<name>PGP</name>
 	<comment></comment>
 	<projects>
+		<project>umlv-dao</project>
+		<project>umlv-hibernate</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
