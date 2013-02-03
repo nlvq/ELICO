@@ -1,9 +1,8 @@
 package ihm;
 
-import java.awt.*;
 import java.util.Objects;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public abstract class AbstractWindow implements IWindow {
     JFrame frame;

@@ -9,6 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="DROIT")
 public class Droit {
+	public enum LDroit{Read,Write,ReadWrite,block};
 	
 	@Id
 	@GeneratedValue
@@ -16,6 +17,23 @@ public class Droit {
 	private String id;
 	
 	@Column(name="DROIT_TITLE")
-	private String title;
+	private LDroit title;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public LDroit getTitle() {
+		return title;
+	}
+
+	public void setTitle(LDroit title) {
+		this.title = title;
+	}
+	
 
 }

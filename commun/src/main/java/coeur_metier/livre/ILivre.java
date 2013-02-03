@@ -1,7 +1,5 @@
 package coeur_metier.livre;
 
-import java.util.List;
-import dao.Objet;
 
 public interface ILivre {
 /*
