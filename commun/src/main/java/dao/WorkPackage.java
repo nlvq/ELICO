@@ -35,7 +35,7 @@ public class WorkPackage {
 	private DateTime endDate;
 	
 
-	@Column(name="Author", unique=true)
+	@Column(name="WORKPACKAGE_AUTHEUR", unique=true)
 	private Utilisateur user;
 
 	private List<Objet> conteneur;
