@@ -2,6 +2,11 @@ package ihm;
 
 import javax.swing.*;
 
+/**
+ * Abstract class which should be use by all user view.
+ * All this view uses two panes and a button line.
+ * That class provide a button panel and two panels to fill.
+ */
 public abstract class AbstractWorkPaneWindow extends AbstractButtonWindow {
     JPanel leftWindowComponent;
     JPanel rightWindowComponent;
@@ -21,6 +26,15 @@ public abstract class AbstractWorkPaneWindow extends AbstractButtonWindow {
         panel.add(splitPane);
     }
 
+    /**
+     * Create the leftPane of the window.
+     * @param panel panel to fill
+     */
     abstract void createLeftPane(JPanel panel);
+
+    /**
+     * Create the right pane of the window.
+     * @param panel panel to fill
+     */
     abstract void createRightPane(JPanel panel);
 }

@@ -4,6 +4,10 @@ import java.util.Objects;
 
 import javax.swing.JFrame;
 
+/**
+ * Default implementation of all windows. The class create a frame which can be use by other interface.
+ * No class should extends this class.
+ */
 public abstract class AbstractWindow implements IWindow {
     JFrame frame;
 

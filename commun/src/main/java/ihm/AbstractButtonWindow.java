@@ -4,6 +4,10 @@ import java.awt.*;
 
 import javax.swing.*;
 
+/**
+ * Abstract class which should not be used by any class.
+ * That class provide a panel to fill with buttons.
+ */
 public abstract class AbstractButtonWindow extends AbstractWindow {
     JPanel buttonComponent;
     JPanel windowComponent;
@@ -24,7 +28,15 @@ public abstract class AbstractButtonWindow extends AbstractWindow {
         createWindowPane(windowComponent);
     }
 
+    /**
+     * Create the panel button.
+     * @param panel panel to fill
+     */
     abstract void createButtonPane(JPanel panel);
 
+    /**
+     * Create the rest of the window.
+     * @param panel panel to fill
+     */
     abstract void createWindowPane(JPanel panel);
 }

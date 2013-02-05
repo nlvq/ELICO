@@ -53,4 +53,10 @@ public class SimulateRH {
 
         return users;
     }
+
+    public void createNewUser(String firstName, String lastName, String login, String password, String phoneNumber) {
+        System.out.println("Création de l'utilisateur ("+ firstName +
+                ", " + lastName + ", " + login + ", " + password +
+                ", " + phoneNumber);
+    }
 }

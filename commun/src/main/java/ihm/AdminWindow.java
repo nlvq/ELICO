@@ -1,6 +1,8 @@
 package ihm;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
@@ -23,6 +25,16 @@ public class AdminWindow extends AbstractButtonWindow {
     void createButtonPane(JPanel panel) {
         JButton plusButton = new JButton("+");
         JButton helpButton = new JButton("?");
+
+        plusButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddUserWindow userWindow = new AddUserWindow();
+                userWindow.createWindow();
+                userWindow.openWindow();
+            }
+        });
+
         panel.add(plusButton);
         panel.add(helpButton);
     }
