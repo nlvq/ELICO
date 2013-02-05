@@ -10,19 +10,15 @@ public class DefaultWorkPackageDAO extends AbstractHibernateDAO<Long, WorkPackag
 
 	@Override
 	public void createWorkPackage(WorkPackage wp) {
-		// TODO Auto-generated method stub
-		
+		persist(wp);
 	}
 
 	@Override
 	public void updateWorkPackage(WorkPackage wp) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void deleteWorkPackage(WorkPackage wp) {
-		// TODO Auto-generated method stub
 		
 	}
 

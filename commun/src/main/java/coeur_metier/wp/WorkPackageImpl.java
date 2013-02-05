@@ -3,6 +3,8 @@ package coeur_metier.wp;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Query;
+
 import dao.Droit;
 import dao.IDroitDAO;
 import dao.IWorkPackageDAO;
@@ -42,7 +44,9 @@ public class WorkPackageImpl implements IWP {
 		if (wp.getId() != null) {
 			return DAO.findWorkPackage(wp.getId()).get(0);
 		} else if (wp.getTitle() != null) {
-			DAO.findByNamedQuery("select * from WORKPACKAGE where WORKPACKAGE.WORKPACKAGE_TITLE:=");
+			final Query query = DAO.createQuery("select * from WORKPACKAGE where WORKPACKAGE.WORKPACKAGE_TITLE:=wp");
+			query.setParameter("wp", wp.getId());
+
 		}
 		return new WorkPackage();
 	}

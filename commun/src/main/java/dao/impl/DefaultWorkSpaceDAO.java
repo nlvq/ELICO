@@ -10,25 +10,21 @@ public class DefaultWorkSpaceDAO extends AbstractHibernateDAO<Long, WorkSpace> i
 
 	@Override
 	public void createWorkSpace(WorkSpace ws) {
-		// TODO Auto-generated method stub
-		
+		persist(ws);
 	}
 
 	@Override
 	public void updateWorkSpace(WorkSpace ws) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteWorkSpace(WorkSpace ws) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public List<WorkSpace> findWorkSpace(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
