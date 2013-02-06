@@ -78,13 +78,6 @@ public class UtilisateurOrganisationRole {
 		public void setIdr(Long idr) {
 			this.idr = idr;
 		}
-
-		/**
-		 * @return the serialversionuid
-		 */
-		public static long getSerialversionuid() {
-			return serialVersionUID;
-		}
 		
 	}
 
