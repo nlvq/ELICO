@@ -28,8 +28,8 @@ public class UtilisateurOrganisationRole {
 		 */
 		private static final long serialVersionUID = 1867506770932059287L;
 
-		@Column(name = "UTILISATEUR_LOGIN")
-		private Long login;
+		@Column(name = "UTILISATEUR_ID")
+		private Long idu;
 		
 		@Column(name = "ORGANISATION_ID")
 		private Long ido;
@@ -38,17 +38,17 @@ public class UtilisateurOrganisationRole {
 		private Long idr;
 
 		/**
-		 * @return the login
+		 * @return the idu
 		 */
-		public Long getLogin() {
-			return login;
+		public Long getIdu() {
+			return idu;
 		}
 
 		/**
-		 * @param login the login to set
+		 * @param idu the idu to set
 		 */
-		public void setLogin(Long login) {
-			this.login = login;
+		public void setIdu(Long idu) {
+			this.idu = idu;
 		}
 
 		/**
@@ -78,6 +78,13 @@ public class UtilisateurOrganisationRole {
 		public void setIdr(Long idr) {
 			this.idr = idr;
 		}
+
+		/**
+		 * @return the serialversionuid
+		 */
+		public static long getSerialversionuid() {
+			return serialVersionUID;
+		}
 		
 	}
 
@@ -85,7 +92,7 @@ public class UtilisateurOrganisationRole {
 	private Id id = new Id();
 	
 	@ManyToOne
-	@JoinColumn(name = "UTILISATEUR_LOGIN", insertable = false, updatable = false)
+	@JoinColumn(name = "UTILISATEUR_ID", insertable = false, updatable = false)
 	private Utilisateur utilisateur;
 	
 	@ManyToOne

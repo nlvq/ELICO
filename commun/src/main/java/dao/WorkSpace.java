@@ -21,7 +21,7 @@ public class WorkSpace {
 	@Id
 	@GeneratedValue
 	@Column(name="WORKSPACE_ID")
-	private String id;
+	private Long id;
 	
 	@Column(name="WORKSPACE_TITLE")
 	private String title;
@@ -33,7 +33,7 @@ public class WorkSpace {
 	private List<WorkSpace> childs = new ArrayList<>();
 	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
-	@JoinColumn(name="UTILISATEUR_LOGIN")
+	@JoinColumn(name="UTILISATEUR_ID")
 	private Utilisateur utilisateur;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
@@ -46,14 +46,14 @@ public class WorkSpace {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

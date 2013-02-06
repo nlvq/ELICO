@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,6 +20,10 @@ import javax.persistence.Table;
 public class Utilisateur {
 
 	@Id
+	@GeneratedValue
+	@Column(name="UTILISATEUR_ID")
+	private Long id;
+	
 	@Column(name="UTILISATEUR_LOGIN")
 	private String login;
 	
@@ -39,12 +44,23 @@ public class Utilisateur {
 	
 	@ManyToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	@JoinTable(name="utilisateurpossedesavoirfaire",
-		joinColumns = @JoinColumn(name = "UTILISATEUR_LOGIN"),
+		joinColumns = @JoinColumn(name = "UTILISATEUR_ID"),
 		inverseJoinColumns = @JoinColumn(name = "SAVOIRFAIRE_ID"))
 	private List<SavoirFaire> savoirfaires = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private List<UtilisateurOrganisationRole> appartient = new ArrayList<>();
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the login
@@ -157,5 +173,8 @@ public class Utilisateur {
 	public void setAppartient(List<UtilisateurOrganisationRole> appartient) {
 		this.appartient = appartient;
 	}
+
+	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	private List<UtilisateurOrganisationRole> appartient = new ArrayList<>();
 		
 }

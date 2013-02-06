@@ -21,7 +21,7 @@ public class SavoirFaire {
 	@Id
 	@GeneratedValue
 	@Column(name="SAVOIRFAIRE_ID")
-	private String id;
+	private Long id;
 	
 	@Column(name="SAVOIRFAIRE_TITLE")
 	private String title;
@@ -35,20 +35,20 @@ public class SavoirFaire {
 	@ManyToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	@JoinTable(name="utilisateurpossedesavoirfaire",
 		joinColumns = @JoinColumn(name = "SAVOIRFAIRE_ID"),
-		inverseJoinColumns = @JoinColumn(name = "UTILISATEUR_LOGIN"))
+		inverseJoinColumns = @JoinColumn(name = "UTILISATEUR_ID"))
 	private List<Utilisateur> utilisateurs = new ArrayList<>();
 
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

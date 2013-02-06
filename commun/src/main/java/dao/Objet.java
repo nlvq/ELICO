@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,13 +23,19 @@ public class Objet {
 	@Id
 	@GeneratedValue
 	@Column(name="OBJET_ID")
-	private String id;
+	private Long id;
 	
 	@Column(name="OBJET_TYPE")
 	private String type;
 	
 	@Column(name="OBJET_DESCRIPTION")
 	private String description;
+	
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	private Objet parent;
+	
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	private List<Objet> childs = new ArrayList<>();
 	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	@JoinColumn(name="MATURITE_ID")
@@ -43,14 +50,14 @@ public class Objet {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -80,6 +87,34 @@ public class Objet {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * @return the parent
+	 */
+	public Objet getParent() {
+		return parent;
+	}
+
+	/**
+	 * @param parent the parent to set
+	 */
+	public void setParent(Objet parent) {
+		this.parent = parent;
+	}
+
+	/**
+	 * @return the childs
+	 */
+	public List<Objet> getChilds() {
+		return childs;
+	}
+
+	/**
+	 * @param childs the childs to set
+	 */
+	public void setChilds(List<Objet> childs) {
+		this.childs = childs;
 	}
 
 	/**

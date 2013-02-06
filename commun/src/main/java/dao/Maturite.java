@@ -21,7 +21,7 @@ public class Maturite {
 	@Id
 	@GeneratedValue
 	@Column(name="MATURITE_ID")
-	private String id;
+	private Long id;
 
 	@Column(name="MATURITE_TITLE")
 	private Etat title;
@@ -35,14 +35,14 @@ public class Maturite {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

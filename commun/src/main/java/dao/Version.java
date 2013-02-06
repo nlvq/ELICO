@@ -19,7 +19,7 @@ public class Version {
 	@Id
 	@GeneratedValue
 	@Column(name="VERSION_ID")
-	private String id;
+	private Long id;
 	
 	@Column(name="VERSION_NUMBER")
 	private String number;
@@ -30,14 +30,14 @@ public class Version {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
