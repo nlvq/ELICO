@@ -7,7 +7,7 @@
 
 	<name>Generic DAO</name>
 	<artifactId>umlv-dao</artifactId>
-	<groupId>fr.umlv.m2.elico</groupId>
+	<groupId>fr.umlv.m2.jee</groupId>
 	<version>1.0.1</version>
 	<packaging>jar</packaging>
 	<properties>

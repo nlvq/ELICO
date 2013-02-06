@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>umlv-hibernate</artifactId>
-	<groupId>fr.umlv.m2.elico</groupId>
+	<groupId>fr.umlv.m2.jee</groupId>
 	<version>1.0.1</version>
 	<name>Hibernate</name>
 	<packaging>jar</packaging>
