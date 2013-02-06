@@ -6,7 +6,7 @@
 
 	<artifactId>umlv-hibernate</artifactId>
 	<groupId>fr.umlv.m2.elico</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<name>Hibernate</name>
 	<packaging>jar</packaging>
 
