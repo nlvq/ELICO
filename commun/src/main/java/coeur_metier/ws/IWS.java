@@ -11,9 +11,9 @@ public interface IWS {
 	 * @param name, le nom de WS.
 	 * @param parentWs, le WS parent.
 	 * @param orga, l'organisation au quel il est rattaché.
-	 * @param list, la liste des WS fils.
+	 * @param list, la liste des WP liés.
 	 */
-	public void createWS(String name, WorkSpace parentWs, String orga, List<WorkSpace> list);
+	public void createWS(String name, WorkSpace parentWs, String orga, List<WorkPackage> list);
 	/**
 	 * Demande WorkPackage, et prend le lock.
 	 * @param wp, le WP voulue

@@ -10,5 +10,5 @@ public interface IWorkPackageDAO extends IHibernateDAO<Long, WorkPackage> {
 	void createWorkPackage(WorkPackage wp);
 	void updateWorkPackage(WorkPackage wp);
 	void deleteWorkPackage(WorkPackage wp);
-	List<WorkPackage> findWorkPackage(String id);
+	List<WorkPackage> findWorkPackage(WorkPackage wp);
 }

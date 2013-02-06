@@ -3,16 +3,23 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import dao.Maturite.Etat;
+import dao.Droit.LDroit;
 
 @Entity
 @Table(name="WORKPACKAGE")
@@ -34,81 +41,185 @@ public class WorkPackage {
 	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
 	private DateTime endDate;
 	
-
-	@Column(name="WORKPACKAGE_AUTHEUR", unique=true)
-	private Utilisateur user;
-
-	private List<Objet> conteneur;
-
-	private Droit droit;
-
-	private Etat etat;
-
-	private List<String> msgRefus=new ArrayList<>();
+	@Column(name="WORKPACKAGE_DROIT")
+	private LDroit droit;
 	
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@JoinColumn(name="WORKSPACE_ID")
+	private WorkSpace workSpace;
+
+	@ManyToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@JoinTable(name="workpackagecontientobjet",
+		joinColumns = @JoinColumn(name = "WORKPACKAGE_ID"),
+		inverseJoinColumns = @JoinColumn(name = "OBJET_ID"))
+	private List<Objet> objets = new ArrayList<>();
+	
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@JoinColumn(name="ORGANISATION_ID")
+	private Organisation organisation;
+	
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@JoinColumn(name="VERSION_ID")
+	private Version version;
+	
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	private WorkPackage workPackage;
+	
+	@OneToMany(mappedBy = "workPackage", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	private List<WorkPackage> workpackages = new ArrayList<>();
+
+	/**
+	 * @return the id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * @param title the title to set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public Utilisateur getUser() {
-		return user;
+	/**
+	 * @return the startDate
+	 */
+	public DateTime getStartDate() {
+		return startDate;
 	}
 
-	public void setUser(Utilisateur user) {
-		this.user = user;
+	/**
+	 * @param startDate the startDate to set
+	 */
+	public void setStartDate(DateTime startDate) {
+		this.startDate = startDate;
 	}
 
-	public List<Objet> getConteneur() {
-		return conteneur;
+	/**
+	 * @return the endDate
+	 */
+	public DateTime getEndDate() {
+		return endDate;
 	}
 
-	public void setConteneur(List<Objet> conteneur) {
-		this.conteneur = conteneur;
+	/**
+	 * @param endDate the endDate to set
+	 */
+	public void setEndDate(DateTime endDate) {
+		this.endDate = endDate;
 	}
 
-	public void setDroit(Droit droit) {
-		this.droit=droit;
-		
-	}
-	public Droit getDroit() {
+	/**
+	 * @return the droit
+	 */
+	public LDroit getDroit() {
 		return droit;
-		
 	}
 
-	public void setEtat(Etat etat) {
-		this.etat=etat;
+	/**
+	 * @param droit the droit to set
+	 */
+	public void setDroit(LDroit droit) {
+		this.droit = droit;
 	}
 
-	public Etat getEtat() {
-		return etat;
+	/**
+	 * @return the workSpace
+	 */
+	public WorkSpace getWorkSpace() {
+		return workSpace;
 	}
 
-	public void addMsgRefus(String reason) {
-		this.msgRefus.add(reason);
-		
+	/**
+	 * @param workSpace the workSpace to set
+	 */
+	public void setWorkSpace(WorkSpace workSpace) {
+		this.workSpace = workSpace;
 	}
-	
-/*	@Column
-	private DateTime date;
-	@OneToMany(mappedBy = "workpackage", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private List<WorkPackage> composition;
-	@OneToMany(mappedBy = "workpackage", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private List<Contenaire> conteneur;
-	
-	private String version;
-	@OneToOne(optional=true)
-	private WorkSpace ws;*/
+
+	/**
+	 * @return the objets
+	 */
+	public List<Objet> getObjets() {
+		return objets;
+	}
+
+	/**
+	 * @param objets the objets to set
+	 */
+	public void setObjets(List<Objet> objets) {
+		this.objets = objets;
+	}
+
+	/**
+	 * @return the organisation
+	 */
+	public Organisation getOrganisation() {
+		return organisation;
+	}
+
+	/**
+	 * @param organisation the organisation to set
+	 */
+	public void setOrganisation(Organisation organisation) {
+		this.organisation = organisation;
+	}
+
+	/**
+	 * @return the version
+	 */
+	public Version getVersion() {
+		return version;
+	}
+
+	/**
+	 * @param version the version to set
+	 */
+	public void setVersion(Version version) {
+		this.version = version;
+	}
+
+	/**
+	 * @return the workPackage
+	 */
+	public WorkPackage getWorkPackage() {
+		return workPackage;
+	}
+
+	/**
+	 * @param workPackage the workPackage to set
+	 */
+	public void setWorkPackage(WorkPackage workPackage) {
+		this.workPackage = workPackage;
+	}
+
+	/**
+	 * @return the workpackages
+	 */
+	public List<WorkPackage> getWorkpackages() {
+		return workpackages;
+	}
+
+	/**
+	 * @param workpackages the workpackages to set
+	 */
+	public void setWorkpackages(List<WorkPackage> workpackages) {
+		this.workpackages = workpackages;
+	}
 
 }

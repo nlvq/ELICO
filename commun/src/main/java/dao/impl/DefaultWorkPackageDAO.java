@@ -15,17 +15,17 @@ public class DefaultWorkPackageDAO extends AbstractHibernateDAO<Long, WorkPackag
 
 	@Override
 	public void updateWorkPackage(WorkPackage wp) {
+		merge(wp);
 	}
 
 	@Override
 	public void deleteWorkPackage(WorkPackage wp) {
-		
+		remove(wp);
 	}
 
 	@Override
-	public List<WorkPackage> findWorkPackage(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<WorkPackage> findWorkPackage(WorkPackage wp) {
+		return findByExample(wp, new String[0]);
 	}
 
 }

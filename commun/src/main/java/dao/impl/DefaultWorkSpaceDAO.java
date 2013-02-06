@@ -15,17 +15,17 @@ public class DefaultWorkSpaceDAO extends AbstractHibernateDAO<Long, WorkSpace> i
 
 	@Override
 	public void updateWorkSpace(WorkSpace ws) {
-		
+		merge(ws);
 	}
 
 	@Override
 	public void deleteWorkSpace(WorkSpace ws) {
-		
+		remove(ws);
 	}
 
 	@Override
-	public List<WorkSpace> findWorkSpace(String id) {
-		return null;
+	public List<WorkSpace> findWorkSpace(WorkSpace ws) {
+		return findByExample(ws, new String[0]);
 	}
 
 }

@@ -9,6 +9,7 @@ import dao.Droit;
 import dao.IDroitDAO;
 import dao.IWorkPackageDAO;
 import dao.Maturite;
+import dao.Maturite.Etat;
 import dao.Objet;
 import dao.Utilisateur;
 import dao.WorkPackage;
@@ -24,9 +25,11 @@ public class WorkPackageImpl implements IWP {
 	public void createWP(String name, List<Objet> liste) {
 		wp = new WorkPackage();
 		wp.setTitle(name);
-		wp.setEtat(Maturite.Etat.WORK);
-		wp.setUser(new Utilisateur());
-		wp.setConteneur(liste);
+		//TODO wp.setOrganisation(organisation)
+		for(Objet o : liste){
+			o.getMaturite().setTitle(Etat.NUL);
+		}
+		wp.setObjets(liste);
 		DAO.createWorkPackage(wp);
 	}
 
@@ -41,29 +44,30 @@ public class WorkPackageImpl implements IWP {
 	@Override
 	public WorkPackage findWP(WorkPackage wp) {
 		Objects.requireNonNull(wp);
-		if (wp.getId() != null) {
-			return DAO.findWorkPackage(wp.getId()).get(0);
-		} else if (wp.getTitle() != null) {
-			final Query query = DAO.createQuery("select * from WORKPACKAGE where WORKPACKAGE.WORKPACKAGE_TITLE:=wp");
-			query.setParameter("wp", wp.getId());
-
-		}
-		return new WorkPackage();
+//		if (wp.getId() != null) {
+//			return DAO.findWorkPackage(wp.getId()).get(0);
+//		} else if (wp.getTitle() != null) {
+//			final Query query = DAO.createQuery("select * from WORKPACKAGE where WORKPACKAGE.WORKPACKAGE_TITLE:=wp");
+//			query.setParameter("wp", wp.getId());
+//
+//		}
+//		return new WorkPackage();
+		
+		//TODO je pense qu'il faut faire :
+		//return DAO.findWorkPackage(wp);
+		//mais ça retourne une liste, donc soit on fait un .get(0) ou on modifie la signature de la methode
+		return null;
 	}
 
 	@Override
 	public void lockWP(String id) {
-		IDroitDAO iddao = new DefaultDroitDAO();
-		Droit droit = iddao.findDroit(Droit.LDroit.Write);
-		wp.setDroit(droit);
+		wp.setDroit(Droit.LDroit.Write);
 		updateWP(wp);
 	}
 
 	@Override
 	public void unlockWP(String id) {
-		IDroitDAO iddao = new DefaultDroitDAO();
-		Droit droit = iddao.findDroit(Droit.LDroit.ReadWrite);
-		wp.setDroit(droit);
+		wp.setDroit(Droit.LDroit.ReadWrite);
 		updateWP(wp);
 
 	}
@@ -72,22 +76,28 @@ public class WorkPackageImpl implements IWP {
 	public void requestValidation(String id) {
 		IDroitDAO iddao = new DefaultDroitDAO();
 		Droit droit = iddao.findDroit(Droit.LDroit.Write);
-		wp.setDroit(droit);
-		wp.setEtat(Maturite.Etat.RELEASE_CANDIDATE);
+		//TODO check les droits de l'utilisateur lié au wp ?
+		for(Objet o : wp.getObjets()){
+			o.getMaturite().setTitle(Etat.ASKVALID);
+		}
 		updateWP(wp);
 
 	}
 
 	@Override
 	public void accept(String id) {
-		wp.setEtat(Maturite.Etat.RELEASE);
+		for(Objet o : wp.getObjets()){
+			o.getMaturite().setTitle(Etat.VALIDED);
+		}
 		updateWP(wp);
 	}
 
 	@Override
 	public void refuse(String id, String reason) {
-		wp.addMsgRefus(reason);
-		wp.setEtat(Maturite.Etat.WORK);
+		for(Objet o : wp.getObjets()){
+			o.getMaturite().setTitle(Etat.REFUSED);
+			o.getMaturite().setCommentary(reason);
+		}
 		updateWP(wp);
 
 	}
