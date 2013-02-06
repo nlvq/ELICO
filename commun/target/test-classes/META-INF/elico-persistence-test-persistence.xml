@@ -20,6 +20,7 @@
 		<class>dao.Version</class>
 		<class>dao.WorkPackage</class>
 		<class>dao.WorkSpace</class>
+		<class>dao.UtilisateurOrganisationRole</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
