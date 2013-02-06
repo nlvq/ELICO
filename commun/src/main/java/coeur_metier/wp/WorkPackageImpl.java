@@ -8,10 +8,8 @@ import javax.persistence.Query;
 import dao.Droit;
 import dao.IDroitDAO;
 import dao.IWorkPackageDAO;
-import dao.Maturite;
 import dao.Maturite.Etat;
 import dao.Objet;
-import dao.Utilisateur;
 import dao.WorkPackage;
 import dao.impl.DefaultDroitDAO;
 import dao.impl.DefaultWorkPackageDAO;
@@ -75,7 +73,6 @@ public class WorkPackageImpl implements IWP {
 	@Override
 	public void requestValidation(String id) {
 		IDroitDAO iddao = new DefaultDroitDAO();
-		Droit droit = iddao.findDroit(Droit.LDroit.Write);
 		//TODO check les droits de l'utilisateur lié au wp ?
 		for(Objet o : wp.getObjets()){
 			o.getMaturite().setTitle(Etat.ASKVALID);

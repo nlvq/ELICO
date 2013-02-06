@@ -1,10 +1,12 @@
 package dao;
 
-import dao.Droit.LDroit;
+import java.util.List;
+
 import fr.umlv.m2.jee.dao.hibernate.IHibernateDAO;
 
 public interface IDroitDAO extends IHibernateDAO<Long, Droit> {
-
-	Droit findDroit(LDroit write);
-
+	void createDroit(Droit droit);
+	void updateDroit(Droit droit);
+	void deleteDroit(Droit droit);
+	List<Droit> findDroit(Droit droit);
 }

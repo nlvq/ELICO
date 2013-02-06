@@ -4,8 +4,6 @@ import java.util.List;
 
 import coeur_metier.wp.IWP;
 import coeur_metier.wp.WorkPackageImpl;
-
-import dao.Droit;
 import dao.Droit.LDroit;
 import dao.IDroitDAO;
 import dao.IOrganisationDAO;
@@ -27,7 +25,9 @@ public class WorkSpaceImpl implements IWS {
 	public void createWS(String name, WorkSpace parentWs, String orga,
 			List<WorkPackage> list) {
 		IOrganisationDAO daoOrg = new DefaultOrganisationDAO();
-		Organisation org = daoOrg.getOrganisation(orga);
+		Organisation toFind = new Organisation();
+		toFind.setTitle(orga);
+		Organisation org = daoOrg.findOrganisation(toFind).get(0);
 		ws = new WorkSpace();
 		ws.setParent(parentWs);
 		ws.setWorkpackages(list);

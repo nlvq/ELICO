@@ -1,16 +1,32 @@
 package dao.impl;
 
+import java.util.List;
+
 import dao.Droit;
-import dao.Droit.LDroit;
 import dao.IDroitDAO;
+import dao.Maturite;
 import fr.umlv.m2.jee.dao.hibernate.AbstractHibernateDAO;
 
 public class DefaultDroitDAO extends AbstractHibernateDAO<Long, Droit> implements IDroitDAO {
 
 	@Override
-	public Droit findDroit(LDroit write) {
-		// TODO Auto-generated method stub
-		return null;
+	public void createDroit(Droit droit) {
+		persist(droit);
+	}
+
+	@Override
+	public void updateDroit(Droit droit) {
+		merge(droit);
+	}
+
+	@Override
+	public void deleteDroit(Droit droit) {
+		remove(droit);
+	}
+
+	@Override
+	public List<Droit> findDroit(Droit droit) {
+		return findByExample(droit, new String[0]);
 	}
 
 }
