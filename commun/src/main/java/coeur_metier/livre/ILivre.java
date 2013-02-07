@@ -12,7 +12,7 @@ public void EditObject(Objet object) {}
 public void DeleteObject(Objet object) {}
 public List<Objet > FindObject(Objet object) {
 List <Objet > list=NULL;
-  return (list);
+  return (list);jjjj
   }
 */
 }
