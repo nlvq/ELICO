@@ -25,7 +25,7 @@ public class WSWindow extends AbstractWorkPaneWindow implements TreeSelectionLis
 	//création du panneau gauche
 
 	@Override
-	void createLeftPane(JPanel panel) {
+	public void createLeftPane(JPanel panel) {
 		panel.setPreferredSize(panel.getMaximumSize());
 		panel.setBackground(Color.BLUE);
 
@@ -34,7 +34,7 @@ public class WSWindow extends AbstractWorkPaneWindow implements TreeSelectionLis
 	//création du panneau droite
 
 	@Override
-	void createRightPane(JPanel panel) {
+	public void createRightPane(JPanel panel) {
 		panel.setPreferredSize(panel.getMaximumSize());
 		panel.setBackground(Color.RED);
 	}

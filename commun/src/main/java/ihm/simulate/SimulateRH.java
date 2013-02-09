@@ -59,4 +59,9 @@ public class SimulateRH {
                 ", " + lastName + ", " + login + ", " + password +
                 ", " + phoneNumber);
     }
+
+    public List<SimulateOrg> getUserOrgs(SimulateUser user) {
+
+        return null;
+    }
 }

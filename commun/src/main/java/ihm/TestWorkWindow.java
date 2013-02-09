@@ -6,13 +6,13 @@ import javax.swing.*;
 
 public class TestWorkWindow extends AbstractWorkPaneWindow {
     @Override
-    void createLeftPane(JPanel panel) {
+    public void createLeftPane(JPanel panel) {
         panel.setPreferredSize(panel.getMaximumSize());
         panel.setBackground(Color.BLUE);
     }
 
     @Override
-    void createRightPane(JPanel panel) {
+    public void createRightPane(JPanel panel) {
         panel.setPreferredSize(panel.getMaximumSize());
         panel.setBackground(Color.RED);
     }

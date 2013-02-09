@@ -17,7 +17,7 @@
 
 commun/.checkstyle
 commun/.pmd
-
+commun/.classpath
 
 *.pydevproject
 .project

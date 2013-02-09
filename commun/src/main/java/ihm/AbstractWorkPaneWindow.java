@@ -26,15 +26,19 @@ public abstract class AbstractWorkPaneWindow extends AbstractButtonWindow {
         panel.add(splitPane);
     }
 
+    void refreshRightPane() {
+        rightWindowComponent.revalidate();
+    }
+
     /**
      * Create the leftPane of the window.
      * @param panel panel to fill
      */
-    abstract void createLeftPane(JPanel panel);
+    abstract public void createLeftPane(JPanel panel);
 
     /**
      * Create the right pane of the window.
      * @param panel panel to fill
      */
-    abstract void createRightPane(JPanel panel);
+    abstract public void createRightPane(JPanel panel);
 }
