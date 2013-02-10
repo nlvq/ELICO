@@ -1,5 +1,9 @@
 package dao;
 
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,38 +28,67 @@ public class TestUtilisateurDAO extends TestAbstractDAO <Long, Utilisateur> {
 
 	@Override
 	protected long countAll() {
-		return 1;
-	}
-	
-	/*@Test
-	public void testFindBySsid(){
-		Author author = utilisateurDAO.findBySsid("1");
-		Assert.assertEquals(author.getFirstname(), "test");
-		Assert.assertEquals(author.getLastname(), "toto");
+		return 4;
 	}
 	
 	@Test
-	public void testFindByBirthday(){
-		Author author = utilisateurDAO.findByBirthday("2000-03-14").get(0);
-		Assert.assertEquals(author.getFirstname(), "test");
-		Assert.assertEquals(author.getLastname(), "toto");
+	public void testFindById(){
+		Utilisateur utilisateur = utilisateurDAO.findById(1L);
+		Assert.assertEquals(utilisateur.getLogin(), "toto1");
+		Assert.assertEquals(utilisateur.getPassword(), "pwd");
+		Assert.assertEquals(utilisateur.getLastName(), "t1");
+		Assert.assertEquals(utilisateur.getFirstName(), "oto");
+		Assert.assertEquals(utilisateur.getPhoneNumber(), "0123456789");
 	}
 	
 	@Test
-	public void testFindByDead(){
-		Author author = utilisateurDAO.findByDead("2012-03-15").get(0);
-		Assert.assertEquals(author.getFirstname(), "test");
-		Assert.assertEquals(author.getLastname(), "tata");
+	public void testFindByUtilisateur(){
+		Utilisateur toFind = new Utilisateur();
+		toFind.setId(1L);
+		toFind.setLogin("toto1");
+		List<Utilisateur> utilisateur = utilisateurDAO.findUtilisateur(toFind);
+		Assert.assertEquals(utilisateur.size(), 1);
+		Assert.assertEquals(utilisateur.get(0).getLogin(), "toto1");
+	}
+	
+	@Test
+	public void testFindByUtilisateurMult(){
+		Utilisateur toFind = new Utilisateur();
+		toFind.setFirstName("oto");
+		toFind.setLogin(null);
+		List<Utilisateur> utilisateur = utilisateurDAO.findUtilisateur(toFind);
+		Assert.assertEquals(utilisateur.size(), 4);
 	}
 	
 	@Test
 	public void testUpdate(){
-		Author toRefresh = utilisateurDAO.findBySsid("1");
-		toRefresh.setFirstname("totototo");
-		utilisateurDAO.merge(toRefresh);
+		Utilisateur toRefresh = utilisateurDAO.findById(1L);
+		toRefresh.setFirstName("totototo");
+		utilisateurDAO.updateUtilisateur(toRefresh);
 		
-		Author author = utilisateurDAO.findBySsid("1");
-		Assert.assertEquals(author.getFirstname(), "totototo");
-	}*/
+		Utilisateur utilisateur = utilisateurDAO.findById(1L);
+		Assert.assertEquals(utilisateur.getFirstName(), "totototo");
+	}
+	
+	@Test
+	public void testCreate(){
+		Utilisateur toCreate = new Utilisateur();
+		toCreate.setLogin("toto5");
+		toCreate.setLastName("t5");
+		toCreate.setFirstName("oto");
+		utilisateurDAO.createUtilisateur(toCreate);
+		
+		Utilisateur utilisateur = utilisateurDAO.findById(5L);
+		Assert.assertEquals(utilisateur.getLogin(), "toto5");
+	}
+	
+	@Test
+	public void testDelete(){
+		Utilisateur toDelete = utilisateurDAO.findById(1L);
+		utilisateurDAO.deleteUtilisateur(toDelete);
+		
+		Utilisateur utilisateur = utilisateurDAO.findById(1L);
+		Assert.assertNull(utilisateur);
+	}
 			
 }

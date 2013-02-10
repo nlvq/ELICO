@@ -31,6 +31,9 @@ public class Objet {
 	@Column(name="OBJET_DESCRIPTION")
 	private String description;
 	
+	@Column(name="OBJET_CONTENT")
+	private String content;
+	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	private Objet parent;
 	
@@ -87,6 +90,20 @@ public class Objet {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * @return the content
+	 */
+	public String getContent() {
+		return content;
+	}
+
+	/**
+	 * @param content the content to set
+	 */
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	/**
