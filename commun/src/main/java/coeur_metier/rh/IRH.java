@@ -11,10 +11,10 @@ public interface IRH {
 	public void createOrga(String name, String type, Organisation parentOrga);
 	public void deleteOrga(String name);
 	public List<Organisation> findOrga(String Orga);
-	public void createUser(String user, String nameOrga);
+	public void createUser(String firstname,String lastname,String phonenumber, String nameOrga);
 	public void deleteUser(String loginUser) ;
 	public void setRoles(String loginUser, List<Role> role);
-	public List<Utilisateur> findUser(String loginUser);
+	public Utilisateur findUser(String loginUser);
 	public void resetPassword(String loginUsern);
 
 }
