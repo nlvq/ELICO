@@ -20,6 +20,12 @@ import ihm.simulate.SimulateWS;
 public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
     private static Object toDisplay;
 
+    void changeRightPane(Object toDisplay) {
+        AbstractTreeWindow.toDisplay = toDisplay;
+        createRightPane(rightWindowComponent);
+        refreshRightPane();
+    }
+
     @Override
     public void createLeftPane(JPanel panel) {
         panel.setPreferredSize(new Dimension(390, 500));
@@ -40,7 +46,6 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
                     createRightPane(rightWindowComponent);
                     refreshRightPane();
                 } else if (o instanceof SimulateWP) {
-                    System.out.println("WP!!");
                     toDisplay = o;
                     createRightPane(rightWindowComponent);
                     refreshRightPane();
@@ -78,9 +83,14 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
      * @param toDisplay WS to display
      * @return The Component created.
      */
+<<<<<<< HEAD
     private JComponent createWSPane(SimulateWS toDisplay) {
     	
         return new JTextArea("WS1");
+=======
+    JComponent createWSPane(SimulateWS toDisplay) {
+        return new JTextArea("WS");
+>>>>>>> Supervisor + begin organization
     }
 
     /**
@@ -89,8 +99,13 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
      * @param toDisplay WP to display
      * @return The Component created.
      */
+<<<<<<< HEAD
     private JComponent createWPPane(SimulateWP toDisplay) {
     	
         return new JTextArea("WP1");
+=======
+    JComponent createWPPane(SimulateWP toDisplay) {
+        return new JTextArea("WP");
+>>>>>>> Supervisor + begin organization
     }
 }

@@ -26,8 +26,12 @@ public abstract class AbstractWorkPaneWindow extends AbstractButtonWindow {
         panel.add(splitPane);
     }
 
+    /**
+     * Allow to redraw the right pane
+     */
     void refreshRightPane() {
-        rightWindowComponent.revalidate();
+        rightWindowComponent.validate();
+        rightWindowComponent.repaint();
     }
 
     /**

@@ -1,5 +1,6 @@
 package ihm.simulate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.WorkSpace;
@@ -72,5 +73,11 @@ public class SimulateUser {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public static List<SimulateUser> findByName(String name) {
+        ArrayList<SimulateUser> list = new ArrayList<>();
+        list.add(new SimulateUser("Toto", "Titi", "ttiti", "****", "0606060606"));
+        return list;
     }
 }
