@@ -39,11 +39,6 @@ public class SimulateWS {
 
     private static List<SimulateWP> createWPs(int size) {
         List<SimulateWP> wps = new ArrayList<>();
-<<<<<<< HEAD
-        wps.add(new SimulateWP(SimulateDroit.LDroit.WRITE, objets, "WP1"));
-        wps.add(new SimulateWP(SimulateDroit.LDroit.WRITE, objets, "WP2"));
-        wps.add(new SimulateWP(SimulateDroit.LDroit.WRITE, objets, "WP3"));
-=======
         for (int i = 0; i < size; i++) {
             int nbWP = (int) (1 + (Math.random() * 100) % 20);
             wps.add(new SimulateWP(SimulateDroit.LDroit.WRITE, createObjects(nbWP), "WP" + i));
@@ -53,8 +48,6 @@ public class SimulateWS {
 
     public static SimulateWS getRoot() {
         List<SimulateWP> wps = createWPs(5);
->>>>>>> Supervisor + begin organization
-
         return new SimulateWS(new ArrayList<SimulateWS>(),
                 new SimulateOrg(null, null, "Org1", null),
                 null,

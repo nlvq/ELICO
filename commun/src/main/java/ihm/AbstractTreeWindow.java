@@ -83,15 +83,9 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
      * @param toDisplay WS to display
      * @return The Component created.
      */
-<<<<<<< HEAD
-    private JComponent createWSPane(SimulateWS toDisplay) {
-    	
-        return new JTextArea("WS1");
-=======
-    JComponent createWSPane(SimulateWS toDisplay) {
+     JComponent createWSPane(SimulateWS toDisplay) {
         return new JTextArea("WS");
->>>>>>> Supervisor + begin organization
-    }
+     }
 
     /**
      * Here we create the display off the given WP.
@@ -99,13 +93,7 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
      * @param toDisplay WP to display
      * @return The Component created.
      */
-<<<<<<< HEAD
-    private JComponent createWPPane(SimulateWP toDisplay) {
-    	
-        return new JTextArea("WP1");
-=======
     JComponent createWPPane(SimulateWP toDisplay) {
         return new JTextArea("WP");
->>>>>>> Supervisor + begin organization
     }
 }
