@@ -17,20 +17,7 @@ public class SimulateUtilisateurDAO implements IUtilisateurDAO{
 	private ArrayList<Utilisateur> utilisateurs;
 	
 	public SimulateUtilisateurDAO(){
-		// Create some users:
 		utilisateurs = new ArrayList<Utilisateur>();
-		Utilisateur u1 = new Utilisateur();
-		u1.setLogin("u1");
-		u1.setPassword("pwd");
-		utilisateurs.add(u1);
-		Utilisateur u2 = new Utilisateur();
-		u2.setLogin("u2");
-		u2.setPassword("pwd");
-		utilisateurs.add(u2);
-		Utilisateur u3 = new Utilisateur();
-		u3.setLogin("u3");
-		u3.setPassword("pwd");
-		utilisateurs.add(u3);
 	}
 
 	@Override
@@ -181,17 +168,24 @@ public class SimulateUtilisateurDAO implements IUtilisateurDAO{
 
 	@Override
 	public void createUtilisateur(Utilisateur utilisateur) {
-		// dont need
+		if(!utilisateurs.contains(utilisateur)){
+			utilisateurs.add(utilisateur);
+		}
 	}
 
 	@Override
 	public void updateUtilisateur(Utilisateur utilisateur) {
-		// dont need
+		if(utilisateurs.contains(utilisateur)){
+			utilisateurs.remove(utilisateur);
+			utilisateurs.add(utilisateur);
+		}
 	}
 
 	@Override
 	public void deleteUtilisateur(Utilisateur utilisateur) {
-		// dont need
+		if(utilisateurs.contains(utilisateur)){
+			utilisateurs.remove(utilisateur);
+		}
 	}
 
 	@Override
