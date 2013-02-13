@@ -14,6 +14,7 @@ import ihm.simulate.SimulateWS;
  * Abstract class which should be use by all user view.
  * All this view uses two panes and a button line.
  * The left pane is filled with a tree.
+ * ..........................
  * That class provide a button panel and two panels to fill.
  */
 public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
@@ -78,7 +79,8 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
      * @return The Component created.
      */
     private JComponent createWSPane(SimulateWS toDisplay) {
-        return new JTextArea("WS");
+    	
+        return new JTextArea("WS1");
     }
 
     /**
@@ -88,6 +90,7 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
      * @return The Component created.
      */
     private JComponent createWPPane(SimulateWP toDisplay) {
-        return new JTextArea("WP");
+    	
+        return new JTextArea("WP1");
     }
 }

@@ -36,6 +36,8 @@ public class SimulateWS {
 
         List<SimulateWP> wps = new ArrayList<>();
         wps.add(new SimulateWP(SimulateDroit.LDroit.WRITE, objets, "WP1"));
+        wps.add(new SimulateWP(SimulateDroit.LDroit.WRITE, objets, "WP2"));
+        wps.add(new SimulateWP(SimulateDroit.LDroit.WRITE, objets, "WP3"));
 
         List<SimulateWS> list = new ArrayList<>();
         return new SimulateWS(new ArrayList<SimulateWS>(),
