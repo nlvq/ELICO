@@ -5,6 +5,9 @@ import java.util.Objects;
 
 import javax.persistence.Query;
 
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
 import dao.Droit;
 import dao.IDroitDAO;
 import dao.IWorkPackageDAO;
@@ -14,6 +17,8 @@ import dao.WorkPackage;
 import dao.impl.DefaultDroitDAO;
 import dao.impl.DefaultWorkPackageDAO;
 
+@Transactional
+@ContextConfiguration(locations = { "classpath:spring/elico-persistence-context.xml" })
 public class WorkPackageImpl implements IWP {
 
 	private IWorkPackageDAO DAO = new DefaultWorkPackageDAO();

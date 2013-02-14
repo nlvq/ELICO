@@ -2,6 +2,9 @@ package coeur_metier.ws;
 
 import java.util.List;
 
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
 import coeur_metier.wp.IWP;
 import coeur_metier.wp.WorkPackageImpl;
 import dao.Droit.LDroit;
@@ -17,6 +20,8 @@ import dao.impl.DefaultDroitDAO;
 import dao.impl.DefaultOrganisationDAO;
 import dao.impl.DefaultWorkSpaceDAO;
 
+@Transactional
+@ContextConfiguration(locations = { "classpath:spring/elico-persistence-context.xml" })
 public class WorkSpaceImpl implements IWS {
 	private WorkSpace ws;
 	private IWorkSpaceDAO dao = new DefaultWorkSpaceDAO();
@@ -44,10 +49,10 @@ public class WorkSpaceImpl implements IWS {
 
 	@Override
 	public void promoteWP(WorkPackage wp) {
-		IDroitDAO idao=new DefaultDroitDAO();
-		IWP work =new WorkPackageImpl();
+		IDroitDAO idao = new DefaultDroitDAO();
+		IWP work = new WorkPackageImpl();
 		wp.setDroit(LDroit.Block);
-		for(Objet o : wp.getObjets()){
+		for (Objet o : wp.getObjets()) {
 			o.getMaturite().setTitle(Etat.ASKVALID);
 		}
 		work.updateWP(wp);
@@ -55,10 +60,10 @@ public class WorkSpaceImpl implements IWS {
 
 	@Override
 	public void publishWP(WorkPackage wp) {
-		IDroitDAO idao=new DefaultDroitDAO();
-		IWP work =new WorkPackageImpl();
+		IDroitDAO idao = new DefaultDroitDAO();
+		IWP work = new WorkPackageImpl();
 		wp.setDroit(LDroit.Read);
-		for(Objet o : wp.getObjets()){
+		for (Objet o : wp.getObjets()) {
 			o.getMaturite().setTitle(Etat.VALIDED);
 		}
 		work.updateWP(wp);
@@ -66,7 +71,7 @@ public class WorkSpaceImpl implements IWS {
 
 	@Override
 	public void synchronizeWP(WorkPackage wp) {
-		IWP work =new WorkPackageImpl();
+		IWP work = new WorkPackageImpl();
 		work.updateWP(wp);
 	}
 }
