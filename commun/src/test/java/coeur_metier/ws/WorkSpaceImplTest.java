@@ -42,21 +42,19 @@ public class WorkSpaceImplTest {
 		listWP.add(wp);
 		
 		WorkSpace wsparent = new WorkSpace();
-		wsparent.setId(1l);
 		wsparent.setOrganisation(org);
 		wsparent.setTitle("WS parent TEST");
 		
 
-		IWorkSpaceDAO dao = new DefaultWorkSpaceDAO();
+		IWorkSpaceDAO dao = new SimulateWorkSpaceDAO();
 		
 		WorkSpace ws= new WorkSpace();
-		ws.setId(1l);
 		ws.setOrganisation(org);
 		ws.setTitle("WS_TEST");
 		ws.setWorkpackages(listWP);
-		dao.updateWorkSpace(ws);
+		dao.createWorkSpace(ws);
 		
-		WorkSpace wss=dao.getReference(1l);
+		WorkSpace wss=dao.getReference(0l);
 		assertTrue(wss.getWorkpackages().equals(listWP));
 		assertTrue(ws.getOrganisation().equals(org));
 	}
@@ -68,7 +66,15 @@ public class WorkSpaceImplTest {
 
 	@Test
 	public final void testPromoteWP() {
-		fail("Not yet implemented"); // TODO
+		IWorkSpaceDAO dao = new SimulateWorkSpaceDAO();
+
+		Organisation org= new Organisation();
+		org.setTitle("compta");
+		WorkSpace ws= new WorkSpace();
+		ws.setOrganisation(org);
+		ws.setTitle("WS_TEST");
+		ws.setWorkpackages(null);
+		dao.refresh(ws);
 	}
 
 	@Test
@@ -78,7 +84,7 @@ public class WorkSpaceImplTest {
 
 	@Test
 	public final void testSynchronizeWP() {
-		fail("Not yet implemented"); // TODO
+		
 	}
 
 }
