@@ -3,8 +3,9 @@ package ihm.simulate;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class SimulateOrg {
-    private String title;
+	private String title;
     private SimulateOrg parent;
     private List<SimulateOrg> childs = new ArrayList<>();
     private List<SimulateWS> workspaces = new ArrayList<>();

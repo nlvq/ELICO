@@ -1,18 +1,18 @@
 package ihm;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
-import java.util.List;
-
-import javax.swing.*;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
-
 import ihm.simulate.SimulateRH;
 import ihm.simulate.SimulateUser;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
 
 public class AdminWindow extends AbstractButtonWindow {
     @Override
@@ -45,7 +45,8 @@ public class AdminWindow extends AbstractButtonWindow {
         final List<SimulateUser> users = rh.getAllUsers();
 
         JTable table = new JTable(new AbstractTableModel() {
-            private final String[] columnsNames={"First Name", "Last Name", "Login", "Password", "Phone Number"};
+			private static final long serialVersionUID = 3880937178950100660L;
+			private final String[] columnsNames={"First Name", "Last Name", "Login", "Password", "Phone Number"};
 
             @Override
             public int getRowCount() {

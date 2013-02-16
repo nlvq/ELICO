@@ -3,11 +3,6 @@ package ihm.simulate;
 import java.util.ArrayList;
 import java.util.List;
 
-import coeur_metier.rh.IRH;
-import dao.Organisation;
-import dao.Role;
-import dao.Utilisateur;
-
 public class SimulateRH {
     public List<SimulateUser> getAllUsers() {
         ArrayList<SimulateUser> users = new ArrayList<SimulateUser>();

@@ -6,7 +6,8 @@ import java.util.List;
 
 public class SimulateWP {
     private String title;
-    private SimulateDroit.LDroit droit;
+    @SuppressWarnings("unused")
+	private SimulateDroit.LDroit droit;
     private List<SimulateObjet> objets = new ArrayList<>();
 
     public SimulateWP(SimulateDroit.LDroit droit, List<SimulateObjet> objets, String title) {

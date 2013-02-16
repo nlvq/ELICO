@@ -4,11 +4,9 @@ import java.util.List;
 
 import dao.IOrganisationDAO;
 import dao.IUtilisateurDAO;
-import dao.Objet;
 import dao.Organisation;
 import dao.Role;
 import dao.Utilisateur;
-import dao.Maturite.Etat;
 import dao.impl.DefaultOrganisationDAO;
 import dao.impl.DefaultUtilisateurDAO;
 

@@ -4,7 +4,6 @@ import java.util.List;
 
 import dao.Droit;
 import dao.IDroitDAO;
-import dao.Maturite;
 import fr.umlv.m2.jee.dao.hibernate.AbstractHibernateDAO;
 
 public class DefaultDroitDAO extends AbstractHibernateDAO<Long, Droit> implements IDroitDAO {

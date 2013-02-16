@@ -1,8 +1,7 @@
 package ihm;
 
-import java.awt.*;
-
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class TestTreeWindow extends AbstractTreeWindow {
 

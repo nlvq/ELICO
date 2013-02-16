@@ -8,15 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 import coeur_metier.wp.IWP;
 import coeur_metier.wp.WorkPackageImpl;
 import dao.Droit.LDroit;
-import dao.IDroitDAO;
 import dao.IOrganisationDAO;
+import dao.IWorkPackageDAO;
 import dao.IWorkSpaceDAO;
 import dao.Maturite.Etat;
 import dao.Objet;
 import dao.Organisation;
 import dao.WorkPackage;
 import dao.WorkSpace;
-import dao.impl.DefaultDroitDAO;
 import dao.impl.DefaultOrganisationDAO;
 import dao.impl.DefaultWorkSpaceDAO;
 
@@ -25,19 +24,30 @@ import dao.impl.DefaultWorkSpaceDAO;
 public class WorkSpaceImpl implements IWS {
 	private WorkSpace ws;
 	private IWorkSpaceDAO dao = new DefaultWorkSpaceDAO();
+	private IWP work = new WorkPackageImpl();
+	private IOrganisationDAO daoOrg = new DefaultOrganisationDAO();
+
+	public WorkSpaceImpl(IWorkSpaceDAO daoSpace, IWorkPackageDAO daoWork,IOrganisationDAO orgDAO) {
+		this.dao = daoSpace;
+		work=new WorkPackageImpl(daoWork);
+		daoOrg=orgDAO;
+	}
+
+	public WorkSpaceImpl() {
+	}
 
 	@Override
 	public void createWS(String name, WorkSpace parentWs, String orga,
 			List<WorkPackage> list) {
-		IOrganisationDAO daoOrg = new DefaultOrganisationDAO();
 		Organisation toFind = new Organisation();
 		toFind.setTitle(orga);
 		Organisation org = daoOrg.findOrganisation(toFind).get(0);
 		ws = new WorkSpace();
+		ws.setTitle(name);
 		ws.setParent(parentWs);
 		ws.setWorkpackages(list);
 		ws.setOrganisation(org);
-		dao.updateWorkSpace(ws);
+		dao.createWorkSpace(ws);
 
 	}
 
@@ -49,8 +59,6 @@ public class WorkSpaceImpl implements IWS {
 
 	@Override
 	public void promoteWP(WorkPackage wp) {
-		IDroitDAO idao = new DefaultDroitDAO();
-		IWP work = new WorkPackageImpl();
 		wp.setDroit(LDroit.Block);
 		for (Objet o : wp.getObjets()) {
 			o.getMaturite().setTitle(Etat.ASKVALID);
@@ -60,8 +68,6 @@ public class WorkSpaceImpl implements IWS {
 
 	@Override
 	public void publishWP(WorkPackage wp) {
-		IDroitDAO idao = new DefaultDroitDAO();
-		IWP work = new WorkPackageImpl();
 		wp.setDroit(LDroit.Read);
 		for (Objet o : wp.getObjets()) {
 			o.getMaturite().setTitle(Etat.VALIDED);
@@ -71,7 +77,7 @@ public class WorkSpaceImpl implements IWS {
 
 	@Override
 	public void synchronizeWP(WorkPackage wp) {
-		IWP work = new WorkPackageImpl();
 		work.updateWP(wp);
 	}
+
 }

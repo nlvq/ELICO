@@ -1,13 +1,18 @@
 package ihm;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -76,6 +81,7 @@ public class WSWindow extends AbstractWorkPaneWindow implements TreeSelectionLis
 	//afficher un exemple de navigation en images
 
 	private class View extends JComponent {
+		private static final long serialVersionUID = -7146892124706971565L;
 		private BufferedImage photo;
 		private double ratio;
 

@@ -1,10 +1,8 @@
 package main;
 
 import ihm.Editor;
-import ihm.AdminWindow;
 import ihm.IWindow;
 import ihm.SupervisorWindow;
-import ihm.TestTreeWindow;
 
 public class MainIHM {
     public static void main(String args[]) {

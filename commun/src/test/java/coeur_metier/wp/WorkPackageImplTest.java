@@ -1,54 +1,91 @@
 package coeur_metier.wp;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.BeforeClass;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
+
+import dao.Droit.LDroit;
+import dao.IWorkPackageDAO;
+import dao.Objet;
+import dao.WorkPackage;
 
 public class WorkPackageImplTest {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	private IWorkPackageDAO dao = new SimulateWorkPackageDAO();
+	private IWP work = new WorkPackageImpl(dao);
+	private List<Objet> listObjet;
+	
+	@Before
+	public void setUpBeforeClass() throws Exception {
+		listObjet = new ArrayList<>();
+		listObjet.add(new Objet());
+		listObjet.add(new Objet());
 	}
 
 	@Test
 	public final void testCreateWP() {
-		fail("Not yet implemented"); // TODO
+		work.createWP("Test", listObjet);
+		List<WorkPackage> list=dao.findAll();
+		WorkPackage wp=list.get(0);
+		assertEquals((long)wp.getId(),0l);
+		assertEquals(wp.getTitle(),"Test");
+		assertEquals(wp.getObjets().size(),2);
 	}
 
 	@Test
 	public final void testUpdateWP() {
-		fail("Not yet implemented"); // TODO
+		work.createWP("Test", listObjet);
+		List<WorkPackage> list=dao.findAll();
+		WorkPackage wp=list.get(0);
+		wp.setTitle("PIPO");
+		wp.setDroit(LDroit.Read);
+		work.updateWP(wp);
+		list=dao.findAll();
+		wp=list.get(0);
+		assertEquals((long)wp.getId(),0l);
+		assertEquals(wp.getTitle(),"PIPO");
+		assertEquals(wp.getObjets().size(),2);
+		assertEquals(wp.getDroit(),LDroit.Read);
 	}
 
 	@Test
 	public final void testFindWP() {
-		fail("Not yet implemented"); // TODO
+		work.createWP("Test1", listObjet);
+		WorkPackage wp=new WorkPackage();
+		wp.setTitle("Test1");
+		work.findWP(wp);
 	}
 
-	@Test
+	@Test(expected=IllegalAccessException.class)
 	public final void testLockWP() {
-		fail("Not yet implemented"); // TODO
+		work.lockWP("0");
+		WorkPackage wp=new WorkPackage();
+		wp.setId(0l);
+		work.updateWP(wp);
 	}
 
 	@Test
 	public final void testUnlockWP() {
-		fail("Not yet implemented"); // TODO
+		//work.unlockWP(id);
 	}
 
 	@Test
 	public final void testRequestValidation() {
-		fail("Not yet implemented"); // TODO
+		//work.requestValidation(id);
 	}
 
 	@Test
 	public final void testAccept() {
-		fail("Not yet implemented"); // TODO
+		//work.accept(id);
 	}
 
 	@Test
 	public final void testRefuse() {
-		fail("Not yet implemented"); // TODO
+		//work.refuse(id, reason);
 	}
 
 }

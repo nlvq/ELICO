@@ -4,8 +4,7 @@ package ihm.simulate;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.Organisation;
-
+@SuppressWarnings("unused")
 public class SimulateWS {
     private String title;
     private SimulateWS parent;

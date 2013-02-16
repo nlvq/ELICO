@@ -1,16 +1,11 @@
 package ihm;
 
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.List;
+import ihm.simulate.SimulateWP;
+import ihm.simulate.SimulateWS;
 
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
-
-import ihm.simulate.SimulateWP;
-import ihm.simulate.SimulateWS;
 
 public class WSTreeNode implements TreeModel {
     @Override

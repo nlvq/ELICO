@@ -24,7 +24,7 @@ public interface IWP {
 	 * @param wp, 
 	 * @return le wp trouvé, null sinon
 	 */
-	public WorkPackage findWP(WorkPackage wp);
+	public List<WorkPackage> findWP(WorkPackage wp);
 	/**
 	 * Prend le lock sur le WP, il ne peut plus etre modifié.
 	 * @param id

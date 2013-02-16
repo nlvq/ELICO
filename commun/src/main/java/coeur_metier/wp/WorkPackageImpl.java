@@ -3,18 +3,14 @@ package coeur_metier.wp;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Query;
-
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.Droit;
-import dao.IDroitDAO;
 import dao.IWorkPackageDAO;
 import dao.Maturite.Etat;
 import dao.Objet;
 import dao.WorkPackage;
-import dao.impl.DefaultDroitDAO;
 import dao.impl.DefaultWorkPackageDAO;
 
 @Transactional
@@ -23,6 +19,12 @@ public class WorkPackageImpl implements IWP {
 
 	private IWorkPackageDAO DAO = new DefaultWorkPackageDAO();
 	private WorkPackage wp;
+	
+	public WorkPackageImpl(IWorkPackageDAO DAO){
+		this.DAO=DAO;
+	}
+	public WorkPackageImpl(){
+	}
 
 	@Override
 	public void createWP(String name, List<Objet> liste) {
@@ -45,21 +47,9 @@ public class WorkPackageImpl implements IWP {
 	 * c faux ca!
 	 */
 	@Override
-	public WorkPackage findWP(WorkPackage wp) {
+	public List<WorkPackage> findWP(WorkPackage wp) {
 		Objects.requireNonNull(wp);
-//		if (wp.getId() != null) {
-//			return DAO.findWorkPackage(wp.getId()).get(0);
-//		} else if (wp.getTitle() != null) {
-//			final Query query = DAO.createQuery("select * from WORKPACKAGE where WORKPACKAGE.WORKPACKAGE_TITLE:=wp");
-//			query.setParameter("wp", wp.getId());
-//
-//		}
-//		return new WorkPackage();
-		
-		//TODO je pense qu'il faut faire :
-		//return DAO.findWorkPackage(wp);
-		//mais ça retourne une liste, donc soit on fait un .get(0) ou on modifie la signature de la methode
-		return null;
+		return DAO.findWorkPackage(wp);
 	}
 
 	@Override
@@ -77,7 +67,7 @@ public class WorkPackageImpl implements IWP {
 
 	@Override
 	public void requestValidation(String id) {
-		IDroitDAO iddao = new DefaultDroitDAO();
+		//IDroitDAO iddao = new DefaultDroitDAO();
 		//TODO check les droits de l'utilisateur lié au wp ?
 		for(Objet o : wp.getObjets()){
 			o.getMaturite().setTitle(Etat.ASKVALID);
@@ -103,5 +93,6 @@ public class WorkPackageImpl implements IWP {
 		updateWP(wp);
 
 	}
+
 
 }

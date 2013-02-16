@@ -80,8 +80,9 @@ public class SimulateWorkSpaceDAO implements IWorkSpaceDAO {
 
 	@Override
 	public WorkSpace persist(WorkSpace toPersist) {
-		toPersist.setId((long) map.size());
-		return map.put((long) map.size(), toPersist);
+		long tmp=map.size();
+		toPersist.setId(tmp);
+		return map.put(tmp, toPersist);
 	}
 
 	@Override
@@ -151,8 +152,9 @@ public class SimulateWorkSpaceDAO implements IWorkSpaceDAO {
 
 	@Override
 	public void createWorkSpace(WorkSpace ws) {
-		ws.setId((long) map.size());
-		map.put((long) map.size(), ws);
+		long tmp=map.size();
+		ws.setId(tmp);
+		map.put(tmp, ws);
 	}
 
 	@Override
@@ -172,13 +174,13 @@ public class SimulateWorkSpaceDAO implements IWorkSpaceDAO {
 		for(WorkSpace w: map.values()){
 			if(ws.equals(w))
 				list.add(w);
-			if(ws.getId().equals(w.getId()))
+			if(ws.getId()!=null && ws.getId().equals(w.getId()))
 				list.add(w);
-			if(ws.getTitle().equals(w.getTitle()))
+			if(ws.getId()!=null && ws.getTitle().equals(w.getTitle()))
 				list.add(w);
-			if(ws.getOrganisation().equals(w.getOrganisation()))
+			if(ws.getId()!=null && ws.getOrganisation().equals(w.getOrganisation()))
 				list.add(w);
-			if(ws.getUtilisateur().equals(w.getUtilisateur()))
+			if(ws.getId()!=null && ws.getUtilisateur().equals(w.getUtilisateur()))
 				list.add(w);
 		}
 		return list;
