@@ -28,30 +28,42 @@ public class SimulateWS {
         return workpackages;
     }
 
-    private static List<SimulateObjet> createObjects(int size) {
+    public void setWorkpackages(List<SimulateWP> workpackages) {
+        this.workpackages = workpackages;
+    }
+
+    public SimulateOrg getOrg() {
+        return organisation;
+    }
+
+    private static List<SimulateObjet> createObjects(SimulateWP parent, int size) {
         List<SimulateObjet> objets = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            objets.add(new SimulateObjet("File" + i));
+            objets.add(new SimulateObjet("File" + i, parent));
         }
         return objets;
     }
 
-    private static List<SimulateWP> createWPs(int size) {
+    private static List<SimulateWP> createWPs(SimulateWS parent, int size) {
         List<SimulateWP> wps = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int nbWP = (int) (1 + (Math.random() * 100) % 20);
-            wps.add(new SimulateWP(SimulateDroit.LDroit.WRITE, createObjects(nbWP), "WP" + i));
+            SimulateWP wp = new SimulateWP(SimulateDroit.LDroit.WRITE, null, "WP" + i, parent);
+            wp.setObjects(createObjects(wp, nbWP));
+            wps.add(wp);
         }
         return wps;
     }
 
     public static SimulateWS getRoot() {
-        List<SimulateWP> wps = createWPs(5);
-        return new SimulateWS(new ArrayList<SimulateWS>(),
+        SimulateWS ws = new SimulateWS(new ArrayList<SimulateWS>(),
                 new SimulateOrg(null, null, "Org1", null),
                 null,
                 "WS1",
-                wps);
+                null);
+        List<SimulateWP> wps = createWPs(ws, 5);
+        ws.setWorkpackages(wps);
+        return ws;
     }
 
     @Override

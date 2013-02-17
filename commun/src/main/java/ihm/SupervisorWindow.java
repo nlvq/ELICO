@@ -14,6 +14,10 @@ import ihm.simulate.SimulateWP;
 import ihm.simulate.SimulateWS;
 
 public class SupervisorWindow extends AbstractTreeWindow {
+    private SimulateObjet selectedObject;
+    private SimulateWP selectedWP;
+
+
     @Override
     void createButtonPane(JPanel panel) {
         JButton A = new JButton("A");
@@ -30,8 +34,13 @@ public class SupervisorWindow extends AbstractTreeWindow {
         O.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IWindow org = new OrganizationWindow();
+                OrganizationWindow org = new OrganizationWindow();
                 org.createWindow();
+                if (selectedWP != null) {
+                    org.setParent(selectedWP.getParentWS().getOrg());
+                } if (selectedObject != null) {
+                    org.setParent(selectedObject.getParent().getParentWS().getOrg());
+                }
                 org.openWindow();
             }
         });
@@ -78,6 +87,8 @@ public class SupervisorWindow extends AbstractTreeWindow {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     changeRightPane(jList.getModel().getElementAt(jList.locationToIndex(e.getPoint())));
+                } else if (e.getClickCount() == 1) {
+                    selectedWP = jList.getModel().getElementAt(jList.locationToIndex(e.getPoint()));
                 }
             }
         });
@@ -87,7 +98,7 @@ public class SupervisorWindow extends AbstractTreeWindow {
 
     @Override
     JComponent createWPPane(SimulateWP toDisplay) {
-        final List<SimulateObjet> objects = toDisplay.getObjets();
+        final List<SimulateObjet> objects = toDisplay.getObjects();
         final JList<SimulateObjet> jList = new JList<>(new ListModel<SimulateObjet>() {
             @Override
             public int getSize() {
@@ -116,6 +127,8 @@ public class SupervisorWindow extends AbstractTreeWindow {
                 if (e.getClickCount() == 2) {
                     System.out.println("Open Editor for: " +
                             jList.getModel().getElementAt(jList.locationToIndex(e.getPoint())));
+                } else if (e.getClickCount() == 1) {
+                    selectedObject = jList.getModel().getElementAt(jList.locationToIndex(e.getPoint()));
                 }
             }
         });

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
 
+import ihm.simulate.SimulateOrg;
 import ihm.simulate.SimulateUser;
 
 /**
@@ -16,6 +17,13 @@ import ihm.simulate.SimulateUser;
 public class OrganizationWindow extends AbstractValidateCancelWindow {
     JTextField nameField;
     JTextField searchField;
+    JList<SimulateUser> users;
+
+    SimulateOrg parent;
+
+    public void setParent(SimulateOrg parent) {
+        this.parent = parent;
+    }
 
     @Override
     public void createWindow() {
@@ -29,7 +37,7 @@ public class OrganizationWindow extends AbstractValidateCancelWindow {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SimulateOrg.addOrg(parent, nameField.getText(), users.getSelectedValue());
             }
         });
     }
@@ -50,51 +58,57 @@ public class OrganizationWindow extends AbstractValidateCancelWindow {
         panel.setLayout(new BorderLayout());
 
         JPanel north = new JPanel(new BorderLayout());
-        JPanel center = new JPanel(new BorderLayout());
-
+        JPanel center = new JPanel();
 
         JLabel newOrg = new JLabel("New Organization");
         nameField = new JTextField();
-        final JList<SimulateUser> users = new JList<>();
+        users = new JList<>();
         searchField = new JTextField(10);
         JButton button = new JButton("Ok");
+
+        final List<SimulateUser> result = parent.getUsers();
+        users.setModel(createList(result));
 
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 final List<SimulateUser> result = SimulateUser.findByName(searchField.getText());
-                users.setModel(new ListModel<SimulateUser>() {
-                    @Override
-                    public int getSize() {
-                        return result.size();
-                    }
-
-                    @Override
-                    public SimulateUser getElementAt(int index) {
-                        return result.get(index);
-                    }
-
-                    @Override
-                    public void addListDataListener(ListDataListener l) {
-
-                    }
-
-                    @Override
-                    public void removeListDataListener(ListDataListener l) {
-
-                    }
-                });
+                users.setModel(createList(result));
             }
         });
 
         north.add(newOrg, BorderLayout.NORTH);
         north.add(nameField, BorderLayout.SOUTH);
 
-        center.add(searchField, BorderLayout.WEST);
-        center.add(button, BorderLayout.EAST);
+        center.add(users);
+        center.add(searchField);
+        center.add(button);
 
         panel.add(north, BorderLayout.NORTH);
-        panel.add(users, BorderLayout.WEST);
         panel.add(center, BorderLayout.CENTER);
+    }
+
+    private ListModel<SimulateUser> createList(final List<SimulateUser> result) {
+        return new ListModel<SimulateUser>() {
+            @Override
+            public int getSize() {
+                return result.size();
+            }
+
+            @Override
+            public SimulateUser getElementAt(int index) {
+                return result.get(index);
+            }
+
+            @Override
+            public void addListDataListener(ListDataListener l) {
+
+            }
+
+            @Override
+            public void removeListDataListener(ListDataListener l) {
+
+            }
+        };
     }
 }

@@ -80,4 +80,9 @@ public class SimulateUser {
         list.add(new SimulateUser("Toto", "Titi", "ttiti", "****", "0606060606"));
         return list;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }

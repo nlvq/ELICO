@@ -10,7 +10,7 @@ public class MainIHM {
         //IWindow window = new TestWorkWindow();
         //IWindow window = new TestValidateCancelWindow();
         //IWindow window = new WSWindow();
-    	new Editor();
+    	//new Editor();
     
         //IWindow window = Editor();
         //window.createWindow();

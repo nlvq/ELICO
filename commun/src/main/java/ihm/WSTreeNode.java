@@ -30,7 +30,7 @@ public class WSTreeNode implements TreeModel {
         }
         for (SimulateWP simulateWP: ws.getWorkpackages()) {
             if (simulateWP.equals(parent)) {
-                return simulateWP.getObjets().get(index);
+                return simulateWP.getObjects().get(index);
             }
         }
         return null;
@@ -54,7 +54,7 @@ public class WSTreeNode implements TreeModel {
         }
         for (SimulateWP simulateWP: ws.getWorkpackages()) {
             if (simulateWP.equals(parent)) {
-                return simulateWP.getObjets().size();
+                return simulateWP.getObjects().size();
             }
         }
         return -1;
@@ -94,8 +94,8 @@ public class WSTreeNode implements TreeModel {
         }
         for (SimulateWP simulateWP: ws.getWorkpackages()) {
             if (simulateWP.equals(parent)) {
-                for (int i = 0; i < simulateWP.getObjets().size(); i++) {
-                    if (simulateWP.getObjets().get(i).equals(child)) {
+                for (int i = 0; i < simulateWP.getObjects().size(); i++) {
+                    if (simulateWP.getObjects().get(i).equals(child)) {
                         return i;
                     }
                 }

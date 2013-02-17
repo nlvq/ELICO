@@ -16,4 +16,17 @@ public class SimulateOrg {
         this.title = title;
         this.workspaces = workspaces;
     }
+
+    public static List<SimulateUser> getUsers() {
+        List<SimulateUser> users = new ArrayList<>();
+
+        users.add(new SimulateUser("Toto", "Tata", "ttata", "****", "0606060606"));
+        users.add(new SimulateUser("Tutu", "Titi", "ttiti", "****", "0606060606"));
+
+        return users;
+    }
+
+    public static void addOrg(SimulateOrg parent, String name, SimulateUser user) {
+        System.out.println("Add Org in " + parent + " name: " + name + " User: " + user);
+    }
 }
