@@ -6,15 +6,9 @@ import java.util.List;
 
 public class SimulateWP {
     private String title;
-<<<<<<< HEAD
-    @SuppressWarnings("unused")
-	private SimulateDroit.LDroit droit;
-    private List<SimulateObjet> objets = new ArrayList<>();
-=======
     private SimulateDroit.LDroit droit;
     private List<SimulateObjet> objects = new ArrayList<>();
     private SimulateWS parentWS;
->>>>>>> update org window
 
     public SimulateWP(SimulateDroit.LDroit droit, List<SimulateObjet> objets, String title, SimulateWS parentWS) {
         this.droit = droit;
