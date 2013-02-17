@@ -4,7 +4,6 @@ package ihm.simulate;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unused")
 public class SimulateWS {
     private String title;
     private SimulateWS parent;
@@ -86,5 +85,9 @@ public class SimulateWS {
     @Override
     public int hashCode() {
         return title != null ? title.hashCode() : 0;
+    }
+
+    public void addWP(String name, List<SimulateObjet> objects) {
+        workpackages.add(new SimulateWP(SimulateDroit.LDroit.READ, objects, name, this));
     }
 }

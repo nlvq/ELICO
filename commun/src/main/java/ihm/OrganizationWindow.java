@@ -21,6 +21,10 @@ public class OrganizationWindow extends AbstractValidateCancelWindow {
 
     SimulateOrg parent;
 
+    /**
+     * Set the parent of the organization
+     * @param parent New parent of the organization
+     */
     public void setParent(SimulateOrg parent) {
         this.parent = parent;
     }
@@ -38,6 +42,7 @@ public class OrganizationWindow extends AbstractValidateCancelWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SimulateOrg.addOrg(parent, nameField.getText(), users.getSelectedValue());
+                frame.dispose();
             }
         });
     }

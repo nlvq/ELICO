@@ -52,7 +52,7 @@ public class SimulateRH {
     public void createNewUser(String firstName, String lastName, String login, String password, String phoneNumber) {
         System.out.println("Création de l'utilisateur ("+ firstName +
                 ", " + lastName + ", " + login + ", " + password +
-                ", " + phoneNumber);
+                ", " + phoneNumber + ")");
     }
 
     public List<SimulateOrg> getUserOrgs(SimulateUser user) {

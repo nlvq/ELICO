@@ -18,8 +18,12 @@ import ihm.simulate.SimulateWS;
  * That class provide a button panel and two panels to fill.
  */
 public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
-    private static Object toDisplay;
+    static Object toDisplay;
 
+    /**
+     * Allow to change the right pane.
+     * @param toDisplay pane to display
+     */
     void changeRightPane(Object toDisplay) {
         AbstractTreeWindow.toDisplay = toDisplay;
         createRightPane(rightWindowComponent);

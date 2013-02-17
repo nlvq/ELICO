@@ -36,6 +36,8 @@ public abstract class AbstractValidateCancelWindow extends AbstractWindow {
         frame.getContentPane().add(buttonPane, BorderLayout.SOUTH);
         frame.getContentPane().add(windowPane, BorderLayout.CENTER);
 
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         createWindowPane(windowPane);
     }
 

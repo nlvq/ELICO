@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.event.ListDataListener;
 
 import ihm.simulate.SimulateObjet;
+import ihm.simulate.SimulateOrg;
 import ihm.simulate.SimulateWP;
 import ihm.simulate.SimulateWS;
 
@@ -38,10 +39,32 @@ public class SupervisorWindow extends AbstractTreeWindow {
                 org.createWindow();
                 if (selectedWP != null) {
                     org.setParent(selectedWP.getParentWS().getOrg());
-                } if (selectedObject != null) {
+                } else if (selectedObject != null) {
                     org.setParent(selectedObject.getParent().getParentWS().getOrg());
+                } else {
+                    org.setParent(((SimulateWS) toDisplay).getOrg());
                 }
                 org.openWindow();
+            }
+        });
+
+        WP.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddWPWindow window = null;
+                System.out.println(selectedWP);
+                System.out.println(selectedObject);
+
+                if (selectedWP != null) {
+                    window = new AddWPWindow(selectedWP.getParentWS());
+                } else if (selectedObject != null) {
+                    window = new AddWPWindow(selectedObject.getParent().getParentWS());
+                } else {
+                    window = new AddWPWindow((SimulateWS) toDisplay);
+                }
+                System.out.println(window);
+                window.createWindow();
+                window.openWindow();
             }
         });
 
@@ -49,11 +72,13 @@ public class SupervisorWindow extends AbstractTreeWindow {
         panel.add(PU);
         panel.add(PR);
         panel.add(S);
+
         panel.add(WP);
         panel.add(WS);
         panel.add(O);
         panel.add(plus);
         panel.add(rmWP);
+
         panel.add(help);
     }
 

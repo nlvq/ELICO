@@ -3,7 +3,6 @@ package ihm.simulate;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unused")
 public class SimulateOrg {
 	private String title;
     private SimulateOrg parent;
@@ -28,5 +27,10 @@ public class SimulateOrg {
 
     public static void addOrg(SimulateOrg parent, String name, SimulateUser user) {
         System.out.println("Add Org in " + parent + " name: " + name + " User: " + user);
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 }
