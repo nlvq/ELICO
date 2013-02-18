@@ -1,6 +1,7 @@
 package main;
 
 import ihm.AdminWindow;
+import ihm.AuthentificationLoginWindow;
 import ihm.Editor;
 import ihm.IWindow;
 import ihm.SupervisorWindow;
@@ -15,7 +16,8 @@ public class MainIHM {
         //window.createWindow();
         //window.openWindow();
 
-        IWindow window = new SupervisorWindow();
+        //IWindow window = new SupervisorWindow();
+    	IWindow window = new AuthentificationLoginWindow();
         window.createWindow();
         window.openWindow();
     }
