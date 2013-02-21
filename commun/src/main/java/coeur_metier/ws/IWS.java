@@ -14,6 +14,8 @@ public interface IWS {
 	 * @param list, la liste des WP liés.
 	 */
 	public void createWS(String name, WorkSpace parentWs, String orga, List<WorkPackage> list);
+	
+	public List<WorkSpace> getWS(WorkSpace ws);
 	/**
 	 * Demande WorkPackage, et prend le lock.
 	 * @param wp, le WP voulue

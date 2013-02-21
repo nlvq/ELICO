@@ -2,12 +2,20 @@ package coeur_metier.livre;
 
 import java.util.List;
 
+import dao.IObjetDAO;
 import dao.Objet;
 import dao.impl.DefaultObjetDAO;
 
 public class Livre implements ILivre{
 	private Objet obj;
-	private DefaultObjetDAO daoObjet; 
+	private IObjetDAO daoObjet; 
+	
+	
+
+	public Livre(IObjetDAO dao) {
+		super();
+		this.daoObjet = dao;
+	}
 
 	@Override
 	public void CreateObject(Objet object) {
@@ -80,6 +88,5 @@ public class Livre implements ILivre{
 		return daoObjet.findObjet(object);
 		
 	}
-	
 
 }

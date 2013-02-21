@@ -68,10 +68,6 @@ public class WorkPackageImplTest {
 		work.updateWP(wp);
 	}
 
-	@Test
-	public final void testUnlockWP() {
-		//work.unlockWP(id);
-	}
 
 	@Test
 	public final void testRequestValidation() {

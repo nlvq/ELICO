@@ -80,4 +80,10 @@ public class WorkSpaceImpl implements IWS {
 		work.updateWP(wp);
 	}
 
+	@Override
+	public List<WorkSpace> getWS(WorkSpace space) {
+		return dao.findWorkSpace(space);
+		
+	}
+
 }
