@@ -50,4 +50,18 @@ public class SimulateWP {
     public int hashCode() {
         return title != null ? title.hashCode() : 0;
     }
+
+    public static SimulateObjet[] search(String text) {
+        SimulateObjet[] objetsType = new SimulateObjet[1];
+
+        List<SimulateObjet> objects = new ArrayList<>();
+        SimulateObjet obj = new SimulateObjet(text, null);
+        objects.add(obj);
+
+        SimulateWP wp = new SimulateWP(SimulateDroit.LDroit.WRITE,  objects, "WP", null);
+
+        obj.setParent(wp);
+
+        return wp.getObjects().toArray(objetsType);
+    }
 }

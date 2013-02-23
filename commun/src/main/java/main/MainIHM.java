@@ -16,8 +16,8 @@ public class MainIHM {
         //window.createWindow();
         //window.openWindow();
 
-        //IWindow window = new SupervisorWindow();
-    	IWindow window = new AuthentificationLoginWindow();
+        IWindow window = new SupervisorWindow();
+    	//IWindow window = new AuthentificationLoginWindow();
         window.createWindow();
         window.openWindow();
     }

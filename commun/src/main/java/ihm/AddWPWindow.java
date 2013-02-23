@@ -1,12 +1,17 @@
 package ihm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.event.ListDataListener;
 
 import ihm.simulate.SimulateObjet;
+import ihm.simulate.SimulateWP;
 import ihm.simulate.SimulateWS;
 
 /**
@@ -19,10 +24,11 @@ public class AddWPWindow extends AbstractValidateCancelWindow {
     JList<SimulateObjet> listObj;
     private JTextField searchField;
     private JList<SimulateObjet> searchResult;
+    private List<SimulateObjet> objects = new ArrayList<>();
 
     /**
      * Constructor
-     * @param ws WS in wich we add the WP
+     * @param ws WS in which we add the WP
      */
     public AddWPWindow(SimulateWS ws) {
         this.ws = ws;
@@ -35,6 +41,7 @@ public class AddWPWindow extends AbstractValidateCancelWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ws.addWP(nameField.getText(), listObj.getSelectedValuesList());
+                frame.dispose();
             }
         });
     }
@@ -52,46 +59,38 @@ public class AddWPWindow extends AbstractValidateCancelWindow {
 
     @Override
     void createWindowPane(JPanel panel) {
-        panel.setLayout(new GridBagLayout());
-
-        JTextArea nameText = new JTextArea("Name:");
+        JLabel nameText = new JLabel("Name:");
         nameField = new JTextField(60);
-        JPanel listContainer = new JPanel();
         listObj = new JList<>();
-        listContainer.add(listObj);
+        listObj.setPreferredSize(new Dimension(300, 400));
         searchField = new JTextField(30);
         JButton searchButton = new JButton("Search");
-        JPanel searchResultContainer = new JPanel();
         searchResult = new JList<>();
-        searchResultContainer.add(searchResult);
+        searchResult.setPreferredSize(new Dimension(200, 100));
         JButton addButton = new JButton("Add");
 
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = gbc.REMAINDER;
-        gbc.weightx = 1f;
-        gbc.weighty = 1f;
-        panel.add(nameText, gbc);
-
-        gbc.gridwidth = gbc.REMAINDER;
-        panel.add(nameField, gbc);
-
-        gbc.gridwidth = 2;
-        gbc.gridheight = 4;
-        panel.add(listContainer, gbc);
-
-        gbc.gridwidth = 3;
-        gbc.gridheight = 1;
-        panel.add(searchField, gbc);
-
-        gbc.gridwidth = gbc.REMAINDER;
+        panel.add(nameText);
+        panel.add(nameField);
+        panel.add(listObj);
+        panel.add(searchField);
         panel.add(searchButton);
+        panel.add(searchResult);
+        panel.add(addButton);
 
-        gbc.gridwidth = gbc.REMAINDER;
-        gbc.gridheight = 2;
-        panel.add(searchResultContainer);
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchResult.setListData(SimulateWP.search(searchField.getText()));
+            }
+        });
 
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        panel.add(addButton, gbc);
+        listObj.setModel(new DefaultListModel<SimulateObjet>());
+
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((DefaultListModel) listObj.getModel()).addElement(searchResult.getSelectedValue());
+            }
+        });
     }
 }

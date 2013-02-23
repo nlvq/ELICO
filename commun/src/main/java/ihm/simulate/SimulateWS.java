@@ -88,6 +88,12 @@ public class SimulateWS {
     }
 
     public void addWP(String name, List<SimulateObjet> objects) {
-        workpackages.add(new SimulateWP(SimulateDroit.LDroit.READ, objects, name, this));
+        SimulateWP simulateWP = new SimulateWP(SimulateDroit.LDroit.READ, objects, name, this);
+
+        for (SimulateObjet object: objects) {
+            object.setParent(simulateWP);
+        }
+
+        workpackages.add(simulateWP);
     }
 }

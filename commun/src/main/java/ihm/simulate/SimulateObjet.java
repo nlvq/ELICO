@@ -17,4 +17,8 @@ public class SimulateObjet {
     public String toString() {
         return name;
     }
+
+    public void setParent(SimulateWP wp) {
+        parent = wp;
+    }
 }
