@@ -40,7 +40,11 @@ public class AddWPWindow extends AbstractValidateCancelWindow {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ws.addWP(nameField.getText(), listObj.getSelectedValuesList());
+                List<SimulateObjet> objects = new ArrayList<>();
+                for (int i = 0; i < listObj.getModel().getSize(); i++) {
+                    objects.add(listObj.getModel().getElementAt(i));
+                }
+                ws.addWP(nameField.getText(), objects);
                 frame.dispose();
             }
         });

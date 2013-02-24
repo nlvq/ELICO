@@ -52,8 +52,6 @@ public class SupervisorWindow extends AbstractTreeWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddWPWindow window = null;
-                System.out.println(selectedWP);
-                System.out.println(selectedObject);
 
                 if (selectedWP != null) {
                     window = new AddWPWindow(selectedWP.getParentWS());
@@ -62,9 +60,42 @@ public class SupervisorWindow extends AbstractTreeWindow {
                 } else {
                     window = new AddWPWindow((SimulateWS) toDisplay);
                 }
-                System.out.println(window);
                 window.createWindow();
                 window.openWindow();
+            }
+        });
+
+        rmWP.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[] options = {"Oui",
+                        "Non"};
+                if (selectedWP != null) {
+                    int n = JOptionPane.showOptionDialog(frame,
+                        "Voulez vous supprimer le WP " + selectedWP.getTitle() + " ?",
+                        "Suppression du WP",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        null);
+
+                    if (n == 0) {
+                        selectedWP.getParentWS().removeWP(selectedWP);
+                        refreshRightPane();
+                    }
+                }
+            }
+        });
+
+        plus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (selectedWP != null) {
+                    AddWPUserWindow window = new AddWPUserWindow(selectedWP);
+                    window.createWindow();
+                    window.openWindow();
+                }
             }
         });
 

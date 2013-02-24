@@ -49,6 +49,7 @@ public class SimulateWS {
             int nbWP = (int) (1 + (Math.random() * 100) % 20);
             SimulateWP wp = new SimulateWP(SimulateDroit.LDroit.WRITE, null, "WP" + i, parent);
             wp.setObjects(createObjects(wp, nbWP));
+            wp.addUser(new SimulateUser("Toto", "Bar", "Log", "pwd", "06"), null);
             wps.add(wp);
         }
         return wps;
@@ -94,6 +95,13 @@ public class SimulateWS {
             object.setParent(simulateWP);
         }
 
+        System.out.println("Add WP: Name: " + simulateWP.getTitle() + " objects: " + simulateWP.getObjects());
+
         workpackages.add(simulateWP);
+    }
+
+    public void removeWP(SimulateWP wp) {
+        System.out.println("Suppression de " + wp);
+        workpackages.remove(wp);
     }
 }
