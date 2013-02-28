@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import dao.IOrganisationDAO;
 import dao.IUtilisateurDAO;
@@ -13,7 +13,7 @@ import dao.Organisation;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 
-@Transactional
+@Service("rh")
 @ContextConfiguration(locations = { "classpath:spring/elico-persistence-context.xml" })
 public class RH implements IRH {
 

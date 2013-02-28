@@ -3,13 +3,13 @@ package coeur_metier.livre;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import dao.IObjetDAO;
 import dao.Objet;
 
-@Transactional
+@Service("livre")
 @ContextConfiguration(locations = { "classpath:spring/elico-persistence-context.xml" })
 public class Livre implements ILivre {
 
