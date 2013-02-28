@@ -19,13 +19,8 @@ public class Livre implements ILivre{
 
 	@Override
 	public void CreateObject(Objet object) {
-		
-		obj=new Objet();
-		obj.setDescription(null);
-		obj.setType("Livre");
-		obj.setContent(null);
-		obj.setParent(null);
-		daoObjet.createObjet(obj);
+		object.setType("Livre");
+		daoObjet.createObjet(object);
 
 		
 	}
@@ -58,7 +53,7 @@ public class Livre implements ILivre{
 	public void CreateParagraph(Objet ChapPere) {
 		obj=new Objet();
 		obj.setDescription(null);
-		obj.setType("Volume");
+		obj.setType("Paragraph");
 		obj.setContent(null);
 		obj.setParent(ChapPere);
 		daoObjet.createObjet(obj);
@@ -76,15 +71,14 @@ public class Livre implements ILivre{
 
 	@Override
 	public void DeleteObject(Objet object) {
-		if (daoObjet.findObjet(object)!=null)
+		//if (daoObjet.findObjet(object)!=null)
 		daoObjet.deleteObjet(object);
 			
 	}
 
 	@Override
 	public List<Objet> FindObject(Objet object) {
-		if (daoObjet.findObjet(object)==null)
-		{System.out.print("Liste vide"); }
+		
 		return daoObjet.findObjet(object);
 		
 	}

@@ -18,7 +18,6 @@ import dao.Utilisateur;
 
 public class SimulateRHDAO implements IUtilisateurDAO{
 	
-	
 	private final HashMap<Long, Utilisateur> utilisateurs=new HashMap<>();
 	@Override
 	public Session getHibernateSession() {
@@ -176,8 +175,11 @@ public class SimulateRHDAO implements IUtilisateurDAO{
 
 	@Override
 	public void createUtilisateur(Utilisateur utilisateur) {
-		utilisateur.setId((long) utilisateurs.size());
-		utilisateurs.put((long) utilisateurs.size(), utilisateur);
+		
+		if (!utilisateurs.containsKey(utilisateur.getId())){
+			utilisateur.setId((long)utilisateurs.size());
+			utilisateurs.put((long)utilisateurs.size(), utilisateur);
+		}
 		
 	}
 

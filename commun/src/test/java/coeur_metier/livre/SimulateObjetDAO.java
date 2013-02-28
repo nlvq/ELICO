@@ -12,19 +12,17 @@ import org.hibernate.criterion.Criterion;
 
 import dao.IObjetDAO;
 import dao.Objet;
-import dao.Utilisateur;
 
 
 public class SimulateObjetDAO implements IObjetDAO{
 	private final HashMap<Long, Objet> object_table=new HashMap<>();
-	private ArrayList<Objet> objets;
-	@Override
+		@Override
 	public void createObjet(Objet objet) {
 		
-		if (!object_table.containsKey(objet.getId())){
+		
 			objet.setId((long)object_table.size());
 			object_table.put((long)object_table.size(), objet);
-		}
+			
 		
 	}
 
@@ -37,16 +35,15 @@ public class SimulateObjetDAO implements IObjetDAO{
 
 	@Override
 	public void deleteObjet(Objet objet) {
-		if (object_table.containsKey(objet.getId()))
+		
 		remove(objet);
 		
 	}
 
 	@Override
 	public List<Objet> findObjet(Objet objet) {
-		ArrayList<Objet> toFind= new ArrayList<Objet>();
-		for(Objet o : objets){
-			// Add user if login and password are equals:
+	List<Objet> toFind= new ArrayList<Objet>();
+		for(Objet o : object_table.values()){
 			if(o.getId().equals(objet.getId())
 					&& (o.getType().equals(objet.getType()))
 					&&(o.getParent().equals(objet.getParent())))
@@ -113,7 +110,7 @@ public class SimulateObjetDAO implements IObjetDAO{
 
 	@Override
 	public List<Objet> findAll() {
-		return new ArrayList<>(object_table.values());
+		return new ArrayList<Objet>(object_table.values());
 		
 	}
 
@@ -126,10 +123,10 @@ public class SimulateObjetDAO implements IObjetDAO{
 
 	@Override
 	public Objet persist(Objet toPersist) {
-		if (object_table.containsKey(toPersist.getId())){
+		
 		toPersist.setId((long) object_table.size());
 		return object_table.put((long) object_table.size(), toPersist);
-		}else return(null);
+		
 		
 	}
 

@@ -1,19 +1,19 @@
 package coeur_metier.rh;
 
 import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import coeur_metier.authentification.AuthentificationImpl;
-import coeur_metier.authentification.SimulateUtilisateurDAO;
+import dao.IUtilisateurDAO;
 import dao.Role;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 
 public class RHTest {
-	private RH rh;
+	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 				
@@ -34,36 +34,44 @@ public class RHTest {
 		
 	}
 
+	
+	
+	private IUtilisateurDAO dao = new SimulateRHDAO();
+	private IRH rh = new RH(dao);
+
+	
+	
 	@Test
-	public void testCreateUser() {
+	public void testCreateUser() {		
 		
-SimulateUtilisateurDAO utilisateurDAO = new SimulateUtilisateurDAO();
+		rh.createUser("u1","l1", "12", "jjj");
+		List<Utilisateur> list = dao.findAll();
+		Utilisateur o = list.get(0);
+		assertEquals((String)o.getFirstName(), (String)"u1");
 		
-		Utilisateur u1 = new Utilisateur();
-		u1.setLogin("u1");
-		u1.setPassword("pwd");
-		utilisateurDAO.createUtilisateur(u1);
-		assertEquals(utilisateurDAO.findAll().size(), 1);
-		assertEquals(utilisateurDAO.findAll().get(0).getLogin(),"u1");
+		
 		}
 
 	@Test
 	public void testDeleteUser() {
-		SimulateUtilisateurDAO utilisateurDAO = new SimulateUtilisateurDAO();
+		
 		Utilisateur u1 = new Utilisateur();
 		u1.setLogin("u1");
 		u1.setPassword("pwd");
-		utilisateurDAO.createUtilisateur(u1);
-		assertEquals(utilisateurDAO.findAll().size(), 1);
-		utilisateurDAO.deleteUtilisateur(u1);
-		assertEquals(utilisateurDAO.findAll().size(), 0);
+		rh.createUser("u1","l1", "12", "jjj");
+		assertEquals(dao.findAll().size(), 1);
+		rh.deleteUser("u1");
+		
+		assertEquals(dao.findAll().size(),0);
 			
 	}
 
 	@Test
 	public void testSetRoles() {
-		SimulateUtilisateurDAO utilisateurDAO = new SimulateUtilisateurDAO();
+		rh.createUser("u1","l1", "12", "jjj");
+		
 		Utilisateur u1 = new Utilisateur();
+		u1=dao.findAll().get(0);
 		u1.setLogin("u1");
 		u1.setPassword("pwd");
 		
@@ -74,35 +82,34 @@ SimulateUtilisateurDAO utilisateurDAO = new SimulateUtilisateurDAO();
 		uor1.setRole(role1);
 		appartient.add(uor1);
 		
-		utilisateurDAO.createUtilisateur(u1);
+		dao.findAll().get(0).setAppartient(appartient);
 		
-		List<Utilisateur> list = utilisateurDAO.findUtilisateur(u1);
-		assertEquals(list.get(0).getAppartient().get(0), "admin");
+		Utilisateur user = dao.findAll().get(0);
+		assertEquals(user.getAppartient().get(0).getRole().getTitle(), "admin");
 			
 				
 	}
 
 	@Test
 	public void testFindUser() {
-		SimulateUtilisateurDAO utilisateurDAO = new SimulateUtilisateurDAO();
-		Utilisateur u1 = new Utilisateur();
-		u1.setLogin("u1");
-		u1.setPassword("pwd");
-		utilisateurDAO.createUtilisateur(u1);
-		assertEquals(utilisateurDAO.findAll().get(0).getLogin(),"u1");
+		rh.createUser("u1","l1", "12", "jjj");
+		List<Utilisateur> list = dao.findAll();
+		Utilisateur o = list.get(0);
+		assertEquals((String)o.getFirstName(), (String)"u1");
+		rh.findUser("usr");
+		assertEquals((rh.findUser("usr")).getFirstName(),"u1");
+		assertEquals((rh.findUser("usr")).getLastName(),"l1");
 		
 	}
 
 	@Test
 	public void testResetPassword() {
-		SimulateUtilisateurDAO utilisateurDAO = new SimulateUtilisateurDAO();
-		Utilisateur u1 = new Utilisateur();
-		u1.setLogin("u1");
-		u1.setPassword("pwd");
-		utilisateurDAO.createUtilisateur(u1);
-		utilisateurDAO.findAll().get(0).setPassword("password");
-		assertEquals(utilisateurDAO.findAll().get(0).getPassword(),"password");
-		
+		rh.createUser("u1","l1", "12", "jjj");
+		List<Utilisateur> list = dao.findAll();
+		Utilisateur o = list.get(0);
+		list.get(0).setPassword("password");
+		assertEquals((String)o.getFirstName(), (String)"u1");
+		assertEquals(dao.findAll().get(0).getPassword(),"password");
 		
 	}
 
