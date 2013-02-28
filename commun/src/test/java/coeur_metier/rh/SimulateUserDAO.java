@@ -1,4 +1,4 @@
-package coeur_metier.livre;
+package coeur_metier.rh;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +9,15 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 
-import dao.IObjetDAO;
-import dao.Objet;
+import dao.IUtilisateurDAO;
+import dao.Utilisateur;
 
-public class SimulateObjetDAO implements IObjetDAO{
+public class SimulateUserDAO implements IUtilisateurDAO{
 	
-	private ArrayList<Objet> objets;
+	private ArrayList<Utilisateur> utilisateurs;
 	
-	public SimulateObjetDAO(){
-		objets = new ArrayList<Objet>();
+	public SimulateUserDAO(){
+		utilisateurs = new ArrayList<Utilisateur>();
 	}
 
 	@Override
@@ -27,13 +27,13 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public List<Objet> findByCriteria(Criterion... criteria) {
+	public List<Utilisateur> findByCriteria(Criterion... criteria) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<Objet> findByExample(Objet instance,
+	public List<Utilisateur> findByExample(Utilisateur instance,
 			String[] excludeProperties) {
 		// dont need
 		return null;
@@ -46,43 +46,43 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public Objet getReference(Long id) {
+	public Utilisateur getReference(Long id) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public Objet findById(Long id) {
+	public Utilisateur findById(Long id) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<Objet> findByQuery(String query) {
+	public List<Utilisateur> findByQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public Objet findEntityByQuery(String query) {
+	public Utilisateur findEntityByQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<Objet> findByNamedQuery(String query) {
+	public List<Utilisateur> findByNamedQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public Objet findEntityByNamedQuery(String query) {
+	public Utilisateur findEntityByNamedQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<Objet> findAll() {
+	public List<Utilisateur> findAll() {
 		// dont need
 		return null;
 	}
@@ -94,13 +94,13 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public Objet persist(Objet toPersist) {
+	public Utilisateur persist(Utilisateur toPersist) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public void remove(Objet toRemove) {
+	public void remove(Utilisateur toRemove) {
 		// dont need
 	}
 
@@ -115,18 +115,18 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public boolean contains(Objet isContained) {
+	public boolean contains(Utilisateur isContained) {
 		// dont need
 		return false;
 	}
 
 	@Override
-	public void refresh(Objet toRefresh) {
+	public void refresh(Utilisateur toRefresh) {
 		// dont need
 	}
 
 	@Override
-	public Objet merge(Objet toMerge) {
+	public Utilisateur merge(Utilisateur toMerge) {
 		// dont need
 		return null;
 	}
@@ -161,41 +161,40 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public Class<Objet> getEntityType() {
+	public Class<Utilisateur> getEntityType() {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public void createObjet(Objet objet) {
-		if(!objets.contains(objet)){
-			objets.add(objet);
+	public void createUtilisateur(Utilisateur utilisateur) {
+		if(!utilisateurs.contains(utilisateur)){
+			utilisateurs.add(utilisateur);
 		}
 	}
 
 	@Override
-	public void updateObjet(Objet objet) {
-		if(objets.contains(objet)){
-			objets.remove(objet);
-			objets.add(objet);
+	public void updateUtilisateur(Utilisateur utilisateur) {
+		if(utilisateurs.contains(utilisateur)){
+			utilisateurs.remove(utilisateur);
+			utilisateurs.add(utilisateur);
 		}
 	}
 
 	@Override
-	public void deleteObjet(Objet objet) {
-		if(objets.contains(objet)){
-			objets.remove(objet);
+	public void deleteUtilisateur(Utilisateur utilisateur) {
+		if(utilisateurs.contains(utilisateur)){
+			utilisateurs.remove(utilisateur);
 		}
 	}
-
+	
 	@Override
-	public List<Objet> findObjet(Objet objet) {
-		ArrayList<Objet> found= new ArrayList<Objet>();
-		for(Objet o : objets){
-			if(o.getContent().equals(objet.getContent())
-					&& o.getType().equals(objet.getType())
-					&& o.getDescription().equals(objet.getDescription()))
-				found.add(o);
+	public List<Utilisateur> findUtilisateur(Utilisateur utilisateur) {
+		ArrayList<Utilisateur> found= new ArrayList<Utilisateur>();
+		for(Utilisateur u : utilisateurs){
+			// Add user if login is equals:
+			if(u.getLogin().equals(utilisateur.getLogin()))
+				found.add(u);
 		}
 		return found;
 	}

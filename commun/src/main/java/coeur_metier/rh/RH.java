@@ -3,104 +3,150 @@ package coeur_metier.rh;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.IObjetDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
 import dao.IOrganisationDAO;
 import dao.IUtilisateurDAO;
-import dao.Objet;
 import dao.Organisation;
-import dao.Role;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
-import dao.impl.DefaultOrganisationDAO;
-import dao.impl.DefaultUtilisateurDAO;
 
+@Transactional
+@ContextConfiguration(locations = { "classpath:spring/elico-persistence-context.xml" })
 public class RH implements IRH {
-     private Organisation orga;
-	 private IUtilisateurDAO daousr;
-	 private IOrganisationDAO dao ;
-	 private Utilisateur usr;
 
-	 public RH(IUtilisateurDAO dao) {
-			super();
-			this.daousr = dao;
-		}
+	@Autowired
+	private IUtilisateurDAO utilisateurDAO;
+
+	@Autowired
+	private IOrganisationDAO organisationDAO;
+
+	/**
+	 * @return the utilisateurDAO
+	 */
+	public IUtilisateurDAO getUtilisateurDAO() {
+		return utilisateurDAO;
+	}
+
+	/**
+	 * @param utilisateurDAO the utilisateurDAO to set
+	 */
+	public void setUtilisateurDAO(IUtilisateurDAO utilisateurDAO) {
+		this.utilisateurDAO = utilisateurDAO;
+	}
+
+	/**
+	 * @return the organisationDAO
+	 */
+	public IOrganisationDAO getOrganisationDAO() {
+		return organisationDAO;
+	}
+
+	/**
+	 * @param organisationDAO the organisationDAO to set
+	 */
+	public void setOrganisationDAO(IOrganisationDAO organisationDAO) {
+		this.organisationDAO = organisationDAO;
+	}
+
 	@Override
 	public void createOrga(String name, String type, Organisation parentOrga) {
-		orga=new Organisation();
+		Organisation orga = new Organisation();
 		orga.setTitle(name);
 		orga.setType(type);
 		orga.setParent(parentOrga);
-		dao.createOrganisation(orga);
-	
-		
+		organisationDAO.createOrganisation(orga);
 	}
 
 	@Override
 	public void deleteOrga(String name) {
+		Organisation orga = new Organisation();
 		orga.setTitle(name);
-		if (dao.findOrganisation(orga)!=null) dao.deleteOrganisation(dao.findOrganisation(orga).get(0));
-		
+		List<Organisation> list = organisationDAO.findOrganisation(orga);
+		if (list != null && !list.isEmpty())
+			organisationDAO.deleteOrganisation(list.get(0));
 	}
 
 	@Override
-	public List<Organisation> findOrga(String Orga) {
-		orga.setTitle(Orga);
-		if (dao.findOrganisation(orga)!=null) System.out.print("Message d'erreur :organisation inexistante");
-
-		return dao.findOrganisation(orga) ;
+	public void updateOrga(Organisation orga) {
+		organisationDAO.updateOrganisation(orga);
 	}
 
 	@Override
-	public void createUser(String firstname, String lastname,
+	public List<Organisation> findOrga(String nameOrga) {
+		Organisation orga = new Organisation();
+		orga.setTitle(nameOrga);
+		return organisationDAO.findOrganisation(orga);
+	}
+
+	@Override
+	public void createUser(String login, String firstname, String lastname,
 			String phonenumber, String nameOrga) {
-		usr=new Utilisateur();
+		Utilisateur usr = new Utilisateur();
+		usr.setLogin(login);
 		usr.setFirstName(firstname);
 		usr.setLastName(lastname);
 		usr.setPhoneNumber(phonenumber);
-		usr.setLogin("usr");
 		usr.setPassword("pwd");
-		//orga.setTitle("orga");
-		usr.setAppartient(null);
-		usr.setSavoirfaires(null);
-		usr.setWorkspaces(null);
-		//usr.setAppartient();// je ne sais pas comment faire la relation ternaire!!!
-		daousr.createUtilisateur(usr);
-		
+		ArrayList<UtilisateurOrganisationRole> listuor = new ArrayList<UtilisateurOrganisationRole>();
+		UtilisateurOrganisationRole uor = new UtilisateurOrganisationRole();
+		List<Organisation> list = findOrga(nameOrga);
+		if(list == null || list.isEmpty()){
+			createOrga(nameOrga, "default", null);
+			list = findOrga(nameOrga);
+		}
+		uor.setOrganisation(list.get(0));
+		listuor.add(uor);
+		usr.setAppartient(listuor);
+		utilisateurDAO.createUtilisateur(usr);
 	}
 
 	@Override
 	public void deleteUser(String loginUser) {
+		Utilisateur usr = new Utilisateur();
 		usr.setLogin(loginUser);
-		if (daousr.findUtilisateur(usr)!=null) 
-			daousr.deleteUtilisateur(daousr.findUtilisateur(usr).get(0));
-		else System.out.print("User inexistant ou login incorrect!!!");
-		
-	}
-
-	@Override
-	public void setRoles(String loginUser, List<Role> role) {
-		usr.setLogin(loginUser);
-		for(Role r : role){		daousr.findUtilisateur(usr).get(0).
-			setSavoirfaires(r.getSavoirfaires());
+		List<Utilisateur> found = utilisateurDAO.findUtilisateur(usr);
+		if (found != null && !found.isEmpty()) {
+			utilisateurDAO.deleteUtilisateur(found.get(0));
 		}
-		
 	}
 
 	@Override
-	public Utilisateur findUser(String loginUser) {
+	public void updateUser(Utilisateur user) {
+		utilisateurDAO.updateUtilisateur(user);
+	}
+
+	@Override
+	public void setRoles(String loginUser, List<UtilisateurOrganisationRole> uor) {
+		Utilisateur usr = new Utilisateur();
 		usr.setLogin(loginUser);
-		if (daousr.findUtilisateur(usr)!=null) return(daousr.findUtilisateur(usr).get(0));
-		else { System.out.print("User inexistant ou login incorrect!!!");
-		        return(null);}
+		List<Utilisateur> found = utilisateurDAO.findUtilisateur(usr);
+		if (found != null && !found.isEmpty()) {
+			Utilisateur u = found.get(0);
+			u.setAppartient(uor);
+			utilisateurDAO.updateUtilisateur(u);
+		}
 	}
 
 	@Override
-	public void resetPassword(String loginUsern) {
-		usr.setLogin(loginUsern);
-		if (daousr.findUtilisateur(usr)!=null) daousr.findUtilisateur(usr).get(0).setPassword("password");
-		else System.out.print("User inexistant ou login incorrect!!!");
-		
+	public List<Utilisateur> findUser(String loginUser) {
+		Utilisateur usr = new Utilisateur();
+		usr.setLogin(loginUser);
+		return utilisateurDAO.findUtilisateur(usr);
 	}
 
-	
+	@Override
+	public void resetPassword(String loginUser) {
+		Utilisateur usr = new Utilisateur();
+		usr.setLogin(loginUser);
+		List<Utilisateur> found = utilisateurDAO.findUtilisateur(usr);
+		if (found != null && !found.isEmpty()) {
+			Utilisateur u = found.get(0);
+			u.setPassword("pwd");
+			utilisateurDAO.updateUtilisateur(u);
+		}
+	}
+
 }

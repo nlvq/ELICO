@@ -4,13 +4,12 @@ import java.util.List;
 
 import dao.Objet;
 
-
 public interface ILivre {
-	public void CreateObject(Objet object);
-	public void CreateChapter(Objet VolPere );
-	public void CreateVolume( Objet VolLivre );
-	public void CreateParagraph( Objet ChapPere );
-	public void UpdateObject(Objet object) ;
-	public void DeleteObject(Objet object) ;
-	public List<Objet > FindObject(Objet object) ;
+	public void createObject(Objet object);
+	public void createVolume(Objet object, Objet livrePere);
+	public void createChapter(Objet object, Objet volPere);
+	public void createParagraph(Objet object, Objet chapPere);
+	public void updateObject(Objet object);
+	public void deleteObject(Objet object);
+	public List<Objet> findObject(Objet object);
 }
