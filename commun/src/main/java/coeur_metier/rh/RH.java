@@ -9,7 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 
 import dao.IOrganisationDAO;
 import dao.IUtilisateurDAO;
+import dao.IUtilisateurOrganisationRoleDAO;
 import dao.Organisation;
+import dao.Role;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 
@@ -22,6 +24,9 @@ public class RH implements IRH {
 
 	@Autowired
 	private IOrganisationDAO organisationDAO;
+
+	@Autowired
+	private IUtilisateurOrganisationRoleDAO uorDAO;
 
 	/**
 	 * @return the utilisateurDAO
@@ -98,6 +103,10 @@ public class RH implements IRH {
 			list = findOrga(nameOrga);
 		}
 		uor.setOrganisation(list.get(0));
+		Role r = new Role();
+		r.setTitle("reader");
+		uor.setRole(r);
+		uor.setUtilisateur(usr);
 		listuor.add(uor);
 		usr.setAppartient(listuor);
 		utilisateurDAO.createUtilisateur(usr);
@@ -124,6 +133,11 @@ public class RH implements IRH {
 		usr.setLogin(loginUser);
 		List<Utilisateur> found = utilisateurDAO.findUtilisateur(usr);
 		if (found != null && !found.isEmpty()) {
+			if(uorDAO != null){
+				for(UtilisateurOrganisationRole u : uor){
+					uorDAO.createUtilisateurOrganisationRole(u);
+				}
+			}
 			Utilisateur u = found.get(0);
 			u.setAppartient(uor);
 			utilisateurDAO.updateUtilisateur(u);

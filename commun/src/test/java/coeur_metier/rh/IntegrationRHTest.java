@@ -121,18 +121,24 @@ public class IntegrationRHTest {
 		Role role1 = new Role();
 		role1.setTitle("admin");
 		uor1.setRole(role1);
+		uor1.setOrganisation(rh.findOrga("orga9").get(0));
+		uor1.setUtilisateur(rh.findUser("u5").get(0));
 		appartient.add(uor1);
 		UtilisateurOrganisationRole uor2 = new UtilisateurOrganisationRole();
 		Role role2 = new Role();
 		role2.setTitle("engineer");
 		uor2.setRole(role2);
+		uor2.setOrganisation(rh.findOrga("orga9").get(0));
+		uor2.setUtilisateur(rh.findUser("u5").get(0));
 		appartient.add(uor2);
 		rh.setRoles("u5", appartient);
 		List<Utilisateur> list = rh.findUser("u5");
 		assertEquals(list.size(), 1);
 		assertEquals(list.get(0).getLogin(), "u5");
 		assertEquals(list.get(0).getAppartient().get(0).getRole().getTitle(), "admin");
+		assertEquals(list.get(0).getAppartient().get(0).getOrganisation().getTitle(), "orga9");
 		assertEquals(list.get(0).getAppartient().get(1).getRole().getTitle(), "engineer");
+		assertEquals(list.get(0).getAppartient().get(1).getOrganisation().getTitle(), "orga9");
 	}
 
 	@Test

@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import dao.Organisation;
 import dao.Role;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
@@ -29,11 +30,19 @@ public class TestAuthentification {
 		Role role1 = new Role();
 		role1.setTitle("admin");
 		uor1.setRole(role1);
+		Organisation o1 = new Organisation();
+		o1.setTitle("o1");
+		uor1.setOrganisation(o1);
+		uor1.setUtilisateur(u1);
 		appartient.add(uor1);
 		UtilisateurOrganisationRole uor2 = new UtilisateurOrganisationRole();
 		Role role2 = new Role();
 		role2.setTitle("reader");
 		uor2.setRole(role2);
+		Organisation o2 = new Organisation();
+		o2.setTitle("o2");
+		uor2.setOrganisation(o2);
+		uor2.setUtilisateur(u1);
 		appartient.add(uor2);
 		u1.setAppartient(appartient);
 		utilisateurDAO.createUtilisateur(u1);
