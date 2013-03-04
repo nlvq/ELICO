@@ -57,10 +57,11 @@ public class SimulateWS {
 
     public static SimulateWS getRoot() {
         SimulateWS ws = new SimulateWS(new ArrayList<SimulateWS>(),
-                new SimulateOrg(null, null, "Org1", null),
+                new SimulateOrg(new ArrayList<SimulateOrg>(), null, "Org1", new ArrayList<SimulateWS>()),
                 null,
                 "WS1",
                 null);
+        ws.getOrg().addWS(ws);
         List<SimulateWP> wps = createWPs(ws, 5);
         ws.setWorkpackages(wps);
         return ws;

@@ -18,7 +18,6 @@ public class SupervisorWindow extends AbstractTreeWindow {
     private SimulateObjet selectedObject;
     private SimulateWP selectedWP;
 
-
     @Override
     void createButtonPane(JPanel panel) {
         JButton A = new JButton("A");
@@ -59,6 +58,23 @@ public class SupervisorWindow extends AbstractTreeWindow {
                     window = new AddWPWindow(selectedObject.getParent().getParentWS());
                 } else {
                     window = new AddWPWindow((SimulateWS) toDisplay);
+                }
+                window.createWindow();
+                window.openWindow();
+            }
+        });
+
+        WS.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddWSWindow window = null;
+
+                if (selectedWP != null) {
+                    window = new AddWSWindow(selectedWP.getParentWS().getOrg());
+                } else if (selectedObject != null) {
+                    window = new AddWSWindow(selectedObject.getParent().getParentWS().getOrg());
+                } else {
+                    window = new AddWSWindow(((SimulateWS) toDisplay).getOrg());
                 }
                 window.createWindow();
                 window.openWindow();

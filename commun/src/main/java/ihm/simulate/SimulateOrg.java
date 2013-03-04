@@ -6,6 +6,7 @@ import java.util.List;
 public class SimulateOrg {
 	private String title;
     private SimulateOrg parent;
+    private SimulateWS ws;
     private List<SimulateOrg> childs = new ArrayList<>();
     private List<SimulateWS> workspaces = new ArrayList<>();
 
@@ -25,6 +26,10 @@ public class SimulateOrg {
         return users;
     }
 
+    public List<SimulateOrg> getChilds() {
+        return childs;
+    }
+
     public static void addOrg(SimulateOrg parent, String name, SimulateUser user) {
         System.out.println("Add Org in " + parent + " name: " + name + " User: " + user);
     }
@@ -32,5 +37,19 @@ public class SimulateOrg {
     @Override
     public String toString() {
         return title;
+    }
+
+    public SimulateWS getWS() {
+        return ws;
+    }
+
+    public List<SimulateWP> getWPs() {
+        ArrayList<SimulateWP> wps = new ArrayList<>();
+        wps.add(new SimulateWP(SimulateDroit.LDroit.READ, new ArrayList<SimulateObjet>(), "WP1", null));
+        return wps;
+    }
+
+    public void addWS(SimulateWS ws) {
+        workspaces.add(ws);
     }
 }
