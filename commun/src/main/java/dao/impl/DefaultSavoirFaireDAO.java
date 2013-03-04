@@ -2,10 +2,13 @@ package dao.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import dao.ISavoirFaireDAO;
 import dao.SavoirFaire;
 import fr.umlv.m2.jee.dao.hibernate.AbstractHibernateDAO;
 
+@Repository
 public class DefaultSavoirFaireDAO extends AbstractHibernateDAO<Long, SavoirFaire> implements ISavoirFaireDAO {
 
 	@Override

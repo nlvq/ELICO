@@ -25,6 +25,7 @@
 	<bean id="defaultRoleDAO" class="dao.impl.DefaultRoleDAO"></bean>
 	<bean id="defaultSavoirFaireDAO" class="dao.impl.DefaultSavoirFaireDAO"></bean>
 	<bean id="defaultUtilisateurDAO" class="dao.impl.DefaultUtilisateurDAO"></bean>
+	<bean id="defaultUtilisateurOrganisationRoleDAO" class="dao.impl.DefaultUtilisateurOrganisationRoleDAO"></bean>
 	<bean id="defaultVersionDAO" class="dao.impl.DefaultVersionDAO"></bean>
 	<bean id="defaultWorkPackageDAO" class="dao.impl.DefaultWorkPackageDAO"></bean>
 	<bean id="defaultWorkSpaceDAO" class="dao.impl.DefaultWorkSpaceDAO"></bean>

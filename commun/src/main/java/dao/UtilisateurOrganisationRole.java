@@ -8,6 +8,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -29,54 +30,54 @@ public class UtilisateurOrganisationRole {
 		private static final long serialVersionUID = 1867506770932059287L;
 
 		@Column(name = "UTILISATEUR_ID")
-		private Long idu;
+		private Long utilisateurid;
 		
 		@Column(name = "ORGANISATION_ID")
-		private Long ido;
+		private Long organisationid;
 		
 		@Column(name = "ROLE_ID")
-		private Long idr;
+		private Long roleid;
 
 		/**
-		 * @return the idu
+		 * @return the utilisateurid
 		 */
-		public Long getIdu() {
-			return idu;
+		public Long getUtilisateurid() {
+			return utilisateurid;
 		}
 
 		/**
-		 * @param idu the idu to set
+		 * @param utilisateurid the utilisateurid to set
 		 */
-		public void setIdu(Long idu) {
-			this.idu = idu;
+		public void setUtilisateurid(Long utilisateurid) {
+			this.utilisateurid = utilisateurid;
 		}
 
 		/**
-		 * @return the ido
+		 * @return the organisationid
 		 */
-		public Long getIdo() {
-			return ido;
+		public Long getOrganisationid() {
+			return organisationid;
 		}
 
 		/**
-		 * @param ido the ido to set
+		 * @param organisationid the organisationid to set
 		 */
-		public void setIdo(Long ido) {
-			this.ido = ido;
+		public void setOrganisationid(Long organisationid) {
+			this.organisationid = organisationid;
 		}
 
 		/**
-		 * @return the idr
+		 * @return the roleid
 		 */
-		public Long getIdr() {
-			return idr;
+		public Long getRoleid() {
+			return roleid;
 		}
 
 		/**
-		 * @param idr the idr to set
+		 * @param roleid the roleid to set
 		 */
-		public void setIdr(Long idr) {
-			this.idr = idr;
+		public void setRoleid(Long roleid) {
+			this.roleid = roleid;
 		}
 		
 	}
@@ -86,14 +87,17 @@ public class UtilisateurOrganisationRole {
 	
 	@ManyToOne
 	@JoinColumn(name = "UTILISATEUR_ID", insertable = false, updatable = false)
+	@MapsId("utilisateurid")
 	private Utilisateur utilisateur;
 	
 	@ManyToOne
 	@JoinColumn(name = "ORGANISATION_ID", insertable = false, updatable = false)
+	@MapsId("organisationid")
 	private Organisation organisation;
 	
 	@ManyToOne
 	@JoinColumn(name = "ROLE_ID", insertable = false, updatable = false)
+	@MapsId("roleid")
 	private Role role;
 
 	/**

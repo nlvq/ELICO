@@ -47,6 +47,9 @@ public class Utilisateur {
 		joinColumns = @JoinColumn(name = "UTILISATEUR_ID"),
 		inverseJoinColumns = @JoinColumn(name = "SAVOIRFAIRE_ID"))
 	private List<SavoirFaire> savoirfaires = new ArrayList<>();
+
+	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	private List<UtilisateurOrganisationRole> appartient = new ArrayList<>();
 	
 	/**
 	 * @return the id
@@ -173,8 +176,5 @@ public class Utilisateur {
 	public void setAppartient(List<UtilisateurOrganisationRole> appartient) {
 		this.appartient = appartient;
 	}
-
-	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private List<UtilisateurOrganisationRole> appartient = new ArrayList<>();
 		
 }

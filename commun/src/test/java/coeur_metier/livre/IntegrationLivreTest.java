@@ -4,21 +4,23 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.junit.Before;
+import javax.annotation.Resource;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.Objet;
 
-public class LivreTest {
+@Transactional
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:spring/elico-persistence-test-context.xml" })
+public class IntegrationLivreTest {
 
+	@Resource(name="livre")
 	private Livre livre;
-
-	@Before
-	public void init() {
-		livre = new Livre();
-		SimulateObjetDAO objetDAO = new SimulateObjetDAO();
-		livre.setObjetDAO(objetDAO);
-	}
 
 	@Test
 	public void testCreateObject() {

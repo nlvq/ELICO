@@ -5,26 +5,26 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
+import javax.annotation.Resource;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.Organisation;
 import dao.Role;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 
-public class RHTest {
+@Transactional
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:spring/elico-persistence-test-context.xml" })
+public class IntegrationRHTest {
 
+	@Resource(name="rh")
 	private RH rh;
-
-	@Before
-	public void init() {
-		rh = new RH();
-		SimulateOrganisationDAO organisationDAO = new SimulateOrganisationDAO();
-		rh.setOrganisationDAO(organisationDAO);
-		SimulateUserDAO utilisateurDAO = new SimulateUserDAO();
-		rh.setUtilisateurDAO(utilisateurDAO);
-	}
 
 	@Test
 	public void testCreateOrga() {

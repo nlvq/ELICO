@@ -2,91 +2,74 @@ package coeur_metier.livre;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextConfiguration;
+
 import dao.IObjetDAO;
 import dao.Objet;
-import dao.impl.DefaultObjetDAO;
 
-public class Livre implements ILivre{
-	private Objet obj;
-	private IObjetDAO daoObjet; 
-	
-	
+@Service("livre")
+@ContextConfiguration(locations = { "classpath:spring/elico-persistence-context.xml" })
+public class Livre implements ILivre {
 
-	public Livre(IObjetDAO dao) {
-		super();
-		this.daoObjet = dao;
+	@Autowired
+	private IObjetDAO objetDAO;
+
+	/**
+	 * @return the objetDAO
+	 */
+	public IObjetDAO getObjetDAO() {
+		return objetDAO;
+	}
+
+	/**
+	 * @param objetDAO the objetDAO to set
+	 */
+	public void setObjetDAO(IObjetDAO objetDAO) {
+		this.objetDAO = objetDAO;
 	}
 
 	@Override
-	public void CreateObject(Objet object) {
-		
-		obj=new Objet();
-		obj.setDescription(null);
-		obj.setType("Livre");
-		obj.setContent(null);
-		obj.setParent(null);
-		daoObjet.createObjet(obj);
-
-		
+	public void createObject(Objet object) {
+		object.setType("Livre");
+		objetDAO.createObjet(object);
 	}
 
 	@Override
-	public void CreateChapter(Objet VolPere) {
-		obj=new Objet();
-		obj.setDescription(null);
-		obj.setType("Chapter");
-		obj.setContent(null);
-		obj.setParent(VolPere);
-		daoObjet.createObjet(obj);
-
-		
+	public void createVolume(Objet object, Objet livrePere) {
+		object.setType("Volume");
+		object.setParent(livrePere);
+		objetDAO.createObjet(object);
 	}
 
 	@Override
-	public void CreateVolume(Objet VolLivre) {
-		obj=new Objet();
-		obj.setDescription(null);
-		obj.setType("Volume");
-		obj.setContent(null);
-		obj.setParent(VolLivre);
-		daoObjet.createObjet(obj);
-		
-		
+	public void createChapter(Objet object, Objet volPere) {
+		object.setParent(volPere);
+		object.setType("Chapter");
+		objetDAO.createObjet(object);
 	}
 
 	@Override
-	public void CreateParagraph(Objet ChapPere) {
-		obj=new Objet();
-		obj.setDescription(null);
-		obj.setType("Volume");
-		obj.setContent(null);
-		obj.setParent(ChapPere);
-		daoObjet.createObjet(obj);
-		
-		
+	public void createParagraph(Objet object, Objet chapPere) {
+		object.setType("Paragraph");
+		object.setParent(chapPere);
+		objetDAO.createObjet(object);
 	}
 
 	@Override
-	public void UpdateObject(Objet object) {
-		if (daoObjet.findObjet(object)!=null)
-		daoObjet.updateObjet(object);
-		else System.out.print("message :objet inexistant");
-		
+	public void updateObject(Objet object) {
+		objetDAO.updateObjet(object);
 	}
 
 	@Override
-	public void DeleteObject(Objet object) {
-		if (daoObjet.findObjet(object)!=null)
-		daoObjet.deleteObjet(object);
-			
+	public void deleteObject(Objet object) {
+		objetDAO.deleteObjet(object);
 	}
 
 	@Override
-	public List<Objet> FindObject(Objet object) {
-		if (daoObjet.findObjet(object)==null)
-		{System.out.print("Liste vide"); }
-		return daoObjet.findObjet(object);
-		
+	public List<Objet> findObject(Objet object) {
+		return objetDAO.findObjet(object);
 	}
 
 }

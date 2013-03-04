@@ -1,4 +1,4 @@
-package coeur_metier.livre;
+package coeur_metier.rh;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +9,15 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 
-import dao.IObjetDAO;
-import dao.Objet;
+import dao.IOrganisationDAO;
+import dao.Organisation;
 
-public class SimulateObjetDAO implements IObjetDAO{
+public class SimulateOrganisationDAO implements IOrganisationDAO{
 	
-	private ArrayList<Objet> objets;
+	private ArrayList<Organisation> organisations;
 	
-	public SimulateObjetDAO(){
-		objets = new ArrayList<Objet>();
+	public SimulateOrganisationDAO(){
+		organisations = new ArrayList<Organisation>();
 	}
 
 	@Override
@@ -27,13 +27,13 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public List<Objet> findByCriteria(Criterion... criteria) {
+	public List<Organisation> findByCriteria(Criterion... criteria) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<Objet> findByExample(Objet instance,
+	public List<Organisation> findByExample(Organisation instance,
 			String[] excludeProperties) {
 		// dont need
 		return null;
@@ -46,43 +46,43 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public Objet getReference(Long id) {
+	public Organisation getReference(Long id) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public Objet findById(Long id) {
+	public Organisation findById(Long id) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<Objet> findByQuery(String query) {
+	public List<Organisation> findByQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public Objet findEntityByQuery(String query) {
+	public Organisation findEntityByQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<Objet> findByNamedQuery(String query) {
+	public List<Organisation> findByNamedQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public Objet findEntityByNamedQuery(String query) {
+	public Organisation findEntityByNamedQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<Objet> findAll() {
+	public List<Organisation> findAll() {
 		// dont need
 		return null;
 	}
@@ -94,13 +94,13 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public Objet persist(Objet toPersist) {
+	public Organisation persist(Organisation toPersist) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public void remove(Objet toRemove) {
+	public void remove(Organisation toRemove) {
 		// dont need
 	}
 
@@ -115,18 +115,18 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public boolean contains(Objet isContained) {
+	public boolean contains(Organisation isContained) {
 		// dont need
 		return false;
 	}
 
 	@Override
-	public void refresh(Objet toRefresh) {
+	public void refresh(Organisation toRefresh) {
 		// dont need
 	}
 
 	@Override
-	public Objet merge(Objet toMerge) {
+	public Organisation merge(Organisation toMerge) {
 		// dont need
 		return null;
 	}
@@ -161,40 +161,38 @@ public class SimulateObjetDAO implements IObjetDAO{
 	}
 
 	@Override
-	public Class<Objet> getEntityType() {
+	public Class<Organisation> getEntityType() {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public void createObjet(Objet objet) {
-		if(!objets.contains(objet)){
-			objets.add(objet);
+	public void createOrganisation(Organisation organisation) {
+		if(!organisations.contains(organisation)){
+			organisations.add(organisation);
 		}
 	}
 
 	@Override
-	public void updateObjet(Objet objet) {
-		if(objets.contains(objet)){
-			objets.remove(objet);
-			objets.add(objet);
+	public void updateOrganisation(Organisation organisation) {
+		if(organisations.contains(organisation)){
+			organisations.remove(organisation);
+			organisations.add(organisation);
 		}
 	}
 
 	@Override
-	public void deleteObjet(Objet objet) {
-		if(objets.contains(objet)){
-			objets.remove(objet);
+	public void deleteOrganisation(Organisation organisation) {
+		if(organisations.contains(organisation)){
+			organisations.remove(organisation);
 		}
 	}
 
 	@Override
-	public List<Objet> findObjet(Objet objet) {
-		ArrayList<Objet> found= new ArrayList<Objet>();
-		for(Objet o : objets){
-			if(o.getContent().equals(objet.getContent())
-					&& o.getType().equals(objet.getType())
-					&& o.getDescription().equals(objet.getDescription()))
+	public List<Organisation> findOrganisation(Organisation organisation) {
+		ArrayList<Organisation> found= new ArrayList<Organisation>();
+		for(Organisation o : organisations){
+			if(o.getTitle().equals(organisation.getTitle()))
 				found.add(o);
 		}
 		return found;

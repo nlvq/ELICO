@@ -2,10 +2,13 @@ package dao.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import dao.IMaturiteDAO;
 import dao.Maturite;
 import fr.umlv.m2.jee.dao.hibernate.AbstractHibernateDAO;
 
+@Repository
 public class DefaultMaturiteDAO extends AbstractHibernateDAO<Long, Maturite> implements IMaturiteDAO {
 
 	@Override

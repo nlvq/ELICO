@@ -2,10 +2,13 @@ package dao.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import dao.IUtilisateurDAO;
 import dao.Utilisateur;
 import fr.umlv.m2.jee.dao.hibernate.AbstractHibernateDAO;
 
+@Repository
 public class DefaultUtilisateurDAO extends AbstractHibernateDAO<Long, Utilisateur> implements IUtilisateurDAO {
 
 	@Override

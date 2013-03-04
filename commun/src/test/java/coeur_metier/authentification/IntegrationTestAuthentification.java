@@ -3,25 +3,31 @@ package coeur_metier.authentification;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.Organisation;
 import dao.Role;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 
-public class TestAuthentification {
+@Transactional
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:spring/elico-persistence-test-context.xml" })
+public class IntegrationTestAuthentification {
 	
+	@Resource(name="authentification")
 	private AuthentificationImpl authentificationImpl;
 	
 	@Before
 	public void init(){
-		authentificationImpl = new AuthentificationImpl();
-		
-		SimulateUtilisateurDAO utilisateurDAO = new SimulateUtilisateurDAO();
-		
 		Utilisateur u1 = new Utilisateur();
 		u1.setLogin("u1");
 		u1.setPassword("pwd");
@@ -45,14 +51,12 @@ public class TestAuthentification {
 		uor2.setUtilisateur(u1);
 		appartient.add(uor2);
 		u1.setAppartient(appartient);
-		utilisateurDAO.createUtilisateur(u1);
+		authentificationImpl.getUtilisateurDAO().createUtilisateur(u1);
 		
 		Utilisateur u2 = new Utilisateur();
 		u2.setLogin("u2");
 		u2.setPassword("pwd");
-		utilisateurDAO.createUtilisateur(u2);
-		
-		authentificationImpl.setUtilisateurDAO(utilisateurDAO);
+		authentificationImpl.getUtilisateurDAO().createUtilisateur(u2);
 	}
 	
 	@Test
