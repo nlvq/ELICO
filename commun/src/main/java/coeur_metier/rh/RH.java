@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
 
 import dao.IOrganisationDAO;
 import dao.IUtilisateurDAO;
@@ -16,7 +15,6 @@ import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 
 @Service("rh")
-@ContextConfiguration(locations = { "classpath:spring/elico-persistence-context.xml" })
 public class RH implements IRH {
 
 	@Autowired
