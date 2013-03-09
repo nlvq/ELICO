@@ -63,7 +63,7 @@ public class TestRoleDAO extends TestAbstractDAO <Long, Role> {
 		toCreate.setTitle("supervisor");
 		roleDAO.createRole(toCreate);
 		
-		Role role = roleDAO.findById(3L);
+		Role role = roleDAO.findRole(toCreate).get(0);
 		Assert.assertEquals(role.getTitle(), "supervisor");
 	}
 	

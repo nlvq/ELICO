@@ -65,7 +65,7 @@ public class TestWorkSpaceDAO extends TestAbstractDAO <Long, WorkSpace> {
 		toCreate.setTitle("wp3");
 		workSpaceDAO.createWorkSpace(toCreate);
 		
-		WorkSpace workSpace = workSpaceDAO.findById(3L);
+		WorkSpace workSpace = workSpaceDAO.findWorkSpace(toCreate).get(0);
 		Assert.assertEquals(workSpace.getTitle(), "wp3");
 	}
 	

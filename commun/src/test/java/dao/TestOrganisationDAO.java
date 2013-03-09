@@ -65,7 +65,7 @@ public class TestOrganisationDAO extends TestAbstractDAO <Long, Organisation> {
 		toCreate.setType("enterprise");
 		organisationDAO.createOrganisation(toCreate);
 		
-		Organisation organisation = organisationDAO.findById(3L);
+		Organisation organisation = organisationDAO.findOrganisation(toCreate).get(0);
 		Assert.assertEquals(organisation.getTitle(), "org3");
 	}
 	

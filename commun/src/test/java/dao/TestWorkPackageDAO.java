@@ -74,7 +74,7 @@ public class TestWorkPackageDAO extends TestAbstractDAO <Long, WorkPackage> {
 		toCreate.setEndDate(new DateTime());
 		workPackageDAO.createWorkPackage(toCreate);
 		
-		WorkPackage workPackage = workPackageDAO.findById(4L);
+		WorkPackage workPackage = workPackageDAO.findWorkPackage(toCreate).get(0);
 		Assert.assertEquals(workPackage.getTitle(), "wp4");
 	}
 	

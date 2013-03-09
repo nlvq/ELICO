@@ -78,7 +78,7 @@ public class TestUtilisateurDAO extends TestAbstractDAO <Long, Utilisateur> {
 		toCreate.setFirstName("oto");
 		utilisateurDAO.createUtilisateur(toCreate);
 		
-		Utilisateur utilisateur = utilisateurDAO.findById(5L);
+		Utilisateur utilisateur = utilisateurDAO.findUtilisateur(toCreate).get(0);
 		Assert.assertEquals(utilisateur.getLogin(), "toto5");
 	}
 	

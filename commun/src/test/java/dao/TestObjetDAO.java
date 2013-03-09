@@ -70,7 +70,7 @@ public class TestObjetDAO extends TestAbstractDAO <Long, Objet> {
 		toCreate.setContent("g g g");
 		objetDAO.createObjet(toCreate);
 		
-		Objet objet = objetDAO.findById(3L);
+		Objet objet = objetDAO.findObjet(toCreate).get(0);
 		Assert.assertEquals(objet.getContent(), "g g g");
 	}
 	

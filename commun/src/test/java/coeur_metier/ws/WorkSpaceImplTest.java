@@ -54,25 +54,25 @@ public class WorkSpaceImplTest {
 		assertTrue(wss.getOrganisation().getTitle().equals(org.getTitle()));
 	}
 
-	@Test
-	public final void testAcquireWP() {
-		assertTrue("rien a faire ici, mais dans WPImpl", false);
-	}
-
-	@Test
-	public final void testPromoteWP() {
-		assertTrue("rien a faire ici, mais dans WPImpl", false);
-	}
-
-	@Test
-	public final void testPublishWP() {
-		assertTrue("rien a faire ici, mais dans WPImpl", false);
-	}
-
-	@Test
-	public final void testSynchronizeWP() {
-		assertTrue("rien a faire ici, mais dans WPImpl", false);
-
-	}
+//	@Test
+//	public final void testAcquireWP() {
+//		assertTrue("rien a faire ici, mais dans WPImpl", false);
+//	}
+//
+//	@Test
+//	public final void testPromoteWP() {
+//		assertTrue("rien a faire ici, mais dans WPImpl", false);
+//	}
+//
+//	@Test
+//	public final void testPublishWP() {
+//		assertTrue("rien a faire ici, mais dans WPImpl", false);
+//	}
+//
+//	@Test
+//	public final void testSynchronizeWP() {
+//		assertTrue("rien a faire ici, mais dans WPImpl", false);
+//
+//	}
 
 }

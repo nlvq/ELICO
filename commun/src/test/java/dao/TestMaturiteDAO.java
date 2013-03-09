@@ -67,7 +67,7 @@ public class TestMaturiteDAO extends TestAbstractDAO <Long, Maturite> {
 		toCreate.setCommentary("comm");
 		maturiteDAO.createMaturite(toCreate);
 		
-		Maturite maturite = maturiteDAO.findById(3L);
+		Maturite maturite = maturiteDAO.findMaturite(toCreate).get(0);
 		Assert.assertEquals(maturite.getTitle(), Etat.NUL);
 	}
 	

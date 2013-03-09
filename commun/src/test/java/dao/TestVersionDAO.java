@@ -63,7 +63,7 @@ public class TestVersionDAO extends TestAbstractDAO <Long, Version> {
 		toCreate.setNumber("3.0");
 		versionDAO.createVersion(toCreate);
 		
-		Version version = versionDAO.findById(3L);
+		Version version = versionDAO.findVersion(toCreate).get(0);
 		Assert.assertEquals(version.getNumber(), "3.0");
 	}
 	

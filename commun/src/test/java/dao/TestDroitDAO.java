@@ -65,7 +65,7 @@ public class TestDroitDAO extends TestAbstractDAO <Long, Droit> {
 		toCreate.setTitle(LDroit.Block);
 		droitDAO.createDroit(toCreate);
 		
-		Droit droit = droitDAO.findById(4L);
+		Droit droit = droitDAO.findDroit(toCreate).get(0);
 		Assert.assertEquals(droit.getTitle(), LDroit.Block);
 	}
 	

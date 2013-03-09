@@ -63,7 +63,7 @@ public class TestSavoirFaireDAO extends TestAbstractDAO <Long, SavoirFaire> {
 		toCreate.setTitle("supervisor");
 		savoirFaireDAO.createSavoirFaire(toCreate);
 		
-		SavoirFaire savoirFaire = savoirFaireDAO.findById(3L);
+		SavoirFaire savoirFaire = savoirFaireDAO.findSavoirFaire(toCreate).get(0);
 		Assert.assertEquals(savoirFaire.getTitle(), "supervisor");
 	}
 	
