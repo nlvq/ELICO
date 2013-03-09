@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.IOrganisationDAO;
 import dao.IUtilisateurDAO;
@@ -14,6 +15,7 @@ import dao.Role;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 
+@Transactional
 @Service("rh")
 public class RH implements IRH {
 
@@ -133,6 +135,12 @@ public class RH implements IRH {
 		if (found != null && !found.isEmpty()) {
 			if(uorDAO != null){
 				for(UtilisateurOrganisationRole u : uor){
+					Organisation organisation = findOrga(u.getOrganisation().getTitle()).get(0);
+					organisationDAO.refresh(organisation);
+					u.setOrganisation(organisation);
+					Utilisateur utilisateur = findUser(u.getUtilisateur().getLogin()).get(0);
+					utilisateurDAO.refresh(utilisateur);
+					u.setUtilisateur(utilisateur);
 					uorDAO.createUtilisateurOrganisationRole(u);
 				}
 			}

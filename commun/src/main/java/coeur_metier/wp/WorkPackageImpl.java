@@ -3,7 +3,8 @@ package coeur_metier.wp;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.Droit;
@@ -11,13 +12,14 @@ import dao.IWorkPackageDAO;
 import dao.Maturite.Etat;
 import dao.Objet;
 import dao.WorkPackage;
-import dao.impl.DefaultWorkPackageDAO;
 
 @Transactional
-@ContextConfiguration(locations = { "classpath:spring/elico-persistence-context.xml" })
+@Service("workPackageImpl")
 public class WorkPackageImpl implements IWP {
 
-	private IWorkPackageDAO DAO = new DefaultWorkPackageDAO();
+	@Autowired
+	private IWorkPackageDAO DAO;
+	
 	private WorkPackage wp;
 	
 	public WorkPackageImpl(IWorkPackageDAO DAO){
@@ -91,8 +93,6 @@ public class WorkPackageImpl implements IWP {
 			o.getMaturite().setCommentary(reason);
 		}
 		updateWP(wp);
-
 	}
-
 
 }

@@ -1,7 +1,5 @@
 package ihm;
 
-import ihm.simulate.SimulateAuthentification;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -12,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.ContextUtil;
+import coeur_metier.authentification.AuthentificationImpl;
 import dao.Role;
 
 public class AuthentificationLoginWindow extends AbstractValidateCancelWindow {
@@ -26,8 +26,9 @@ public class AuthentificationLoginWindow extends AbstractValidateCancelWindow {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SimulateAuthentification sa = new SimulateAuthentification();
-				List<Role> roles = sa.auth(loginField.getText(), passwordField.getText());
+				//SimulateAuthentification authentification = new SimulateAuthentification();
+				AuthentificationImpl authentification = ContextUtil.getAuthentification();
+				List<Role> roles = authentification.auth(loginField.getText(), passwordField.getText());
 				if(roles!=null){
 					AuthentificationWindow authentificationWindow = new AuthentificationWindow(roles);
 					authentificationWindow.createWindow();
@@ -35,7 +36,7 @@ public class AuthentificationLoginWindow extends AbstractValidateCancelWindow {
 					frame.dispose();
 				}
 				else{
-					errorLabel.setText("Wrong username or password (for a test try toto:pwd).");
+					errorLabel.setText("Wrong username or password (for a test try admin:admin).");
 					loginField.setText("");
 					passwordField.setText("");
 				}

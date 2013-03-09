@@ -2,7 +2,8 @@ package coeur_metier.ws;
 
 import java.util.List;
 
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import coeur_metier.wp.IWP;
@@ -16,16 +17,19 @@ import dao.Objet;
 import dao.Organisation;
 import dao.WorkPackage;
 import dao.WorkSpace;
-import dao.impl.DefaultOrganisationDAO;
-import dao.impl.DefaultWorkSpaceDAO;
 
 @Transactional
-@ContextConfiguration(locations = { "classpath:spring/elico-persistence-context.xml" })
+@Service("workSpaceImpl")
 public class WorkSpaceImpl implements IWS {
+	
+	@Autowired
+	private IWorkSpaceDAO dao;
+
+	@Autowired
+	private IOrganisationDAO daoOrg;
+	
 	private WorkSpace ws;
-	private IWorkSpaceDAO dao = new DefaultWorkSpaceDAO();
 	private IWP work = new WorkPackageImpl();
-	private IOrganisationDAO daoOrg = new DefaultOrganisationDAO();
 
 	public WorkSpaceImpl(IWorkSpaceDAO daoSpace, IWorkPackageDAO daoWork,IOrganisationDAO orgDAO) {
 		this.dao = daoSpace;

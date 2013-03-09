@@ -23,7 +23,7 @@ import dao.UtilisateurOrganisationRole;
 @ContextConfiguration(locations = { "classpath:spring/elico-persistence-test-context.xml" })
 public class IntegrationTestAuthentification {
 	
-	@Resource(name="authentification")
+	@Resource(name="authentificationImpl")
 	private AuthentificationImpl authentificationImpl;
 	
 	@Before

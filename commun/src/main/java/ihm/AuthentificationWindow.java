@@ -37,6 +37,9 @@ public class AuthentificationWindow extends AbstractValidateCancelWindow {
 				case "supervisor":
 					window = new SupervisorWindow();
 					break;
+				case "validator":
+					window = new ValidatorWindow();
+					break;
 				default:
 					throw new IllegalArgumentException("Unknow role");
 				}

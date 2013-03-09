@@ -5,13 +5,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.IUtilisateurDAO;
 import dao.Role;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 
-@Service("authentification")
+@Transactional
+@Service("authentificationImpl")
 public class AuthentificationImpl implements IAuthentification {
 
 	@Autowired
