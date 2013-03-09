@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
@@ -9,7 +10,9 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
        http://www.springframework.org/schema/jee
-       http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+       http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 	<!-- Scans for application @Components to deploy -->
 	<import resource="elico-persistence-components.xml" />
@@ -17,6 +20,8 @@
 	<!-- Instructs Spring to perform declarative transaction management on annotated 
 		classes -->
 	<tx:annotation-driven />
+	
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 
 	<bean id="defaultDroitDAO" class="dao.impl.DefaultDroitDAO"></bean>
 	<bean id="defaultMaturiteDAO" class="dao.impl.DefaultMaturiteDAO"></bean>
@@ -25,6 +30,7 @@
 	<bean id="defaultRoleDAO" class="dao.impl.DefaultRoleDAO"></bean>
 	<bean id="defaultSavoirFaireDAO" class="dao.impl.DefaultSavoirFaireDAO"></bean>
 	<bean id="defaultUtilisateurDAO" class="dao.impl.DefaultUtilisateurDAO"></bean>
+	<bean id="defaultUtilisateurOrganisationRoleDAO" class="dao.impl.DefaultUtilisateurOrganisationRoleDAO"></bean>
 	<bean id="defaultVersionDAO" class="dao.impl.DefaultVersionDAO"></bean>
 	<bean id="defaultWorkPackageDAO" class="dao.impl.DefaultWorkPackageDAO"></bean>
 	<bean id="defaultWorkSpaceDAO" class="dao.impl.DefaultWorkSpaceDAO"></bean>

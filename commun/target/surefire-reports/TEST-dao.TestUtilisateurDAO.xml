@@ -1,489 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="2.291" errors="2" skipped="0" tests="2" name="dao.TestUtilisateurDAO">
+<testsuite failures="0" time="0.054" errors="0" skipped="0" tests="8" name="dao.TestUtilisateurDAO">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_01\jre\bin"/>
-    <property name="java.vm.version" value="21.1-b02"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_11\jre\bin"/>
+    <property name="java.vm.version" value="23.6-b04"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
     <property name="user.script" value=""/>
     <property name="user.country" value="FR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\nlvq\git\ELICO\commun"/>
-    <property name="java.runtime.version" value="1.7.0_01-b08"/>
+    <property name="user.dir" value="E:\GitHub\ELICO\commun"/>
+    <property name="java.runtime.version" value="1.7.0_11-b21"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_01\jre\lib\endorsed"/>
-    <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\nlvq\AppData\Local\Temp\"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_11\jre\lib\endorsed"/>
+    <property name="os.arch" value="x86"/>
+    <property name="java.io.tmpdir" value="C:\Users\etienne3\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 7"/>
-    <property name="classworlds.conf" value="C:\Users\nlvq\workspace\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf7601564969446397820.tmp"/>
+    <property name="classworlds.conf" value="E:\workspace\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf3591251099811203505.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_01\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Perl64\site\bin;C:\Perl64\bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\Common Files\DivX Shared\;C:\Program Files (x86)\Samsung\Samsung PC Studio 3\;C:\Program Files (x86)\Common Files\Teleca Shared;C:\Program Files (x86)\GTK2-Runtime\bin;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;.;C:\Program Files\Java\Java3D\1.5.2\lib\ext\j3dcore.jar;C:\Program Files\Java\Java3D\1.5.2\lib\ext\j3dutils.jar;C:\Program Files\Java\Java3D\1.5.2\lib\ext\vecmath.jar;C:\Program Files\Java\jdk1.7.0_01\bin;C:\apache-ant-1.8.3\bin;C:\Program Files (x86)\Hedgewars 0.9.12\bin;C:\Program Files (x86)\TIGCC;C:\Program Files (x86)\Nexternet\Player\;c:\outil\maven\bin;C:\MinGW\bin;C:\MinGW\MSYS\1.0\local\bin;C:\MinGW\MSYS\1.0\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_11\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jdk1.7.0_11/bin/../jre/bin/client;C:/Program Files/Java/jdk1.7.0_11/bin/../jre/bin;C:/Program Files/Java/jdk1.7.0_11/bin/../jre/lib/i386;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;%JAVA_HOME%;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\Java\jdk1.7.0_11\bin;E:\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="51.0"/>
-    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
     <property name="os.version" value="6.1"/>
-    <property name="user.home" value="C:\Users\nlvq"/>
+    <property name="user.home" value="C:\Users\etienne3"/>
     <property name="user.timezone" value="Europe/Paris"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.7"/>
-    <property name="file.encoding" value="Cp1252"/>
-    <property name="user.name" value="nlvq"/>
-    <property name="java.class.path" value="/C:/Users/nlvq/Desktop/eclipse/configuration/org.eclipse.osgi/bundles/804/1/.cp/jars/plexus-classworlds-2.4.jar"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="etienne3"/>
+    <property name="java.class.path" value="/E:/eclipse/configuration/org.eclipse.osgi/bundles/810/1/.cp/jars/plexus-classworlds-2.4.jar"/>
     <property name="java.vm.specification.version" value="1.7"/>
-    <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_01\jre"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_11\jre"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="fr"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.7.0_01"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_01\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
-    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_01\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_01\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_01\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_01\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_01\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_01\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_01\jre\classes"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="1.7.0_11"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_11\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_11\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_11\jre\classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="C:\Users\nlvq\git\ELICO\commun\EMBEDDED"/>
+    <property name="maven.home" value="E:\GitHub\ELICO\commun\EMBEDDED"/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.desktop" value="windows"/>
-    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="1.782" classname="dao.TestUtilisateurDAO" name="testCountAll">
-    <error message="Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:308)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:321)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:220)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:301)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:303)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:240)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:180)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;defaultDroitDAO&apos;: Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in class path resource [spring/elico-persistence-test-context.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:341)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1074)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:288)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:190)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:580)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:895)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:425)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:84)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
-	at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:280)
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:304)
-	... 30 more
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in class path resource [spring/elico-persistence-test-context.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1420)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:288)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:190)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findDefaultEntityManagerFactory(PersistenceAnnotationBeanPostProcessor.java:529)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findEntityManagerFactory(PersistenceAnnotationBeanPostProcessor.java:495)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor$PersistenceElement.resolveEntityManager(PersistenceAnnotationBeanPostProcessor.java:656)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor$PersistenceElement.getResourceToInject(PersistenceAnnotationBeanPostProcessor.java:629)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:147)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:84)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:338)
-	... 44 more
-Caused by: javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:911)
-	at org.hibernate.ejb.HibernatePersistence.createContainerEntityManagerFactory(HibernatePersistence.java:74)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:225)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:308)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1477)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1417)
-	... 57 more
-Caused by: org.hibernate.MappingException: Could not determine type for: java.util.List, at table: WORKPACKAGE, for columns: [org.hibernate.mapping.Column(conteneur)]
-	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
-	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
-	at org.hibernate.mapping.Property.isValid(Property.java:217)
-	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:463)
-	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
-	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
-	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
-	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
-	... 62 more
-</error>
-    <system-err>févr. 03, 2013 3:09:47 PM org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
-Infos: @TestExecutionListeners is not present for class [class dao.TestUtilisateurDAO]: using defaults.
-févr. 03, 2013 3:09:47 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
-Infos: Loading XML bean definitions from class path resource [spring/elico-persistence-test-context.xml]
-févr. 03, 2013 3:09:48 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
-Infos: Loading XML bean definitions from class path resource [spring/elico-persistence-components.xml]
-févr. 03, 2013 3:09:48 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
-Infos: Refreshing org.springframework.context.support.GenericApplicationContext@5327510b: startup date [Sun Feb 03 15:09:48 CET 2013]; root of context hierarchy
-févr. 03, 2013 3:09:48 PM org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
-Infos: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1b86d76f: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,defaultDroitDAO,defaultMaturiteDAO,defaultObjetDAO,defaultOrganisationDAO,defaultRoleDAO,defaultSavoirFaireDAO,defaultUtilisateurDAO,defaultVersionDAO,defaultWorkPackageDAO,defaultWorkSpaceDAO,transactionManager,entityManagerFactory,dataSource]; root of factory hierarchy
-févr. 03, 2013 3:09:48 PM org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean createNativeEntityManagerFactory
-Infos: Building JPA container EntityManagerFactory for persistence unit &apos;elico-persistence-persistance&apos;
-137 [main] INFO org.hibernate.annotations.common.Version - Hibernate Commons Annotations 3.2.0.Final
-145 [main] INFO org.hibernate.cfg.Environment - Hibernate 3.6.0.Final
-147 [main] INFO org.hibernate.cfg.Environment - hibernate.properties not found
-152 [main] INFO org.hibernate.cfg.Environment - Bytecode provider name : javassist
-156 [main] INFO org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
-260 [main] INFO org.hibernate.ejb.Version - Hibernate EntityManager 3.6.0.Final
-286 [main] INFO org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
-	name: elico-persistence-persistance
-	...]
-419 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Droit
-467 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Droit on table DROIT
-525 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Objet
-525 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Objet on table OBJET
-527 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Organisation
-527 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Organisation on table ORGANISATION
-540 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Role
-540 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Role on table ROLE
-559 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.SavoirFaire
-559 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.SavoirFaire on table SAVOIRFAIRE
-560 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Utilisateur
-561 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Utilisateur on table UTILISATEUR
-593 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Version
-594 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Version on table VERSION
-595 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.WorkPackage
-595 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.WorkPackage on table WORKPACKAGE
-610 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.WorkSpace
-610 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.WorkSpace on table WORKSPACE
-631 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: dao.Utilisateur.assigne -&gt; WORKSPACE
-633 [main] INFO org.hibernate.cfg.Configuration - Hibernate Validator not found: ignoring
-666 [main] INFO org.hibernate.cfg.search.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-févr. 03, 2013 3:09:49 PM org.springframework.beans.factory.support.DefaultSingletonBeanRegistry destroySingletons
-Infos: Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1b86d76f: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,defaultDroitDAO,defaultMaturiteDAO,defaultObjetDAO,defaultOrganisationDAO,defaultRoleDAO,defaultSavoirFaireDAO,defaultUtilisateurDAO,defaultVersionDAO,defaultWorkPackageDAO,defaultWorkSpaceDAO,transactionManager,entityManagerFactory,dataSource]; root of factory hierarchy
-févr. 03, 2013 3:09:49 PM org.springframework.test.context.TestContextManager prepareTestInstance
-Grave: Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c9b11d5] to prepare test instance [dao.TestUtilisateurDAO@58afde3d]
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:308)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:321)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:220)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:301)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:303)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:240)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:180)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;defaultDroitDAO&apos;: Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in class path resource [spring/elico-persistence-test-context.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:341)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1074)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:288)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:190)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:580)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:895)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:425)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:84)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
-	at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:280)
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:304)
-	... 30 more
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in class path resource [spring/elico-persistence-test-context.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1420)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:288)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:190)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findDefaultEntityManagerFactory(PersistenceAnnotationBeanPostProcessor.java:529)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findEntityManagerFactory(PersistenceAnnotationBeanPostProcessor.java:495)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor$PersistenceElement.resolveEntityManager(PersistenceAnnotationBeanPostProcessor.java:656)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor$PersistenceElement.getResourceToInject(PersistenceAnnotationBeanPostProcessor.java:629)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:147)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:84)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:338)
-	... 44 more
-Caused by: javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:911)
-	at org.hibernate.ejb.HibernatePersistence.createContainerEntityManagerFactory(HibernatePersistence.java:74)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:225)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:308)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1477)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1417)
-	... 57 more
-Caused by: org.hibernate.MappingException: Could not determine type for: java.util.List, at table: WORKPACKAGE, for columns: [org.hibernate.mapping.Column(conteneur)]
-	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
-	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
-	at org.hibernate.mapping.Property.isValid(Property.java:217)
-	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:463)
-	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
-	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
-	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
-	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
-	... 62 more
-
-</system-err>
-  </testcase>
-  <testcase time="0.292" classname="dao.TestUtilisateurDAO" name="testFindAll">
-    <error message="Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:308)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:321)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:220)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:301)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:303)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:240)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:180)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;defaultDroitDAO&apos;: Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in class path resource [spring/elico-persistence-test-context.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:341)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1074)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:288)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:190)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:580)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:895)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:425)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:84)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
-	at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:280)
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:304)
-	... 30 more
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in class path resource [spring/elico-persistence-test-context.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1420)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:288)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:190)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findDefaultEntityManagerFactory(PersistenceAnnotationBeanPostProcessor.java:529)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findEntityManagerFactory(PersistenceAnnotationBeanPostProcessor.java:495)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor$PersistenceElement.resolveEntityManager(PersistenceAnnotationBeanPostProcessor.java:656)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor$PersistenceElement.getResourceToInject(PersistenceAnnotationBeanPostProcessor.java:629)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:147)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:84)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:338)
-	... 44 more
-Caused by: javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:911)
-	at org.hibernate.ejb.HibernatePersistence.createContainerEntityManagerFactory(HibernatePersistence.java:74)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:225)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:308)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1477)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1417)
-	... 57 more
-Caused by: org.hibernate.MappingException: Could not determine type for: java.util.List, at table: WORKPACKAGE, for columns: [org.hibernate.mapping.Column(conteneur)]
-	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
-	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
-	at org.hibernate.mapping.Property.isValid(Property.java:217)
-	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:463)
-	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
-	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
-	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
-	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
-	... 62 more
-</error>
-    <system-err>févr. 03, 2013 3:09:49 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
-Infos: Loading XML bean definitions from class path resource [spring/elico-persistence-test-context.xml]
-févr. 03, 2013 3:09:49 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
-Infos: Loading XML bean definitions from class path resource [spring/elico-persistence-components.xml]
-févr. 03, 2013 3:09:49 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
-Infos: Refreshing org.springframework.context.support.GenericApplicationContext@413b7acb: startup date [Sun Feb 03 15:09:49 CET 2013]; root of context hierarchy
-févr. 03, 2013 3:09:49 PM org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
-Infos: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@79de7e39: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,defaultDroitDAO,defaultMaturiteDAO,defaultObjetDAO,defaultOrganisationDAO,defaultRoleDAO,defaultSavoirFaireDAO,defaultUtilisateurDAO,defaultVersionDAO,defaultWorkPackageDAO,defaultWorkSpaceDAO,transactionManager,entityManagerFactory,dataSource]; root of factory hierarchy
-févr. 03, 2013 3:09:49 PM org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean createNativeEntityManagerFactory
-Infos: Building JPA container EntityManagerFactory for persistence unit &apos;elico-persistence-persistance&apos;
-924 [main] INFO org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
-	name: elico-persistence-persistance
-	...]
-928 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Droit
-928 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Droit on table DROIT
-929 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Objet
-930 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Objet on table OBJET
-931 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Organisation
-932 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Organisation on table ORGANISATION
-933 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Role
-934 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Role on table ROLE
-935 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.SavoirFaire
-936 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.SavoirFaire on table SAVOIRFAIRE
-937 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Utilisateur
-937 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Utilisateur on table UTILISATEUR
-940 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.Version
-940 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.Version on table VERSION
-942 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.WorkPackage
-943 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.WorkPackage on table WORKPACKAGE
-947 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: dao.WorkSpace
-947 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity dao.WorkSpace on table WORKSPACE
-952 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: dao.Utilisateur.assigne -&gt; WORKSPACE
-953 [main] INFO org.hibernate.cfg.Configuration - Hibernate Validator not found: ignoring
-970 [main] INFO org.hibernate.cfg.search.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-févr. 03, 2013 3:09:49 PM org.springframework.beans.factory.support.DefaultSingletonBeanRegistry destroySingletons
-Infos: Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@79de7e39: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,defaultDroitDAO,defaultMaturiteDAO,defaultObjetDAO,defaultOrganisationDAO,defaultRoleDAO,defaultSavoirFaireDAO,defaultUtilisateurDAO,defaultVersionDAO,defaultWorkPackageDAO,defaultWorkSpaceDAO,transactionManager,entityManagerFactory,dataSource]; root of factory hierarchy
-févr. 03, 2013 3:09:49 PM org.springframework.test.context.TestContextManager prepareTestInstance
-Grave: Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c9b11d5] to prepare test instance [dao.TestUtilisateurDAO@5a3b8e49]
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:308)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:321)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:220)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:301)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:303)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:240)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:180)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;defaultDroitDAO&apos;: Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in class path resource [spring/elico-persistence-test-context.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:341)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1074)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:288)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:190)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:580)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:895)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:425)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:84)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
-	at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:280)
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:304)
-	... 30 more
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in class path resource [spring/elico-persistence-test-context.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1420)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:288)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:190)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findDefaultEntityManagerFactory(PersistenceAnnotationBeanPostProcessor.java:529)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findEntityManagerFactory(PersistenceAnnotationBeanPostProcessor.java:495)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor$PersistenceElement.resolveEntityManager(PersistenceAnnotationBeanPostProcessor.java:656)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor$PersistenceElement.getResourceToInject(PersistenceAnnotationBeanPostProcessor.java:629)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:147)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:84)
-	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:338)
-	... 44 more
-Caused by: javax.persistence.PersistenceException: [PersistenceUnit: elico-persistence-persistance] Unable to build EntityManagerFactory
-	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:911)
-	at org.hibernate.ejb.HibernatePersistence.createContainerEntityManagerFactory(HibernatePersistence.java:74)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:225)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:308)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1477)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1417)
-	... 57 more
-Caused by: org.hibernate.MappingException: Could not determine type for: java.util.List, at table: WORKPACKAGE, for columns: [org.hibernate.mapping.Column(conteneur)]
-	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
-	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
-	at org.hibernate.mapping.Property.isValid(Property.java:217)
-	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:463)
-	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
-	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
-	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
-	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
-	... 62 more
-
-</system-err>
-  </testcase>
+  <testcase time="0.009" classname="dao.TestUtilisateurDAO" name="testFindById"/>
+  <testcase time="0.004" classname="dao.TestUtilisateurDAO" name="testUpdate"/>
+  <testcase time="0.005" classname="dao.TestUtilisateurDAO" name="testCreate"/>
+  <testcase time="0.03" classname="dao.TestUtilisateurDAO" name="testDelete"/>
+  <testcase time="0" classname="dao.TestUtilisateurDAO" name="testFindByUtilisateur"/>
+  <testcase time="0" classname="dao.TestUtilisateurDAO" name="testFindByUtilisateurMult"/>
+  <testcase time="0" classname="dao.TestUtilisateurDAO" name="testFindAll"/>
+  <testcase time="0.005" classname="dao.TestUtilisateurDAO" name="testCountAll"/>
 </testsuite>

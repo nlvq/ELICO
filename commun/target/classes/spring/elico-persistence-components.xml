@@ -12,6 +12,8 @@
        http://www.springframework.org/schema/jee
        http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
 
+  <import resource="elico-service-components.xml" />
+  
   <context:component-scan base-package="dao" />
 
 </beans>
