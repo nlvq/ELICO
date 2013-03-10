@@ -83,8 +83,7 @@ public class SimulateUserDAO implements IUtilisateurDAO{
 
 	@Override
 	public List<Utilisateur> findAll() {
-		// dont need
-		return null;
+		return utilisateurs;
 	}
 
 	@Override

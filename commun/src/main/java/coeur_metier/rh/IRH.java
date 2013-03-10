@@ -16,5 +16,6 @@ public interface IRH {
 	public void updateUser(Utilisateur user);
 	public void setRoles(String loginUser, List<UtilisateurOrganisationRole> uor);
 	public List<Utilisateur> findUser(String loginUser);
+	public List<Utilisateur> getAllUser();
 	public void resetPassword(String loginUser);
 }

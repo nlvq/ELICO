@@ -153,6 +153,14 @@ public class IntegrationRHTest {
 		assertEquals(list.get(0).getAppartient().get(0).getOrganisation().getTitle(), "orga10");
 		assertEquals(list.get(0).getAppartient().get(0).getOrganisation().getType(), "default");
 	}
+	
+	@Test
+	public void testGetAllUser() {
+		rh.createUser("u600", "firstname", "lastname", "0123456789", "orga600", "pwd");
+		rh.createUser("u601", "firstname", "lastname", "0123456789", "orga601", "pwd");
+		rh.createUser("u602", "firstname", "lastname", "0123456789", "orga602", "pwd");
+		assertEquals(rh.getAllUser().size(), 7);
+	}
 
 	@Test
 	public void testResetPassword() {

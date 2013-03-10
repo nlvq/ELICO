@@ -158,6 +158,11 @@ public class RH implements IRH {
 	}
 
 	@Override
+	public List<Utilisateur> getAllUser() {
+		return utilisateurDAO.findAll();
+	}
+
+	@Override
 	public void resetPassword(String loginUser) {
 		Utilisateur usr = new Utilisateur();
 		usr.setLogin(loginUser);
