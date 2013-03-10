@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import dao.Droit;
 import dao.IWorkPackageDAO;
+import dao.Maturite;
 import dao.Maturite.Etat;
 import dao.Objet;
 import dao.WorkPackage;
@@ -18,81 +18,54 @@ import dao.WorkPackage;
 public class WorkPackageImpl implements IWP {
 
 	@Autowired
-	private IWorkPackageDAO DAO;
-	
-	private WorkPackage wp;
-	
-	public WorkPackageImpl(IWorkPackageDAO DAO){
-		this.DAO=DAO;
+	private IWorkPackageDAO workPackageDAO;
+
+	/**
+	 * @return the workPackageDAO
+	 */
+	public IWorkPackageDAO getWorkPackageDAO() {
+		return workPackageDAO;
 	}
-	public WorkPackageImpl(){
+
+	/**
+	 * @param workPackageDAO the workPackageDAO to set
+	 */
+	public void setWorkPackageDAO(IWorkPackageDAO workPackageDAO) {
+		this.workPackageDAO = workPackageDAO;
 	}
 
 	@Override
-	public void createWP(String name, List<Objet> liste) {
-		wp = new WorkPackage();
+	public void createWP(String name, List<Objet> list) {
+		WorkPackage wp = new WorkPackage();
 		wp.setTitle(name);
-		//TODO wp.setOrganisation(organisation)
-		for(Objet o : liste){
-			o.getMaturite().setTitle(Etat.NUL);
+		if(list != null && !list.isEmpty()){
+			for(Objet o : list){
+				Maturite maturite = o.getMaturite();
+				if(maturite == null){
+					maturite = new Maturite();
+				}
+				maturite.setTitle(Etat.NUL);
+				o.setMaturite(maturite);
+			}
 		}
-		wp.setObjets(liste);
-		DAO.createWorkPackage(wp);
+		wp.setObjets(list);
+		workPackageDAO.createWorkPackage(wp);
 	}
 
 	@Override
 	public void updateWP(WorkPackage wp) {
-		DAO.updateWorkPackage(wp);
+		workPackageDAO.updateWorkPackage(wp);
+	}
+	
+	@Override
+	public void deleteWP(WorkPackage wp){
+		workPackageDAO.deleteWorkPackage(wp);
 	}
 
-	/**
-	 * c faux ca!
-	 */
 	@Override
 	public List<WorkPackage> findWP(WorkPackage wp) {
 		Objects.requireNonNull(wp);
-		return DAO.findWorkPackage(wp);
-	}
-
-	@Override
-	public void lockWP(String id) {
-		wp.setDroit(Droit.LDroit.Write);
-		updateWP(wp);
-	}
-
-	@Override
-	public void unlockWP(String id) {
-		wp.setDroit(Droit.LDroit.ReadWrite);
-		updateWP(wp);
-
-	}
-
-	@Override
-	public void requestValidation(String id) {
-		//IDroitDAO iddao = new DefaultDroitDAO();
-		//TODO check les droits de l'utilisateur lié au wp ?
-		for(Objet o : wp.getObjets()){
-			o.getMaturite().setTitle(Etat.ASKVALID);
-		}
-		updateWP(wp);
-
-	}
-
-	@Override
-	public void accept(String id) {
-		for(Objet o : wp.getObjets()){
-			o.getMaturite().setTitle(Etat.VALIDED);
-		}
-		updateWP(wp);
-	}
-
-	@Override
-	public void refuse(String id, String reason) {
-		for(Objet o : wp.getObjets()){
-			o.getMaturite().setTitle(Etat.REFUSED);
-			o.getMaturite().setCommentary(reason);
-		}
-		updateWP(wp);
+		return workPackageDAO.findWorkPackage(wp);
 	}
 
 }

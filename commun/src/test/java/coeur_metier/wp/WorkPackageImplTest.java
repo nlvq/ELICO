@@ -1,87 +1,87 @@
 package coeur_metier.wp;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import dao.Droit.LDroit;
-import dao.IWorkPackageDAO;
 import dao.Objet;
 import dao.WorkPackage;
+import dao.Maturite.Etat;
 
 public class WorkPackageImplTest {
-
-	private IWorkPackageDAO dao = new SimulateWorkPackageDAO();
-	private IWP work = new WorkPackageImpl(dao);
-	private List<Objet> listObjet;
 	
+	private WorkPackageImpl workPackageImpl;
+
 	@Before
-	public void setUpBeforeClass() throws Exception {
-		listObjet = new ArrayList<>();
-		listObjet.add(new Objet());
-		listObjet.add(new Objet());
+	public void init() {
+		workPackageImpl = new WorkPackageImpl();
+		SimulateWorkPackageDAO workPackageDAO = new SimulateWorkPackageDAO();
+		workPackageImpl.setWorkPackageDAO(workPackageDAO);
 	}
 
-//	@Test
-//	public final void testCreateWP() {
-//		work.createWP("Test", listObjet);
-//		List<WorkPackage> list=dao.findAll();
-//		WorkPackage wp=list.get(0);
-//		assertEquals((long)wp.getId(),0l);
-//		assertEquals(wp.getTitle(),"Test");
-//		assertEquals(wp.getObjets().size(),2);
-//	}
-//
-//	@Test
-//	public final void testUpdateWP() {
-//		work.createWP("Test", listObjet);
-//		List<WorkPackage> list=dao.findAll();
-//		WorkPackage wp=list.get(0);
-//		wp.setTitle("PIPO");
-//		wp.setDroit(LDroit.Read);
-//		work.updateWP(wp);
-//		list=dao.findAll();
-//		wp=list.get(0);
-//		assertEquals((long)wp.getId(),0l);
-//		assertEquals(wp.getTitle(),"PIPO");
-//		assertEquals(wp.getObjets().size(),2);
-//		assertEquals(wp.getDroit(),LDroit.Read);
-//	}
-//
-//	@Test
-//	public final void testFindWP() {
-//		work.createWP("Test1", listObjet);
-//		WorkPackage wp=new WorkPackage();
-//		wp.setTitle("Test1");
-//		work.findWP(wp);
-//	}
-//
-//	@Test(expected=IllegalAccessException.class)
-//	public final void testLockWP() {
-//		work.lockWP("0");
-//		WorkPackage wp=new WorkPackage();
-//		wp.setId(0l);
-//		work.updateWP(wp);
-//	}
-//
-//
-//	@Test
-//	public final void testRequestValidation() {
-//		//work.requestValidation(id);
-//	}
-//
-//	@Test
-//	public final void testAccept() {
-//		//work.accept(id);
-//	}
-//
-//	@Test
-//	public final void testRefuse() {
-//		//work.refuse(id, reason);
-//	}
+	@Test
+	public final void testCreateWP() {
+		ArrayList<Objet> listObjet = new ArrayList<Objet>();
+		Objet o1 = new Objet();
+		o1.setContent("a a a");
+		listObjet.add(o1);
+		Objet o2 = new Objet();
+		o2.setContent("b b b");
+		listObjet.add(o2);
+		workPackageImpl.createWP("wp1", listObjet);
+		WorkPackage toFind = new WorkPackage();
+		toFind.setTitle("wp1");
+		List<WorkPackage> found = workPackageImpl.findWP(toFind);
+		Assert.assertEquals(found.size(), 1);
+		Assert.assertEquals(found.get(0).getTitle(), "wp1");
+		Assert.assertEquals(found.get(0).getObjets().get(0).getContent(), "a a a");
+		Assert.assertEquals(found.get(0).getObjets().get(0).getMaturite().getTitle(), Etat.NUL);
+		Assert.assertEquals(found.get(0).getObjets().get(1).getContent(), "b b b");
+		Assert.assertEquals(found.get(0).getObjets().get(1).getMaturite().getTitle(), Etat.NUL);
+	}
+
+	@Test
+	public final void testUpdateWP() {
+		workPackageImpl.createWP("wp2", null);
+		WorkPackage toFind = new WorkPackage();
+		toFind.setTitle("wp2");
+		List<WorkPackage> found = workPackageImpl.findWP(toFind);
+		Assert.assertEquals(found.size(), 1);
+		Assert.assertEquals(found.get(0).getTitle(), "wp2");
+		Assert.assertNull(found.get(0).getStartDate());
+		DateTime dt = new DateTime();
+		found.get(0).setStartDate(dt);
+		workPackageImpl.updateWP(found.get(0));
+		found = workPackageImpl.findWP(toFind);
+		Assert.assertEquals(found.size(), 1);
+		Assert.assertEquals(found.get(0).getTitle(), "wp2");
+		Assert.assertEquals(found.get(0).getStartDate(), dt);
+	}
+
+	@Test
+	public final void testDeleteWP() {
+		workPackageImpl.createWP("wp3", null);
+		WorkPackage toFind = new WorkPackage();
+		toFind.setTitle("wp3");
+		List<WorkPackage> found = workPackageImpl.findWP(toFind);
+		Assert.assertEquals(found.size(), 1);
+		workPackageImpl.deleteWP(found.get(0));
+		found = workPackageImpl.findWP(toFind);
+		Assert.assertEquals(found.size(), 0);
+	}
+	
+	@Test
+	public final void testFindWP() {
+		workPackageImpl.createWP("wp4", null);
+		WorkPackage toFind = new WorkPackage();
+		toFind.setTitle("wp4");
+		List<WorkPackage> found = workPackageImpl.findWP(toFind);
+		Assert.assertEquals(found.size(), 1);
+		Assert.assertEquals(found.get(0).getTitle(), "wp4");
+	}
 
 }

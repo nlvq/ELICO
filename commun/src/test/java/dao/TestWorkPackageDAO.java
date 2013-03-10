@@ -11,8 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import dao.Droit.LDroit;
-
 import fr.umlv.m2.jee.dao.IDAO;
 import fr.umlv.m2.jee.dao.TestAbstractDAO;
 
@@ -40,7 +38,6 @@ public class TestWorkPackageDAO extends TestAbstractDAO <Long, WorkPackage> {
 		Assert.assertEquals(workPackage.getTitle(), "wp1");
 		Assert.assertEquals(workPackage.getStartDate(), new DateTime(2013,01,01,00,00,00));
 		Assert.assertEquals(workPackage.getEndDate(), new DateTime(2013,01,11,00,00,00));
-		Assert.assertEquals(workPackage.getDroit(), LDroit.Write);
 		Assert.assertEquals(workPackage.getOrganisation().getTitle(), "org1");
 		Assert.assertEquals(workPackage.getVersion().getNumber(), "1.0");
 		Assert.assertEquals(workPackage.getWorkSpace().getTitle(), "ws1");

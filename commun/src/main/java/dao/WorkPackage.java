@@ -19,8 +19,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import dao.Droit.LDroit;
-
 @Entity
 @Table(name="WORKPACKAGE")
 public class WorkPackage {
@@ -40,9 +38,6 @@ public class WorkPackage {
 	@Column(name="WORKPACKAGE_ENDDATE")
 	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
 	private DateTime endDate;
-	
-	@Column(name="WORKPACKAGE_DROIT")
-	private LDroit droit;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	@JoinColumn(name="WORKSPACE_ID")
@@ -122,20 +117,6 @@ public class WorkPackage {
 	 */
 	public void setEndDate(DateTime endDate) {
 		this.endDate = endDate;
-	}
-
-	/**
-	 * @return the droit
-	 */
-	public LDroit getDroit() {
-		return droit;
-	}
-
-	/**
-	 * @param droit the droit to set
-	 */
-	public void setDroit(LDroit droit) {
-		this.droit = droit;
 	}
 
 	/**

@@ -9,15 +9,15 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 
-import dao.IWorkSpaceDAO;
-import dao.WorkSpace;
+import dao.IWorkPackageDAO;
+import dao.WorkPackage;
 
-public class SimulateWorkSpaceDAO implements IWorkSpaceDAO{
+public class SimulateWorkPackageDAO implements IWorkPackageDAO{
 	
-	private ArrayList<WorkSpace> workSpaces;
+	private ArrayList<WorkPackage> workPackages;
 	
-	public SimulateWorkSpaceDAO(){
-		workSpaces = new ArrayList<WorkSpace>();
+	public SimulateWorkPackageDAO(){
+		workPackages = new ArrayList<WorkPackage>();
 	}
 
 	@Override
@@ -27,13 +27,13 @@ public class SimulateWorkSpaceDAO implements IWorkSpaceDAO{
 	}
 
 	@Override
-	public List<WorkSpace> findByCriteria(Criterion... criteria) {
+	public List<WorkPackage> findByCriteria(Criterion... criteria) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<WorkSpace> findByExample(WorkSpace instance,
+	public List<WorkPackage> findByExample(WorkPackage instance,
 			String[] excludeProperties) {
 		// dont need
 		return null;
@@ -46,43 +46,43 @@ public class SimulateWorkSpaceDAO implements IWorkSpaceDAO{
 	}
 
 	@Override
-	public WorkSpace getReference(Long id) {
+	public WorkPackage getReference(Long id) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public WorkSpace findById(Long id) {
+	public WorkPackage findById(Long id) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<WorkSpace> findByQuery(String query) {
+	public List<WorkPackage> findByQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public WorkSpace findEntityByQuery(String query) {
+	public WorkPackage findEntityByQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<WorkSpace> findByNamedQuery(String query) {
+	public List<WorkPackage> findByNamedQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public WorkSpace findEntityByNamedQuery(String query) {
+	public WorkPackage findEntityByNamedQuery(String query) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public List<WorkSpace> findAll() {
+	public List<WorkPackage> findAll() {
 		// dont need
 		return null;
 	}
@@ -94,13 +94,13 @@ public class SimulateWorkSpaceDAO implements IWorkSpaceDAO{
 	}
 
 	@Override
-	public WorkSpace persist(WorkSpace toPersist) {
+	public WorkPackage persist(WorkPackage toPersist) {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public void remove(WorkSpace toRemove) {
+	public void remove(WorkPackage toRemove) {
 		// dont need
 	}
 
@@ -115,18 +115,18 @@ public class SimulateWorkSpaceDAO implements IWorkSpaceDAO{
 	}
 
 	@Override
-	public boolean contains(WorkSpace isContained) {
+	public boolean contains(WorkPackage isContained) {
 		// dont need
 		return false;
 	}
 
 	@Override
-	public void refresh(WorkSpace toRefresh) {
+	public void refresh(WorkPackage toRefresh) {
 		// dont need
 	}
 
 	@Override
-	public WorkSpace merge(WorkSpace toMerge) {
+	public WorkPackage merge(WorkPackage toMerge) {
 		// dont need
 		return null;
 	}
@@ -161,38 +161,38 @@ public class SimulateWorkSpaceDAO implements IWorkSpaceDAO{
 	}
 
 	@Override
-	public Class<WorkSpace> getEntityType() {
+	public Class<WorkPackage> getEntityType() {
 		// dont need
 		return null;
 	}
 
 	@Override
-	public void createWorkSpace(WorkSpace workSpace) {
-		if(!workSpaces.contains(workSpace)){
-			workSpaces.add(workSpace);
+	public void createWorkPackage(WorkPackage workPackage) {
+		if(!workPackages.contains(workPackage)){
+			workPackages.add(workPackage);
 		}
 	}
 
 	@Override
-	public void updateWorkSpace(WorkSpace workSpace) {
-		if(workSpaces.contains(workSpace)){
-			workSpaces.remove(workSpace);
-			workSpaces.add(workSpace);
+	public void updateWorkPackage(WorkPackage workPackage) {
+		if(workPackages.contains(workPackage)){
+			workPackages.remove(workPackage);
+			workPackages.add(workPackage);
 		}
 	}
 
 	@Override
-	public void deleteWorkSpace(WorkSpace workSpace) {
-		if(workSpaces.contains(workSpace)){
-			workSpaces.remove(workSpace);
+	public void deleteWorkPackage(WorkPackage workPackage) {
+		if(workPackages.contains(workPackage)){
+			workPackages.remove(workPackage);
 		}
 	}
 
 	@Override
-	public List<WorkSpace> findWorkSpace(WorkSpace workSpace) {
-		ArrayList<WorkSpace> found= new ArrayList<WorkSpace>();
-		for(WorkSpace o : workSpaces){
-			if(o.getTitle().equals(workSpace.getTitle()))
+	public List<WorkPackage> findWorkPackage(WorkPackage workPackage) {
+		ArrayList<WorkPackage> found= new ArrayList<WorkPackage>();
+		for(WorkPackage o : workPackages){
+			if(o.getTitle().equals(workPackage.getTitle()))
 				found.add(o);
 		}
 		return found;

@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import coeur_metier.wp.IWP;
-import coeur_metier.wp.WorkPackageImpl;
-import dao.Droit.LDroit;
 import dao.IOrganisationDAO;
 import dao.IWorkPackageDAO;
 import dao.IWorkSpaceDAO;
@@ -23,71 +20,133 @@ import dao.WorkSpace;
 public class WorkSpaceImpl implements IWS {
 	
 	@Autowired
-	private IWorkSpaceDAO dao;
+	private IWorkSpaceDAO workSpaceDAO;
 
 	@Autowired
-	private IOrganisationDAO daoOrg;
-	
-	private WorkSpace ws;
-	private IWP work = new WorkPackageImpl();
+	private IWorkPackageDAO workPackageDAO;
 
-	public WorkSpaceImpl(IWorkSpaceDAO daoSpace, IWorkPackageDAO daoWork,IOrganisationDAO orgDAO) {
-		this.dao = daoSpace;
-		work=new WorkPackageImpl(daoWork);
-		daoOrg=orgDAO;
+	@Autowired
+	private IOrganisationDAO organisationDAO;
+
+	/**
+	 * @return the workSpaceDAO
+	 */
+	public IWorkSpaceDAO getWorkSpaceDAO() {
+		return workSpaceDAO;
 	}
 
-	public WorkSpaceImpl() {
+	/**
+	 * @param workSpaceDAO the workSpaceDAO to set
+	 */
+	public void setWorkSpaceDAO(IWorkSpaceDAO workSpaceDAO) {
+		this.workSpaceDAO = workSpaceDAO;
+	}
+
+	/**
+	 * @return the workPackageDAO
+	 */
+	public IWorkPackageDAO getWorkPackageDAO() {
+		return workPackageDAO;
+	}
+
+	/**
+	 * @param workPackageDAO the workPackageDAO to set
+	 */
+	public void setWorkPackageDAO(IWorkPackageDAO workPackageDAO) {
+		this.workPackageDAO = workPackageDAO;
+	}
+
+	/**
+	 * @return the organisationDAO
+	 */
+	public IOrganisationDAO getOrganisationDAO() {
+		return organisationDAO;
+	}
+
+	/**
+	 * @param organisationDAO the organisationDAO to set
+	 */
+	public void setOrganisationDAO(IOrganisationDAO organisationDAO) {
+		this.organisationDAO = organisationDAO;
 	}
 
 	@Override
-	public void createWS(String name, WorkSpace parentWs, String orga,
-			List<WorkPackage> list) {
-		Organisation toFind = new Organisation();
-		toFind.setTitle(orga);
-		Organisation org = daoOrg.findOrganisation(toFind).get(0);
-		ws = new WorkSpace();
+	public void createWS(String name, WorkSpace parentWs, String orga, List<WorkPackage> list) {
+		WorkSpace ws = new WorkSpace();
 		ws.setTitle(name);
 		ws.setParent(parentWs);
 		ws.setWorkpackages(list);
-		ws.setOrganisation(org);
-		dao.createWorkSpace(ws);
-
+		Organisation toFind = new Organisation();
+		toFind.setTitle(orga);
+		List<Organisation> listOrga = organisationDAO.findOrganisation(toFind);
+		if(listOrga != null && !listOrga.isEmpty()){
+			ws.setOrganisation(listOrga.get(0));
+		}
+		else{
+			Organisation organisation = new Organisation();
+			organisation.setTitle(orga);
+			organisation.setType("default");
+			ws.setOrganisation(organisation);
+		}
+		workSpaceDAO.createWorkSpace(ws);
 	}
 
 	@Override
-	public void acquireWP(WorkPackage wp) {
-		ws.getWorkpackages().add(wp);
-		dao.updateWorkSpace(ws);
+	public void updateWS(WorkSpace ws) {
+		workSpaceDAO.updateWorkSpace(ws);
+	}
+
+	@Override
+	public void deleteWS(WorkSpace ws) {
+		workSpaceDAO.deleteWorkSpace(ws);
+	}
+
+	@Override
+	public List<WorkSpace> findWS(WorkSpace ws) {
+		return workSpaceDAO.findWorkSpace(ws);
+	}
+
+	@Override
+	public void acquireWP(WorkPackage wp, WorkSpace ws) {
+		wp.setWorkSpace(ws);
+		workPackageDAO.updateWorkPackage(wp);
+	}
+
+	@Override
+	public void unlockWP(WorkPackage wp) {
+		wp.setWorkSpace(null);
+		workPackageDAO.updateWorkPackage(wp);
 	}
 
 	@Override
 	public void promoteWP(WorkPackage wp) {
-		wp.setDroit(LDroit.Block);
+		//TODO check les droits de l'utilisateur lié au wp ?
 		for (Objet o : wp.getObjets()) {
 			o.getMaturite().setTitle(Etat.ASKVALID);
 		}
-		work.updateWP(wp);
+		workPackageDAO.updateWorkPackage(wp);
 	}
 
 	@Override
 	public void publishWP(WorkPackage wp) {
-		wp.setDroit(LDroit.Read);
 		for (Objet o : wp.getObjets()) {
 			o.getMaturite().setTitle(Etat.VALIDED);
 		}
-		work.updateWP(wp);
+		workPackageDAO.updateWorkPackage(wp);
+	}
+
+	@Override
+	public void refuseWP(WorkPackage wp, String reason) {
+		for(Objet o : wp.getObjets()){
+			o.getMaturite().setTitle(Etat.REFUSED);
+			o.getMaturite().setCommentary(reason);
+		}
+		workPackageDAO.updateWorkPackage(wp);
 	}
 
 	@Override
 	public void synchronizeWP(WorkPackage wp) {
-		work.updateWP(wp);
-	}
-
-	@Override
-	public List<WorkSpace> getWS(WorkSpace space) {
-		return dao.findWorkSpace(space);
-		
+		workPackageDAO.updateWorkPackage(wp);
 	}
 
 }
