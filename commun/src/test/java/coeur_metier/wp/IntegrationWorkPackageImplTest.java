@@ -34,12 +34,12 @@ public class IntegrationWorkPackageImplTest {
 		Objet o2 = new Objet();
 		o2.setContent("b b b");
 		listObjet.add(o2);
-		workPackageImpl.createWP("wp1", listObjet);
+		workPackageImpl.createWP("wp01", listObjet);
 		WorkPackage toFind = new WorkPackage();
-		toFind.setTitle("wp1");
+		toFind.setTitle("wp01");
 		List<WorkPackage> found = workPackageImpl.findWP(toFind);
 		Assert.assertEquals(found.size(), 1);
-		Assert.assertEquals(found.get(0).getTitle(), "wp1");
+		Assert.assertEquals(found.get(0).getTitle(), "wp01");
 		Assert.assertEquals(found.get(0).getObjets().get(0).getContent(), "a a a");
 		Assert.assertEquals(found.get(0).getObjets().get(0).getMaturite().getTitle(), Etat.NUL);
 		Assert.assertEquals(found.get(0).getObjets().get(1).getContent(), "b b b");
@@ -48,27 +48,27 @@ public class IntegrationWorkPackageImplTest {
 
 	@Test
 	public final void testUpdateWP() {
-		workPackageImpl.createWP("wp2", null);
+		workPackageImpl.createWP("wp02", null);
 		WorkPackage toFind = new WorkPackage();
-		toFind.setTitle("wp2");
+		toFind.setTitle("wp02");
 		List<WorkPackage> found = workPackageImpl.findWP(toFind);
 		Assert.assertEquals(found.size(), 1);
-		Assert.assertEquals(found.get(0).getTitle(), "wp2");
+		Assert.assertEquals(found.get(0).getTitle(), "wp02");
 		Assert.assertNull(found.get(0).getStartDate());
 		DateTime dt = new DateTime();
 		found.get(0).setStartDate(dt);
 		workPackageImpl.updateWP(found.get(0));
 		found = workPackageImpl.findWP(toFind);
 		Assert.assertEquals(found.size(), 1);
-		Assert.assertEquals(found.get(0).getTitle(), "wp2");
+		Assert.assertEquals(found.get(0).getTitle(), "wp02");
 		Assert.assertEquals(found.get(0).getStartDate(), dt);
 	}
 
 	@Test
 	public final void testDeleteWP() {
-		workPackageImpl.createWP("wp3", null);
+		workPackageImpl.createWP("wp03", null);
 		WorkPackage toFind = new WorkPackage();
-		toFind.setTitle("wp3");
+		toFind.setTitle("wp03");
 		List<WorkPackage> found = workPackageImpl.findWP(toFind);
 		Assert.assertEquals(found.size(), 1);
 		workPackageImpl.deleteWP(found.get(0));
@@ -78,12 +78,12 @@ public class IntegrationWorkPackageImplTest {
 	
 	@Test
 	public final void testFindWP() {
-		workPackageImpl.createWP("wp4", null);
+		workPackageImpl.createWP("wp04", null);
 		WorkPackage toFind = new WorkPackage();
-		toFind.setTitle("wp4");
+		toFind.setTitle("wp04");
 		List<WorkPackage> found = workPackageImpl.findWP(toFind);
 		Assert.assertEquals(found.size(), 1);
-		Assert.assertEquals(found.get(0).getTitle(), "wp4");
+		Assert.assertEquals(found.get(0).getTitle(), "wp04");
 	}
 
 }
