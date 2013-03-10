@@ -122,6 +122,7 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+<<<<<<< HEAD:commun/pom.xml
 		
 		<!-- AspectJ -->
 		<dependency>
@@ -135,6 +136,8 @@
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>1.6.11</version>
 		</dependency>
+=======
+>>>>>>> obligé:commun/target/classes/META-INF/maven/fr.umlv.m2.elico/commun/pom.xml
 	</dependencies>
 	
 </project>

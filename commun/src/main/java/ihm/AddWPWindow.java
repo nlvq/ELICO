@@ -1,18 +1,21 @@
 package ihm;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
-import javax.swing.event.ListDataListener;
-
 import ihm.simulate.SimulateObjet;
 import ihm.simulate.SimulateWP;
 import ihm.simulate.SimulateWS;
+
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  * Display a window that allow to add a new WP.
@@ -20,8 +23,8 @@ import ihm.simulate.SimulateWS;
 public class AddWPWindow extends AbstractValidateCancelWindow {
     SimulateWS ws;
 
-    JTextField nameField;
-    JList<SimulateObjet> listObj;
+    private JTextField nameField;
+    private JList<SimulateObjet> listObj;
     private JTextField searchField;
     private JList<SimulateObjet> searchResult;
     private List<SimulateObjet> objects = new ArrayList<>();
