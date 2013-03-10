@@ -11,7 +11,7 @@ public interface IRH {
 	public void deleteOrga(String name);
 	public void updateOrga(Organisation orga);
 	public List<Organisation> findOrga(String nameOrga);
-	public void createUser(String login, String firstname, String lastname, String phonenumber, String nameOrga);
+	public void createUser(String login, String firstname, String lastname, String phonenumber, String nameOrga, String password);
 	public void deleteUser(String loginUser);
 	public void updateUser(Utilisateur user);
 	public void setRoles(String loginUser, List<UtilisateurOrganisationRole> uor);

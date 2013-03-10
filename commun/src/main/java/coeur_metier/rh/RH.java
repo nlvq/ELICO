@@ -88,13 +88,13 @@ public class RH implements IRH {
 
 	@Override
 	public void createUser(String login, String firstname, String lastname,
-			String phonenumber, String nameOrga) {
+			String phonenumber, String nameOrga, String password) {
 		Utilisateur usr = new Utilisateur();
 		usr.setLogin(login);
 		usr.setFirstName(firstname);
 		usr.setLastName(lastname);
 		usr.setPhoneNumber(phonenumber);
-		usr.setPassword("pwd");
+		usr.setPassword(password);
 		ArrayList<UtilisateurOrganisationRole> listuor = new ArrayList<UtilisateurOrganisationRole>();
 		UtilisateurOrganisationRole uor = new UtilisateurOrganisationRole();
 		List<Organisation> list = findOrga(nameOrga);

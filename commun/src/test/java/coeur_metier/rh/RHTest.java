@@ -70,7 +70,7 @@ public class RHTest {
 	@Test
 	public void testCreateUser() {
 		rh.createOrga("orga5", "departement", null);
-		rh.createUser("u1", "firstname", "lastname", "0123456789", "orga5");
+		rh.createUser("u1", "firstname", "lastname", "0123456789", "orga5", "pwd");
 		List<Utilisateur> list = rh.findUser("u1");
 		assertEquals(list.size(), 1);
 		assertEquals(list.get(0).getLogin(), "u1");
@@ -84,7 +84,7 @@ public class RHTest {
 	@Test
 	public void testCreateUserBis() {
 		// The same, but with an organisation that doesnt exist
-		rh.createUser("u2", "firstname", "lastname", "0123456789", "orga6");
+		rh.createUser("u2", "firstname", "lastname", "0123456789", "orga6", "pwd");
 		List<Utilisateur> list = rh.findUser("u2");
 		assertEquals(list.size(), 1);
 		assertEquals(list.get(0).getLogin(), "u2");
@@ -97,7 +97,7 @@ public class RHTest {
 
 	@Test
 	public void testDeleteUser() {
-		rh.createUser("u3", "firstname", "lastname", "0123456789", "orga7");
+		rh.createUser("u3", "firstname", "lastname", "0123456789", "orga7", "pwd");
 		rh.deleteUser("u3");
 		List<Utilisateur> list = rh.findUser("u3");
 		assertEquals(list.size(), 0);
@@ -105,7 +105,7 @@ public class RHTest {
 
 	@Test
 	public void testUpdateUser() {
-		rh.createUser("u4", "firstname", "lastname", "0123456789", "orga8");
+		rh.createUser("u4", "firstname", "lastname", "0123456789", "orga8", "pwd");
 		Utilisateur u = rh.findUser("u4").get(0);
 		u.setPassword("mypassword");
 		rh.updateUser(u);
@@ -115,7 +115,7 @@ public class RHTest {
 
 	@Test
 	public void testSetRoles() {
-		rh.createUser("u5", "firstname", "lastname", "0123456789", "orga9");
+		rh.createUser("u5", "firstname", "lastname", "0123456789", "orga9", "pwd");
 		ArrayList<UtilisateurOrganisationRole> appartient = new ArrayList<UtilisateurOrganisationRole>();
 		UtilisateurOrganisationRole uor1 = new UtilisateurOrganisationRole();
 		Role role1 = new Role();
@@ -143,7 +143,7 @@ public class RHTest {
 
 	@Test
 	public void testFindUser() {
-		rh.createUser("u6", "firstname", "lastname", "0123456789", "orga10");
+		rh.createUser("u6", "firstname", "lastname", "0123456789", "orga10", "pwd");
 		List<Utilisateur> list = rh.findUser("u6");
 		assertEquals(list.size(), 1);
 		assertEquals(list.get(0).getLogin(), "u6");
@@ -156,7 +156,7 @@ public class RHTest {
 
 	@Test
 	public void testResetPassword() {
-		rh.createUser("u7", "firstname", "lastname", "0123456789", "orga11");
+		rh.createUser("u7", "firstname", "lastname", "0123456789", "orga11", "pwd");
 		Utilisateur u = rh.findUser("u7").get(0);
 		u.setPassword("mypassword");
 		rh.updateUser(u);

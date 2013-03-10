@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import coeur_metier.rh.RH;
 import dao.Role;
-import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 
 public class Main {
@@ -21,7 +20,7 @@ public class Main {
 	private static void createAdminUser(){
 		RH rh = ContextUtil.getRH();
 		rh.createOrga("elico", "enterprise", null);
-		rh.createUser("admin", "firstname", "lastname", "0123456789", "elico");
+		rh.createUser("admin", "firstname", "lastname", "0123456789", "elico", "admin");
 		ArrayList<UtilisateurOrganisationRole> appartient = new ArrayList<UtilisateurOrganisationRole>();
 		UtilisateurOrganisationRole uor1 = new UtilisateurOrganisationRole();
 		Role role1 = new Role();
@@ -45,9 +44,6 @@ public class Main {
 		uor3.setUtilisateur(rh.findUser("admin").get(0));
 		appartient.add(uor3);
 		rh.setRoles("admin", appartient);
-		Utilisateur user = rh.findUser("admin").get(0);
-		user.setPassword("admin");
-		rh.updateUser(user);
 	}
 
 	/**
