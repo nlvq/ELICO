@@ -4,13 +4,15 @@ import ihm.AdminWindow;
 import ihm.AuthentificationLoginWindow;
 import ihm.Editor;
 import ihm.IWindow;
+import ihm.IngWindow;
 import ihm.SupervisorWindow;
 import ihm.WSWindow;
+import ihm.WpWindowValidator;
 
 public class MainIHM {
     public static void main(String args[]) {
-        IWindow window = new AdminWindow();
-        //IWindow window = new WSWindow();
+        //IWindow window = new AdminWindow();
+        IWindow window = new IngWindow();
     	//new Editor();
     
         //IWindow window = Editor();

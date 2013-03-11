@@ -17,6 +17,10 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import dao.Organisation;
+import dao.WorkPackage;
+import dao.WorkSpace;
+
 public class WSWindow extends AbstractWorkPaneWindow implements TreeSelectionListener {
 
 	//déclaration des variables
