@@ -1,17 +1,29 @@
 package ihm;
 
+import ihm.simulate.SimulateObjet;
+import ihm.simulate.SimulateWP;
+import ihm.simulate.SimulateWS;
+
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+<<<<<<< HEAD
 import javax.swing.*;
 
 import dao.Objet;
 import dao.WorkPackage;
 import dao.WorkSpace;
+=======
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+>>>>>>> d4f3b5d8b7303bf7c7f34f4a32a8675d738f95c3
 
 /**
  * Display a window that allow to add a new WP.
@@ -19,8 +31,13 @@ import dao.WorkSpace;
 public class AddWPWindow extends AbstractValidateCancelWindow {
     WorkSpace ws;
 
+<<<<<<< HEAD
     JTextField nameField;
     JList<Objet> listObj;
+=======
+    private JTextField nameField;
+    private JList<SimulateObjet> listObj;
+>>>>>>> d4f3b5d8b7303bf7c7f34f4a32a8675d738f95c3
     private JTextField searchField;
     private JList<Objet> searchResult;
 

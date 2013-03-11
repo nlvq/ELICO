@@ -1,5 +1,13 @@
+<<<<<<< HEAD:umlv-dao/target/classes/META-INF/MANIFEST.MF
 Manifest-Version: 1.0
 Built-By: nlvq
 Build-Jdk: 1.6.0_38
 Created-By: Maven Integration for Eclipse
 
+=======
+Manifest-Version: 1.0
+Built-By: nlvq
+Build-Jdk: 1.6.0_38
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> obligé:commun/target/classes/META-INF/MANIFEST.MF

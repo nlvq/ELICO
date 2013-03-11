@@ -9,99 +9,102 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import com.sun.java.swing.SwingUtilities3;
+
+import sun.swing.SwingUtilities2;
+
+import main.ContextUtil;
+
+import coeur_metier.rh.IRH;
 
 import ihm.simulate.SimulateRH;
 
 public class AddUserWindow extends AbstractValidateCancelWindow {
 
-    private JTextField firstNameField = new JTextField(20);
-    private JTextField lastNameField = new JTextField(20);
-    private JTextField loginField = new JTextField(20);
-    private JTextField passwordField = new JTextField(20);
-    private JTextField phoneNumberField = new JTextField(20);
+	private JTextField firstNameField = new JTextField(20);
+	private JTextField lastNameField = new JTextField(20);
+	private JTextField orgaField = new JTextField(20);
+	private JTextField loginField = new JTextField(20);
+	private JTextField passwordField = new JTextField(20);
+	private JTextField phoneNumberField = new JTextField(20);
 
-    @Override
-    public void createWindow() {
-        super.createWindow();
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }
+	public AddUserWindow() {
+	}
 
-    @Override
-    void createValidateButton(JButton button) {
-        button.setText("Add");
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SimulateRH rh = new SimulateRH();
-                rh.createNewUser(firstNameField.getText(), lastNameField.getText(), loginField.getText(),
-                        passwordField.getText(), phoneNumberField.getText());
-                frame.dispose();
-            }
-        });
-    }
+	@Override
+	public void createWindow() {
+		super.createWindow();
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
 
-    @Override
-    void createCancelButton(JButton button) {
-        button.setText("Cancel");
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-            }
-        });
-    }
+	@Override
+	void createValidateButton(JButton button) {
+		button.setText("Add");
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				IRH rh = ContextUtil.getRH();
 
-    @Override
-    void createWindowPane(JPanel panel) {
-        GroupLayout layout = new GroupLayout(panel);
+				rh.createUser(loginField.getText(), firstNameField.getText(), lastNameField.getText(),
+						phoneNumberField.getText(), orgaField.getText(), passwordField.getText());
 
-        JLabel firstNameLabel = new JLabel("FirstName");
-        JLabel lastNameLabel = new JLabel("LastName");
-        JLabel loginLabel = new JLabel("Login");
-        JLabel passwordLabel = new JLabel("Password");
-        JLabel phoneNumberLabel = new JLabel("Phone number");
+				frame.dispose();
+			}
+		});
+	}
 
-        GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
+	@Override
+	void createCancelButton(JButton button) {
+		button.setText("Cancel");
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+	}
 
-        hGroup.addGroup(layout.createParallelGroup()
-                .addComponent(firstNameLabel)
-                .addComponent(loginLabel)
-                .addComponent(phoneNumberLabel));
+	@Override
+	void createWindowPane(JPanel panel) {
+		GroupLayout layout = new GroupLayout(panel);
 
-        hGroup.addGroup(layout.createParallelGroup()
-                .addComponent(firstNameField)
-                .addComponent(loginField)
-                .addComponent(phoneNumberField));
+		JLabel firstNameLabel = new JLabel("FirstName");
+		JLabel lastNameLabel = new JLabel("LastName");
+		JLabel orgLabel = new JLabel("Org");
+		JLabel loginLabel = new JLabel("Login");
+		JLabel passwordLabel = new JLabel("Password");
+		JLabel phoneNumberLabel = new JLabel("Phone number");
 
-        hGroup.addGroup(layout.createParallelGroup()
-                .addComponent(lastNameLabel)
-                .addComponent(passwordLabel));
+		GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
 
-        hGroup.addGroup(layout.createParallelGroup()
-                .addComponent(lastNameField)
-                .addComponent(passwordField));
+		hGroup.addGroup(layout.createParallelGroup().addComponent(firstNameLabel).addComponent(loginLabel)
+				.addComponent(phoneNumberLabel));
 
-        layout.setHorizontalGroup(hGroup);
+		hGroup.addGroup(layout.createParallelGroup().addComponent(firstNameField).addComponent(loginField)
+				.addComponent(phoneNumberField));
 
-        GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
-        vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(firstNameLabel)
-                .addComponent(firstNameField)
-                .addComponent(lastNameLabel)
-                .addComponent(lastNameField));
+		hGroup.addGroup(layout.createParallelGroup().addComponent(lastNameLabel).addComponent(passwordLabel)
+				.addComponent(orgLabel));
 
-        vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(loginLabel)
-                .addComponent(loginField)
-                .addComponent(passwordLabel)
-                .addComponent(passwordField));
+		hGroup.addGroup(layout.createParallelGroup().addComponent(lastNameField).addComponent(passwordField)
+				.addComponent(orgaField));
 
-        vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(phoneNumberLabel)
-                .addComponent(phoneNumberField));
+		layout.setHorizontalGroup(hGroup);
 
-        layout.setVerticalGroup(vGroup);
+		GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
+		vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(firstNameLabel)
+				.addComponent(firstNameField).addComponent(lastNameLabel).addComponent(lastNameField));
 
-        panel.setLayout(layout);
-    }
+		vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(loginLabel)
+				.addComponent(loginField).addComponent(passwordLabel).addComponent(passwordField));
+
+		vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(phoneNumberLabel)
+				.addComponent(phoneNumberField).addComponent(orgLabel).addComponent(orgaField));
+
+		layout.setVerticalGroup(vGroup);
+
+		panel.setLayout(layout);
+	}
 }
