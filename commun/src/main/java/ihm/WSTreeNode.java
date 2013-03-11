@@ -1,19 +1,31 @@
 package ihm;
 
-import ihm.simulate.SimulateWP;
-import ihm.simulate.SimulateWS;
+import java.util.List;
 
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
+import dao.Utilisateur;
+import dao.WorkPackage;
+import dao.WorkSpace;
+
 public class WSTreeNode implements TreeModel {
+		private final Utilisateur user;
+	  public WSTreeNode(Utilisateur user) {
+	  	this.user = user;
+    }
+	
     @Override
     public Object getRoot() {
-        return SimulateWS.getRoot();
+    	  List<WorkSpace> workspaces = user.getWorkspaces();
+    	  if (workspaces.size() == 0) {
+    	  	return null;
+    	  }
+				return workspaces.get(0);
     }
 
-    Object recGetChild(SimulateWS ws, Object parent, int index) {
+    Object recGetChild(WorkSpace ws, Object parent, int index) {
         if (ws.equals(parent)) {
             if (index < ws.getChilds().size()) {
                 return ws.getChilds().get(index);
@@ -22,15 +34,15 @@ public class WSTreeNode implements TreeModel {
                 return ws.getWorkpackages().get(index);
             }
         }
-        for (SimulateWS simulateWS : ws.getChilds()) {
+        for (WorkSpace simulateWS : ws.getChilds()) {
             Object ret = recGetChild(simulateWS, parent, index);
             if (ret != null) {
                 return ret;
             }
         }
-        for (SimulateWP simulateWP: ws.getWorkpackages()) {
+        for (WorkPackage simulateWP: ws.getWorkpackages()) {
             if (simulateWP.equals(parent)) {
-                return simulateWP.getObjects().get(index);
+                return simulateWP.getObjets().get(index);
             }
         }
         return null;
@@ -38,23 +50,23 @@ public class WSTreeNode implements TreeModel {
 
     @Override
     public Object getChild(Object parent, int index) {
-        SimulateWS root = SimulateWS.getRoot();
+        WorkSpace root = user.getWorkspaces().get(0);
         return recGetChild(root, parent, index);
     }
 
-    int recCountChild(SimulateWS ws, Object parent) {
+    int recCountChild(WorkSpace ws, Object parent) {
         if (ws.equals(parent)) {
             return ws.getChilds().size() + ws.getWorkpackages().size();
         }
-        for (SimulateWS simulateWS : ws.getChilds()) {
+        for (WorkSpace simulateWS : ws.getChilds()) {
             int ret = recCountChild(simulateWS, parent);
             if (ret != -1) {
                 return ret;
             }
         }
-        for (SimulateWP simulateWP: ws.getWorkpackages()) {
+        for (WorkPackage simulateWP: ws.getWorkpackages()) {
             if (simulateWP.equals(parent)) {
-                return simulateWP.getObjects().size();
+                return simulateWP.getObjets().size();
             }
         }
         return -1;
@@ -62,12 +74,12 @@ public class WSTreeNode implements TreeModel {
 
     @Override
     public int getChildCount(Object parent) {
-        return recCountChild(SimulateWS.getRoot(), parent);
+        return recCountChild(user.getWorkspaces().get(0), parent);
     }
 
     @Override
     public boolean isLeaf(Object node) {
-        if (node instanceof SimulateWP) {
+        if (node instanceof WorkPackage) {
             return true;
         }
         return false;
@@ -75,10 +87,10 @@ public class WSTreeNode implements TreeModel {
 
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
-    int recFindChild(SimulateWS ws, Object parent, Object child) {
+    int recFindChild(WorkSpace ws, Object parent, Object child) {
         if (ws.equals(parent)) {
             for (int i = 0; i < ws.getChilds().size(); i++) {
                 if (ws.getChilds().get(i).equals(child)) {
@@ -86,16 +98,16 @@ public class WSTreeNode implements TreeModel {
                 }
             }
         }
-        for (SimulateWS simulateWS : ws.getChilds()) {
+        for (WorkSpace simulateWS : ws.getChilds()) {
             int ret = recFindChild(simulateWS, parent, child);
             if (ret != -1) {
                 return ret;
             }
         }
-        for (SimulateWP simulateWP: ws.getWorkpackages()) {
+        for (WorkPackage simulateWP: ws.getWorkpackages()) {
             if (simulateWP.equals(parent)) {
-                for (int i = 0; i < simulateWP.getObjects().size(); i++) {
-                    if (simulateWP.getObjects().get(i).equals(child)) {
+                for (int i = 0; i < simulateWP.getObjets().size(); i++) {
+                    if (simulateWP.getObjets().get(i).equals(child)) {
                         return i;
                     }
                 }
@@ -106,7 +118,7 @@ public class WSTreeNode implements TreeModel {
 
     @Override
     public int getIndexOfChild(Object parent, Object child) {
-        return recFindChild(SimulateWS.getRoot(), parent, child);
+        return recFindChild(user.getWorkspaces().get(0), parent, child);
     }
 
     @Override

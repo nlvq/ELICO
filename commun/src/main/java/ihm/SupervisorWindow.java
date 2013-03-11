@@ -9,14 +9,17 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
 
-import ihm.simulate.SimulateObjet;
-import ihm.simulate.SimulateOrg;
-import ihm.simulate.SimulateWP;
-import ihm.simulate.SimulateWS;
+import dao.Objet;
+import dao.Utilisateur;
+import dao.WorkPackage;
+import dao.WorkSpace;
 
 public class SupervisorWindow extends AbstractTreeWindow {
-    private SimulateObjet selectedObject;
-    private SimulateWP selectedWP;
+  	private WorkPackage selectedWP;
+  	
+  	public SupervisorWindow(Utilisateur user) {
+  	  super(user);
+    }
 
     @Override
     void createButtonPane(JPanel panel) {
@@ -37,11 +40,9 @@ public class SupervisorWindow extends AbstractTreeWindow {
                 OrganizationWindow org = new OrganizationWindow();
                 org.createWindow();
                 if (selectedWP != null) {
-                    org.setParent(selectedWP.getParentWS().getOrg());
-                } else if (selectedObject != null) {
-                    org.setParent(selectedObject.getParent().getParentWS().getOrg());
+                    org.setParent(selectedWP.getWorkSpace().getOrganisation());
                 } else {
-                    org.setParent(((SimulateWS) toDisplay).getOrg());
+                    org.setParent(((WorkSpace) toDisplay).getOrganisation());
                 }
                 org.openWindow();
             }
@@ -53,11 +54,9 @@ public class SupervisorWindow extends AbstractTreeWindow {
                 AddWPWindow window = null;
 
                 if (selectedWP != null) {
-                    window = new AddWPWindow(selectedWP.getParentWS());
-                } else if (selectedObject != null) {
-                    window = new AddWPWindow(selectedObject.getParent().getParentWS());
+                    window = new AddWPWindow(selectedWP.getWorkSpace());
                 } else {
-                    window = new AddWPWindow((SimulateWS) toDisplay);
+                    window = new AddWPWindow((WorkSpace) toDisplay);
                 }
                 window.createWindow();
                 window.openWindow();
@@ -70,11 +69,9 @@ public class SupervisorWindow extends AbstractTreeWindow {
                 AddWSWindow window = null;
 
                 if (selectedWP != null) {
-                    window = new AddWSWindow(selectedWP.getParentWS().getOrg());
-                } else if (selectedObject != null) {
-                    window = new AddWSWindow(selectedObject.getParent().getParentWS().getOrg());
+                    window = new AddWSWindow(selectedWP.getWorkSpace().getOrganisation());
                 } else {
-                    window = new AddWSWindow(((SimulateWS) toDisplay).getOrg());
+                    window = new AddWSWindow(((WorkSpace) toDisplay).getOrganisation());
                 }
                 window.createWindow();
                 window.openWindow();
@@ -97,8 +94,10 @@ public class SupervisorWindow extends AbstractTreeWindow {
                         null);
 
                     if (n == 0) {
-                        selectedWP.getParentWS().removeWP(selectedWP);
-                        refreshRightPane();
+                      	throw new UnsupportedOperationException();
+                    	  // TODO Create a methode to remove a WP.
+                        //selectedWP.getWorkSpace().removeWP(selectedWP);
+                        //refreshRightPane();
                     }
                 }
             }
@@ -130,16 +129,16 @@ public class SupervisorWindow extends AbstractTreeWindow {
     }
 
     @Override
-    JComponent createWSPane(SimulateWS toDisplay) {
-        final List<SimulateWP> wps = toDisplay.getWorkpackages();
-        final JList<SimulateWP> jList = new JList<>(new ListModel<SimulateWP>() {
+    JComponent createWSPane(WorkSpace toDisplay) {
+        final List<WorkPackage> wps = toDisplay.getWorkpackages();
+        final JList<WorkPackage> jList = new JList<>(new ListModel<WorkPackage>() {
             @Override
             public int getSize() {
                 return wps.size();
             }
 
             @Override
-            public SimulateWP getElementAt(int index) {
+            public WorkPackage getElementAt(int index) {
                 return wps.get(index);
             }
 
@@ -169,16 +168,16 @@ public class SupervisorWindow extends AbstractTreeWindow {
     }
 
     @Override
-    JComponent createWPPane(SimulateWP toDisplay) {
-        final List<SimulateObjet> objects = toDisplay.getObjects();
-        final JList<SimulateObjet> jList = new JList<>(new ListModel<SimulateObjet>() {
+    JComponent createWPPane(WorkPackage toDisplay) {
+        final List<Objet> objects = toDisplay.getObjets();
+        final JList<Objet> jList = new JList<>(new ListModel<Objet>() {
             @Override
             public int getSize() {
                 return objects.size();
             }
 
             @Override
-            public SimulateObjet getElementAt(int index) {
+            public Objet getElementAt(int index) {
                 return objects.get(index);
             }
 
@@ -199,8 +198,6 @@ public class SupervisorWindow extends AbstractTreeWindow {
                 if (e.getClickCount() == 2) {
                     System.out.println("Open Editor for: " +
                             jList.getModel().getElementAt(jList.locationToIndex(e.getPoint())));
-                } else if (e.getClickCount() == 1) {
-                    selectedObject = jList.getModel().getElementAt(jList.locationToIndex(e.getPoint()));
                 }
             }
         });

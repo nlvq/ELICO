@@ -13,13 +13,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dao.Role;
+import dao.Utilisateur;
 
 public class AuthentificationWindow extends AbstractValidateCancelWindow {
 	
+	private Utilisateur utilisateur;
 	private List<Role> roles;
 	private JComboBox<Object> listRoles;
 	
-	public AuthentificationWindow(List<Role> roles){
+	public AuthentificationWindow(Utilisateur utilisateur, List<Role> roles) {
+		this.utilisateur = utilisateur;
 		this.roles = roles;
 	}
 
@@ -35,7 +38,7 @@ public class AuthentificationWindow extends AbstractValidateCancelWindow {
 					window = new AdminWindow();
 					break;
 				case "supervisor":
-					window = new SupervisorWindow();
+					window = new SupervisorWindow(utilisateur);
 					break;
 				case "validator":
 					window = new ValidatorWindow();

@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import main.ContextUtil;
 import coeur_metier.authentification.AuthentificationImpl;
 import dao.Role;
+import dao.Utilisateur;
 
 public class AuthentificationLoginWindow extends AbstractValidateCancelWindow {
 
@@ -29,8 +30,9 @@ public class AuthentificationLoginWindow extends AbstractValidateCancelWindow {
 				//SimulateAuthentification authentification = new SimulateAuthentification();
 				AuthentificationImpl authentification = ContextUtil.getAuthentification();
 				List<Role> roles = authentification.auth(loginField.getText(), passwordField.getText());
+				Utilisateur utilisateur = ContextUtil.getRH().findUser(loginField.getText()).get(0);
 				if(roles!=null){
-					AuthentificationWindow authentificationWindow = new AuthentificationWindow(roles);
+					AuthentificationWindow authentificationWindow = new AuthentificationWindow(utilisateur, roles);
 					authentificationWindow.createWindow();
 					authentificationWindow.openWindow();
 					frame.dispose();

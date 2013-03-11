@@ -161,5 +161,4 @@ public class Objet {
 	public void setWorkpackages(List<WorkPackage> workpackages) {
 		this.workpackages = workpackages;
 	}
-
 }

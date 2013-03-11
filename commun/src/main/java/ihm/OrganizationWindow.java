@@ -3,13 +3,20 @@ package ihm;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
 
-import ihm.simulate.SimulateOrg;
-import ihm.simulate.SimulateUser;
+import main.ContextUtil;
+
+import dao.Organisation;
+import dao.Role;
+import dao.Utilisateur;
+import dao.UtilisateurOrganisationRole;
+import dao.WorkPackage;
+import dao.WorkSpace;
 
 /**
  * Class that allow to create a window where we can create a new organization.
@@ -17,15 +24,15 @@ import ihm.simulate.SimulateUser;
 public class OrganizationWindow extends AbstractValidateCancelWindow {
     JTextField nameField;
     JTextField searchField;
-    JList<SimulateUser> users;
+    JList<Utilisateur> users;
 
-    SimulateOrg parent;
+    Organisation parent;
 
     /**
      * Set the parent of the organization
      * @param parent New parent of the organization
      */
-    public void setParent(SimulateOrg parent) {
+    public void setParent(Organisation parent) {
         this.parent = parent;
     }
 
@@ -41,7 +48,27 @@ public class OrganizationWindow extends AbstractValidateCancelWindow {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SimulateOrg.addOrg(parent, nameField.getText(), users.getSelectedValue());
+            		Organisation newOrg = new Organisation();
+            		newOrg.setParent(parent);
+            		newOrg.setTitle(nameField.getText());
+
+            		List<UtilisateurOrganisationRole> appartient = new ArrayList<>();
+            		UtilisateurOrganisationRole uor = new UtilisateurOrganisationRole();
+
+            		Role role = new Role();
+            		role.setTitle("admin");
+            		uor.setRole(role);
+            		uor.setUtilisateur(users.getSelectedValue());
+            		uor.setOrganisation(newOrg);
+
+            		appartient.add(uor);
+            		newOrg.setAppartient(appartient);
+            		
+            		newOrg.setChilds(new ArrayList<Organisation>());
+            		newOrg.setWorkpackages(new ArrayList<WorkPackage>());
+            		newOrg.setWorkspaces(new ArrayList<WorkSpace>());
+
+            		parent.getChilds().add(newOrg);
                 frame.dispose();
             }
         });
@@ -71,13 +98,18 @@ public class OrganizationWindow extends AbstractValidateCancelWindow {
         searchField = new JTextField(10);
         JButton button = new JButton("Ok");
 
-        final List<SimulateUser> result = parent.getUsers();
+        final List<Utilisateur> result = new ArrayList<>();
+        
+        for (UtilisateurOrganisationRole uor: parent.getAppartient()) {
+        	  result.add(uor.getUtilisateur());
+        }
+        
         users.setModel(createList(result));
 
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final List<SimulateUser> result = SimulateUser.findByName(searchField.getText());
+                final List<Utilisateur> result = ContextUtil.getRH().findUser(searchField.getText());
                 users.setModel(createList(result));
             }
         });
@@ -93,15 +125,15 @@ public class OrganizationWindow extends AbstractValidateCancelWindow {
         panel.add(center, BorderLayout.CENTER);
     }
 
-    private ListModel<SimulateUser> createList(final List<SimulateUser> result) {
-        return new ListModel<SimulateUser>() {
+    private ListModel<Utilisateur> createList(final List<Utilisateur> result) {
+        return new ListModel<Utilisateur>() {
             @Override
             public int getSize() {
                 return result.size();
             }
 
             @Override
-            public SimulateUser getElementAt(int index) {
+            public Utilisateur getElementAt(int index) {
                 return result.get(index);
             }
 

@@ -4,11 +4,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
 import javax.swing.*;
 
-import ihm.simulate.SimulateWP;
-import ihm.simulate.SimulateWS;
+import dao.Utilisateur;
+import dao.WorkPackage;
+import dao.WorkSpace;
 
 /**
  * Abstract class which should be use by all user view.
@@ -19,7 +19,12 @@ import ihm.simulate.SimulateWS;
  */
 public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
     static Object toDisplay;
+		private Utilisateur user;
 
+    public AbstractTreeWindow(Utilisateur user) {
+	    this.user = user;
+    }
+    
     /**
      * Allow to change the right pane.
      * @param toDisplay pane to display
@@ -36,20 +41,23 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
         JPanel container = new JPanel();
 
         final JTree jTree = new JTree();
-        WSTreeNode WSTreeModel = new WSTreeNode();
+        WSTreeNode WSTreeModel = new WSTreeNode(user);
         jTree.setModel(WSTreeModel);
         toDisplay = WSTreeModel.getRoot();
+        if (toDisplay == null) {
+        	toDisplay = new WorkSpace();
+        }
 
         jTree.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Object o = jTree.getLastSelectedPathComponent();
-                if (o instanceof SimulateWS) {
+                if (o instanceof WorkSpace) {
                     System.out.println("WS!!");
                     toDisplay = o;
                     createRightPane(rightWindowComponent);
                     refreshRightPane();
-                } else if (o instanceof SimulateWP) {
+                } else if (o instanceof WorkPackage) {
                     toDisplay = o;
                     createRightPane(rightWindowComponent);
                     refreshRightPane();
@@ -65,18 +73,18 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
     public void createRightPane(JPanel panel) {
         panel.setPreferredSize(new Dimension(390, 500));
         if (panel.getComponents().length == 0) {
-            if (toDisplay instanceof SimulateWS) {
-                panel.add(createWSPane((SimulateWS) toDisplay));
+            if (toDisplay instanceof WorkSpace) {
+                panel.add(createWSPane((WorkSpace) toDisplay));
             } else {
-                panel.add(createWPPane((SimulateWP) toDisplay));
+                panel.add(createWPPane((WorkPackage) toDisplay));
             }
         } else {
-            if (toDisplay instanceof SimulateWS) {
+            if (toDisplay instanceof WorkSpace) {
                 panel.remove(0);
-                panel.add(createWSPane((SimulateWS) toDisplay));
+                panel.add(createWSPane((WorkSpace) toDisplay));
             } else {
                 panel.remove(0);
-                panel.add(createWPPane((SimulateWP) toDisplay));
+                panel.add(createWPPane((WorkPackage) toDisplay));
             }
         }
     }
@@ -87,7 +95,7 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
      * @param toDisplay WS to display
      * @return The Component created.
      */
-     JComponent createWSPane(SimulateWS toDisplay) {
+     JComponent createWSPane(WorkSpace toDisplay) {
         return new JTextArea("WS");
      }
 
@@ -97,7 +105,7 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
      * @param toDisplay WP to display
      * @return The Component created.
      */
-    JComponent createWPPane(SimulateWP toDisplay) {
+    JComponent createWPPane(WorkPackage toDisplay) {
         return new JTextArea("WP");
     }
 }

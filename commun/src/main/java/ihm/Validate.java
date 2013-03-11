@@ -10,14 +10,14 @@ import ihm.simulate.SimulateWS;
 
 
 public abstract class Validate extends AbstractWorkPaneWindow {
-   
-	@Override
-	void createButtonPane(JPanel panel) {
-		
-		
-	}
-	static Object toDisplay;
-    void changeRightPane(Object toDisplay) {
+		@Override
+		void createButtonPane(JPanel panel) {
+
+		}
+	
+		static Object toDisplay;
+    
+		void changeRightPane(Object toDisplay) {
         AbstractTreeWindow.toDisplay = toDisplay;
         createRightPane(rightWindowComponent);
         refreshRightPane();
@@ -29,7 +29,8 @@ public abstract class Validate extends AbstractWorkPaneWindow {
         JPanel container = new JPanel();
 
        final  JTree jTree = new JTree();
-        WSTreeNode WSTreeModel = new WSTreeNode();
+        // Change null to the user.
+        WSTreeNode WSTreeModel = new WSTreeNode(null);
         jTree.setModel(WSTreeModel);
         toDisplay = WSTreeModel.getRoot();
 

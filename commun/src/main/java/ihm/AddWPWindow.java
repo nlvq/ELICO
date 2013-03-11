@@ -8,29 +8,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import javax.swing.event.ListDataListener;
 
-import ihm.simulate.SimulateObjet;
-import ihm.simulate.SimulateWP;
-import ihm.simulate.SimulateWS;
+import dao.Objet;
+import dao.WorkPackage;
+import dao.WorkSpace;
 
 /**
  * Display a window that allow to add a new WP.
  */
 public class AddWPWindow extends AbstractValidateCancelWindow {
-    SimulateWS ws;
+    WorkSpace ws;
 
     JTextField nameField;
-    JList<SimulateObjet> listObj;
+    JList<Objet> listObj;
     private JTextField searchField;
-    private JList<SimulateObjet> searchResult;
-    private List<SimulateObjet> objects = new ArrayList<>();
+    private JList<Objet> searchResult;
 
     /**
      * Constructor
      * @param ws WS in which we add the WP
      */
-    public AddWPWindow(SimulateWS ws) {
+    public AddWPWindow(WorkSpace ws) {
         this.ws = ws;
     }
 
@@ -40,11 +38,14 @@ public class AddWPWindow extends AbstractValidateCancelWindow {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<SimulateObjet> objects = new ArrayList<>();
+                List<Objet> objects = new ArrayList<>();
                 for (int i = 0; i < listObj.getModel().getSize(); i++) {
                     objects.add(listObj.getModel().getElementAt(i));
                 }
-                ws.addWP(nameField.getText(), objects);
+                WorkPackage wp = new WorkPackage();
+                wp.setTitle(nameField.getText());
+                wp.setObjets(objects);
+                ws.getChilds().add(ws);
                 frame.dispose();
             }
         });
@@ -84,16 +85,19 @@ public class AddWPWindow extends AbstractValidateCancelWindow {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                searchResult.setListData(SimulateWP.search(searchField.getText()));
+            	  // TODO ajouter une méthode permettant de chercher un WP par son nom.
+                //searchResult.setListData(ContextUtil.getWorkPackage().findWP(wp)
+                //SimulateWP.search(searchField.getText()));
+            	  throw new UnsupportedOperationException();
             }
         });
 
-        listObj.setModel(new DefaultListModel<SimulateObjet>());
+        listObj.setModel(new DefaultListModel<Objet>());
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ((DefaultListModel) listObj.getModel()).addElement(searchResult.getSelectedValue());
+                ((DefaultListModel<Objet>) listObj.getModel()).addElement(searchResult.getSelectedValue());
             }
         });
     }

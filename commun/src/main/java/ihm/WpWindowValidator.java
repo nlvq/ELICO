@@ -21,8 +21,14 @@ import javax.swing.JTree;
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
+import dao.Utilisateur;
+
 public class WpWindowValidator extends AbstractTreeWindow {
-	 private SimulateObjet selectedObject;
+	 public WpWindowValidator(Utilisateur user) {
+	  super(user);
+  }
+
+	private SimulateObjet selectedObject;
 	 static Object toDisplay;
 	    private SimulateWP selectedWP;
 	

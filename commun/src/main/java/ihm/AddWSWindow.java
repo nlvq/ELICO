@@ -9,22 +9,22 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import ihm.simulate.SimulateOrg;
-import ihm.simulate.SimulateWP;
-import ihm.simulate.SimulateWS;
+import dao.Organisation;
+import dao.WorkPackage;
+import dao.WorkSpace;
 
 public class AddWSWindow extends AbstractValidateCancelWindow {
     JTextField fieldName;
-    JList<SimulateOrg> orgs;
-    JList<SimulateWP> possibleWP;
-    JList<SimulateWP> toAddWP;
+    JList<Organisation> orgs;
+    JList<WorkPackage> possibleWP;
+    JList<WorkPackage> toAddWP;
 
-    List<SimulateWP> possibleWPList;
-    List<SimulateWP> toAddWPList;
+    List<WorkPackage> possibleWPList;
+    List<WorkPackage> toAddWPList;
 
-    SimulateOrg parent;
+    Organisation parent;
 
-    public AddWSWindow(SimulateOrg parent) {
+    public AddWSWindow(Organisation parent) {
         this.parent = parent;
     }
 
@@ -34,7 +34,13 @@ public class AddWSWindow extends AbstractValidateCancelWindow {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                parent.addWS(new SimulateWS(new ArrayList<SimulateWS>(), parent, parent.getWS(), fieldName.getText(), toAddWPList));
+            	  WorkSpace ws = new WorkSpace();
+            	  ws.setChilds(new ArrayList<WorkSpace>());
+            	  ws.setOrganisation(parent);
+            	  ws.setTitle(fieldName.getText());
+            	  ws.setWorkpackages(toAddWPList);
+            	  ws.setParent(parent.getWorkspaces().get(0));
+            		parent.getWorkspaces().add(ws);
             }
         });
     }
@@ -56,7 +62,7 @@ public class AddWSWindow extends AbstractValidateCancelWindow {
 
         JLabel name = new JLabel("Nom du nouveau WS :");
         fieldName = new JTextField(60);
-        orgs = new JList();
+        orgs = new JList<>();
         possibleWP = new JList<>();
         toAddWP = new JList<>();
         JButton add = new JButton("<-");
@@ -66,22 +72,22 @@ public class AddWSWindow extends AbstractValidateCancelWindow {
         JLabel possible = new JLabel("WP possibles :");
         JLabel toAdd = new JLabel("WP sélectionnés :");
 
-        List<SimulateOrg> orgsList = parent.getChilds();
-        possibleWPList = parent.getWPs();
+        List<Organisation> orgsList = parent.getChilds();
+        possibleWPList = parent.getWorkpackages();
         toAddWPList = new ArrayList<>();
 
-        orgs.setListData(orgsList.toArray(new SimulateOrg[1]));
-        possibleWP.setListData(possibleWPList.toArray(new SimulateWP[1]));
+        orgs.setListData(orgsList.toArray(new Organisation[1]));
+        possibleWP.setListData(possibleWPList.toArray(new WorkPackage[1]));
 
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SimulateWP selectedValue = possibleWP.getSelectedValue();
+            	  WorkPackage selectedValue = possibleWP.getSelectedValue();
                 toAddWPList.add(selectedValue);
                 possibleWPList.remove(selectedValue);
 
-                toAddWP.setListData(toAddWPList.toArray(new SimulateWP[1]));
-                possibleWP.setListData(possibleWPList.toArray(new SimulateWP[1]));
+                toAddWP.setListData(toAddWPList.toArray(new WorkPackage[1]));
+                possibleWP.setListData(possibleWPList.toArray(new WorkPackage[1]));
 
                 toAddWP.validate();
                 toAddWP.repaint();
@@ -93,12 +99,12 @@ public class AddWSWindow extends AbstractValidateCancelWindow {
         remove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SimulateWP selectedValue = toAddWP.getSelectedValue();
+            	  WorkPackage selectedValue = toAddWP.getSelectedValue();
                 toAddWPList.remove(selectedValue);
                 possibleWPList.add(selectedValue);
 
-                toAddWP.setListData(toAddWPList.toArray(new SimulateWP[1]));
-                possibleWP.setListData(possibleWPList.toArray(new SimulateWP[1]));
+                toAddWP.setListData(toAddWPList.toArray(new WorkPackage[1]));
+                possibleWP.setListData(possibleWPList.toArray(new WorkPackage[1]));
 
                 toAddWP.validate();
                 toAddWP.repaint();

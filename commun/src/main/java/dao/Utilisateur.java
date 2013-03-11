@@ -39,7 +39,7 @@ public class Utilisateur {
 	@Column(name="UTILISATEUR_PHONENUMBER")
 	private String phoneNumber;
 	
-	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<WorkSpace> workspaces = new ArrayList<>();
 	
 	@ManyToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
