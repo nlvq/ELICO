@@ -83,5 +83,13 @@ public class WorkPackageImplTest {
 		Assert.assertEquals(found.size(), 1);
 		Assert.assertEquals(found.get(0).getTitle(), "wp4");
 	}
+	
+	@Test
+	public final void testGetAllWorkPackage(){
+		workPackageImpl.createWP("wp5", null);
+		workPackageImpl.createWP("wp6", null);
+		workPackageImpl.createWP("wp7", null);
+		Assert.assertEquals(workPackageImpl.getAllWorkPackage().size(), 3);
+	}
 
 }

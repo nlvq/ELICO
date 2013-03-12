@@ -34,4 +34,10 @@ public interface IWP {
 	 */
 	public List<WorkPackage> findWP(WorkPackage wp);
 	
+	/**
+	 * Retourne tous les workpackage.
+	 * @return tous les wp
+	 */
+	public List<WorkPackage> getAllWorkPackage();
+	
 }

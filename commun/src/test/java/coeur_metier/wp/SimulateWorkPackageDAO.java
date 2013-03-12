@@ -83,8 +83,7 @@ public class SimulateWorkPackageDAO implements IWorkPackageDAO{
 
 	@Override
 	public List<WorkPackage> findAll() {
-		// dont need
-		return null;
+		return workPackages;
 	}
 
 	@Override

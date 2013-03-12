@@ -68,4 +68,9 @@ public class WorkPackageImpl implements IWP {
 		return workPackageDAO.findWorkPackage(wp);
 	}
 
+	@Override
+	public List<WorkPackage> getAllWorkPackage() {
+		return workPackageDAO.findAll();
+	}
+
 }
