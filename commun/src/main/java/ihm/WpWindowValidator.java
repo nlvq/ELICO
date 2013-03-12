@@ -1,37 +1,24 @@
 package ihm;
 
-import ihm.simulate.SimulateObjet;
-import ihm.simulate.SimulateWP;
-import ihm.simulate.SimulateWS;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.ListModel;
-import javax.swing.event.ListDataListener;
 
 import dao.Utilisateur;
 
 public class WpWindowValidator extends AbstractTreeWindow {
+	private Utilisateur user;
 	 public WpWindowValidator(Utilisateur user) {
-	  super(user);
-  }
+		super(user);
+		// TODO Auto-generated constructor stub
+	}
 
-	private SimulateObjet selectedObject;
-	 static Object toDisplay;
-	    private SimulateWP selectedWP;
-	
+	static Object toDisplay;
+	    	
 	
 	@Override
 	public void createRightPane(JPanel panel) {
@@ -41,9 +28,8 @@ public class WpWindowValidator extends AbstractTreeWindow {
 	@Override
 	public void createLeftPane(JPanel panel) {
 		super.createLeftPane(panel);
-		
 		panel.setBackground(Color.WHITE);
-				panel.setPreferredSize(new Dimension (400,500));
+    	panel.setPreferredSize(new Dimension (400,500));
 	
 	}
 

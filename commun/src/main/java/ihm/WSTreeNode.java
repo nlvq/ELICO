@@ -15,7 +15,7 @@ public class WSTreeNode implements TreeModel {
 	  public WSTreeNode(Utilisateur user) {
 	  	this.user = user;
     }
-	
+	  
     @Override
     public Object getRoot() {
     	  List<WorkSpace> workspaces = user.getWorkspaces();

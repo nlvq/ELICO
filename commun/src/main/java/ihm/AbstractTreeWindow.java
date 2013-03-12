@@ -25,6 +25,11 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
 	    this.user = user;
     }
     
+    public AbstractTreeWindow() {
+	    
+    }
+   
+    
     /**
      * Allow to change the right pane.
      * @param toDisplay pane to display

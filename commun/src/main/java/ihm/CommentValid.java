@@ -1,7 +1,5 @@
 package ihm;
 
-import ihm.simulate.SimulateObjet;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,11 +7,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -21,14 +17,22 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.text.StyledEditorKit;
+
+import dao.Objet;
+import dao.Maturite.Etat;
 /*Create wa window for Validator*/
 public class CommentValid extends AbstractValidateCancelWindow{
-	private SimulateObjet sim_objet;
 	
-
-	public CommentValid(SimulateObjet sim_objet) {
+	//private SimulateObjet sim_objet;
+	//private Objet objet;
+	
+	
+	private Objet objet;
+	JTextArea area = new JTextArea();
+	JTextArea area1 = new JTextArea();
+	public CommentValid(Objet objet) {
 		super();
-		this.sim_objet = sim_objet;
+		this.objet = objet;
 	}
 
 	@Override
@@ -66,8 +70,7 @@ public class CommentValid extends AbstractValidateCancelWindow{
 		panel.setLayout(new BorderLayout());
 		JLabel nameText = new JLabel("       WP                                                                        " +
 				"                                            Comment");
-		JTextArea area = new JTextArea();
-		JTextArea area1 = new JTextArea();
+		
 		area.setPreferredSize(new Dimension(300, 200));
         JPanel center=new JPanel(new BorderLayout());
         center.add(nameText,BorderLayout.NORTH);
@@ -75,7 +78,8 @@ public class CommentValid extends AbstractValidateCancelWindow{
         area1.setPreferredSize(new Dimension(350, 450));
         area1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         cent.add(area1);
-        area1.setText("contenu de lobjet");
+        area1.setText(objet.getContent());//====================
+        //area1.setText("contenu de lobjet");
         area1.setEnabled(false);
         center.add(cent,BorderLayout.CENTER);
         area.setPreferredSize(new Dimension(350, 450));
@@ -91,7 +95,7 @@ public class CommentValid extends AbstractValidateCancelWindow{
 		b.setLayout(new BorderLayout());
 		b.add(bPanel,BorderLayout.EAST);
 		panel.add(b,BorderLayout.SOUTH);
-	
+	objet.getMaturite().setCommentary(area.getText());//====================
 	}
 
 	 private static final Insets margins =
@@ -104,9 +108,7 @@ public class CommentValid extends AbstractValidateCancelWindow{
 	        button.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	            	//mettre a jour l'objet 
-	            	
-	            	
+	           objet.getMaturite().setTitle(Etat.VALIDED);   // integration         	
 	            	frame.dispose();
 	            
 	           }
@@ -120,7 +122,7 @@ public class CommentValid extends AbstractValidateCancelWindow{
 		 button.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	            	System.out.println("wp refusee");
+	            objet.getMaturite().setTitle(Etat.REFUSED);// integration
 	            	frame.dispose();
 	                }
 	        });
@@ -137,11 +139,9 @@ public class CommentValid extends AbstractValidateCancelWindow{
 		public String toString() {
 			return "Save";
 		}
-
-
-		// invoked when "Underline" button is clicked
 		public void actionPerformed(ActionEvent e) {
-			// To Do
+		objet.getMaturite().setCommentary(area.getText());
+			
 		}
 	}
 	

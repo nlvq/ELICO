@@ -6,24 +6,43 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
+
+import coeur_metier.wp.WorkPackageImpl;
+import coeur_metier.ws.WorkSpaceImpl;
+import dao.Objet;
+import dao.Utilisateur;
+import dao.WorkPackage;
+import dao.WorkSpace;
+import dao.Maturite.Etat;
 import ihm.simulate.SimulateObjet;
 
 import ihm.simulate.SimulateWP;
 import ihm.simulate.SimulateWS;
 
 public class ValidatorWindow extends Validate{
+	
+	public ValidatorWindow() {
+		
+	}
+
+
+
+
 	@Override
 	public void createWindow() {
 		super.createWindow();
 		frame.setTitle("Elico-validator");
 	}
 
-	private SimulateObjet selectedObject;
-    private SimulateWP selectedWP;
+	//private SimulateObjet selectedObject;
+   //private SimulateWP selectedWP;
+   private Objet selectedObject;
+  private WorkPackage selectedWP;
 
     @Override
 	public void createLeftPane(JPanel panel) {
@@ -55,14 +74,28 @@ public class ValidatorWindow extends Validate{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+				// valider tous le workpackage et tout ses fils
+				/*Objet o=new Objet();
+				o=selectedObject.getParent();
+				o.getMaturite().setTitle(Etat.VALIDED);
+				
+				//panel.remove (selectedObject);
+				ArrayList<Objet> list = new ArrayList<Objet>();
+				list=(ArrayList<Objet>) o.getChilds();
+		for(Objet oo : list){
+			oo.getMaturite().setTitle(Etat.VALIDED);
+			panel.lremove(0);
+		}*/
+		
+				
 			}
 		});
  UN.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			selectedObject.getMaturite().setTitle(Etat.VALIDED);
+			//remove (selectedObject);
 
 		}
 	});
@@ -86,16 +119,19 @@ public class ValidatorWindow extends Validate{
     
 
     @Override
-    JComponent createWSPane(SimulateWS toDisplay) {
-        final List<SimulateWP> wps = toDisplay.getWorkpackages();
-        final JList<SimulateWP> jList = new JList<>(new ListModel<SimulateWP>() {
+    JComponent createWSPane (WorkSpace toDisplay) {//(SimulateWS toDisplay)
+    	 /*  final List<SimulateWP> wps = toDisplay.getWorkpackages();
+        final JList<SimulateWP> jList = new JList<>(new ListModel<SimulateWP>() */ 
+    	final List<WorkPackage> wps = toDisplay.getWorkpackages();
+         final JList<WorkPackage> jList = new JList<>(new ListModel<WorkPackage>()
+     {
             @Override
             public int getSize() {
                 return wps.size();
             }
 
             @Override
-            public SimulateWP getElementAt(int index) {
+            public WorkPackage/*SimulateWP*/ getElementAt(int index) {
                 return wps.get(index);
             }
 
@@ -134,16 +170,16 @@ public class ValidatorWindow extends Validate{
     }
 
     @Override
-    JComponent createWPPane(SimulateWP toDisplay) {
-        final List<SimulateObjet> objects = toDisplay.getObjects();
-        final JList<SimulateObjet> jList = new JList<>(new ListModel<SimulateObjet>() {
+    JComponent createWPPane(WorkPackage toDisplay) {
+        final List<Objet> objects = toDisplay.getObjets();
+        final JList<Objet> jList = new JList<>(new ListModel<Objet>() {
             @Override
             public int getSize() {
                 return objects.size();
             }
 
             @Override
-            public SimulateObjet getElementAt(int index) {
+            public Objet getElementAt(int index) {
                 return objects.get(index);
             }
 
