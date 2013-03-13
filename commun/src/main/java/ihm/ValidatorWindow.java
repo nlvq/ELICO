@@ -12,6 +12,8 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
 
+import main.ContextUtil;
+
 import coeur_metier.wp.WorkPackageImpl;
 import coeur_metier.ws.WorkSpaceImpl;
 import dao.Objet;
@@ -120,9 +122,11 @@ public class ValidatorWindow extends Validate{
 
     @Override
     JComponent createWSPane (WorkSpace toDisplay) {//(SimulateWS toDisplay)
-    	 /*  final List<SimulateWP> wps = toDisplay.getWorkpackages();
-        final JList<SimulateWP> jList = new JList<>(new ListModel<SimulateWP>() */ 
-    	final List<WorkPackage> wps = toDisplay.getWorkpackages();
+       	  /* final List<SimulateWP> wps = toDisplay.getWorkpackages();
+             final JList<SimulateWP> jList = new JList<>(new ListModel<SimulateWP>() */
+    final List<WorkPackage> wps = ContextUtil.getWorkPackage().getAllWorkPackage();
+   
+    	//final List<WorkPackage> wps = toDisplay.getWorkpackages();
          final JList<WorkPackage> jList = new JList<>(new ListModel<WorkPackage>()
      {
             @Override
@@ -172,8 +176,10 @@ public class ValidatorWindow extends Validate{
     @Override
     JComponent createWPPane(WorkPackage toDisplay) {
         final List<Objet> objects = toDisplay.getObjets();
+        if(objects!=null)System.out.println("NULLLL");
         final JList<Objet> jList = new JList<>(new ListModel<Objet>() {
-            @Override
+            
+        	@Override
             public int getSize() {
                 return objects.size();
             }
@@ -184,10 +190,9 @@ public class ValidatorWindow extends Validate{
             }
 
             @Override
-            public void addListDataListener(ListDataListener l) {
-           
-            
+            public void addListDataListener(ListDataListener l) {          
             }
+           
             @Override
             public void removeListDataListener(ListDataListener l) {
                 //TODO ?

@@ -1,20 +1,7 @@
 package main;
 
-import static org.junit.Assert.*;
-
-import ihm.AddUserWindow;
-import ihm.AdminWindow;
-import ihm.AuthentificationLoginWindow;
-import ihm.IWindow;
-import ihm.ValidatorWindow;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 import coeur_metier.livre.Livre;
 import coeur_metier.rh.RH;
@@ -22,16 +9,30 @@ import coeur_metier.wp.WorkPackageImpl;
 import dao.Objet;
 import dao.Role;
 import dao.UtilisateurOrganisationRole;
+import dao.WorkPackage;
+import ihm.AuthentificationLoginWindow;
+import ihm.IWindow;
+import ihm.ValidatorWindow;
 
-public class MainTest {
-
-
-	@Before
-	public  void setUpBeforeClass() throws Exception {
-
-		ContextUtil.createContext();
-		
-		RH rh = ContextUtil.getRH();
+public class mainYas {
+	
+	/**
+	 * Create admin user.
+	 *   Login = admin
+	 *   Password = admin
+	 *   Roles : admin, supervisor, validator
+	 */
+	private static void createAdminUser() {
+		WorkPackageImpl wp=ContextUtil.getWorkPackage();
+		ArrayList<Objet> listObjet = new ArrayList<Objet>();
+		Objet o1 = new Objet();
+		o1.setContent("a a a");
+		listObjet.add(o1);
+		Objet o2 = new Objet();
+		o2.setContent("b b b");
+		listObjet.add(o2);
+		wp.createWP("wp1", listObjet);
+		/*RH rh = ContextUtil.getRH();
 		rh.createOrga("elico", "enterprise", null);
 		rh.createUser("admin", "firstname", "lastname", "0123456789", "elico", "admin");
 		ArrayList<UtilisateurOrganisationRole> appartient = new ArrayList<UtilisateurOrganisationRole>();
@@ -57,48 +58,17 @@ public class MainTest {
 		uor3.setUtilisateur(rh.findUser("admin").get(0));
 		appartient.add(uor3);
 		rh.setRoles("admin", appartient);
-		/*******************************************/
-		/*WorkPackageImpl wp=ContextUtil.getWorkPackage();
-		Livre objet=ContextUtil.getLivre();
-		Objet o=new Objet();
-		objet.createObject(o);
-		wp.createWP("WP1",objet.findObject(o));*/
-		
-		
-	}
+*/	}
 
-	@Test
-	public void testLogin() throws IOException {
-
-		IWindow window = new AuthentificationLoginWindow();
-		window.createWindow();
-		window.openWindow();
-		System.in.read();
-	}
-
-
-	@Test
-	public void testAdmin() throws IOException {
-		IWindow window = new AdminWindow();
-		window.createWindow();
-		window.openWindow();
-		System.in.read();
-	}
-	@Test
-	public void testValid() throws IOException {
+	/**
+	 * Main method : init and open authentification window.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		ContextUtil.createContext();
+		createAdminUser();
 		IWindow window = new ValidatorWindow();
 		window.createWindow();
 		window.openWindow();
-		System.in.read();
 	}
-
-
-	@Test
-	public void testAjoutAdmin() throws IOException {
-		IWindow window = new AddUserWindow();
-		window.createWindow();
-		window.openWindow();
-		System.in.read();
-	}
-
 }

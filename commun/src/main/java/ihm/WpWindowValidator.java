@@ -17,7 +17,7 @@ public class WpWindowValidator extends AbstractTreeWindow {
 		// TODO Auto-generated constructor stub
 	}
 
-	static Object toDisplay;
+	//static Object toDisplay;
 	    	
 	
 	@Override

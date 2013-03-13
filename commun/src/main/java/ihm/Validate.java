@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTree;
 
+import main.ContextUtil;
+import coeur_metier.rh.RH;
+
 import dao.Utilisateur;
 import dao.WorkPackage;
 import dao.WorkSpace;
@@ -20,8 +23,7 @@ public abstract class Validate extends AbstractWorkPaneWindow {
 	    }
 	@Override
 	void createButtonPane(JPanel panel) {
-		
-		
+				
 	}
 	static Object toDisplay;
     void changeRightPane(Object toDisplay) {
@@ -34,8 +36,8 @@ public abstract class Validate extends AbstractWorkPaneWindow {
     public void createLeftPane(JPanel panel) {
         panel.setPreferredSize(new Dimension(390, 500));
         JPanel container = new JPanel();
-
        final  JTree jTree = new JTree();
+        user=new Utilisateur(); 
         WSTreeNode WSTreeModel = new WSTreeNode(user);
         jTree.setModel(WSTreeModel);
         toDisplay = WSTreeModel.getRoot();
