@@ -6,13 +6,14 @@ import ihm.Editor;
 import ihm.IWindow;
 import ihm.IngWindow;
 import ihm.SupervisorWindow;
+import ihm.ValidatorWindow;
 import ihm.WSWindow;
 import ihm.WpWindowValidator;
 
 public class MainIHM {
     public static void main(String args[]) {
         //IWindow window = new AdminWindow();
-        IWindow window = new IngWindow();
+        IWindow window = new ValidatorWindow();
     	//new Editor();
     
         //IWindow window = Editor();
