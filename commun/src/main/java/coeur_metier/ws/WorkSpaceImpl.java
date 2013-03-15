@@ -1,5 +1,6 @@
 package coeur_metier.ws;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,13 @@ public class WorkSpaceImpl implements IWS {
 		WorkSpace ws = new WorkSpace();
 		ws.setTitle(name);
 		ws.setParent(parentWs);
-		ws.setWorkpackages(list);
+		if(list != null){	//bugfix problem detached entity
+			ArrayList<WorkPackage> wps = new ArrayList<WorkPackage>();
+			for(WorkPackage wp : list){
+				wps.add(workPackageDAO.findWorkPackage(wp).get(0));
+			}
+			ws.setWorkpackages(wps);
+		}
 		Organisation toFind = new Organisation();
 		toFind.setTitle(orga);
 		List<Organisation> listOrga = organisationDAO.findOrganisation(toFind);

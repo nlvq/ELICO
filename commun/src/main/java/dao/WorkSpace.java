@@ -29,7 +29,7 @@ public class WorkSpace {
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	private WorkSpace parent;
 	
-	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<WorkSpace> childs = new ArrayList<>();
 	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
