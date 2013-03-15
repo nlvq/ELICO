@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name="WORKSPACE")
 public class WorkSpace {
@@ -29,7 +32,8 @@ public class WorkSpace {
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	private WorkSpace parent;
 	
-	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<WorkSpace> childs = new ArrayList<>();
 	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
@@ -40,7 +44,8 @@ public class WorkSpace {
 	@JoinColumn(name="ORGANISATION_ID")
 	private Organisation organisation;
 
-	@OneToMany(mappedBy = "workSpace", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "workSpace", cascade = CascadeType.PERSIST)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<WorkPackage> workpackages = new ArrayList<>();
 
 	/**
