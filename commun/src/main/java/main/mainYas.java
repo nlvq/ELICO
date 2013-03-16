@@ -17,20 +17,30 @@ public class mainYas {
 
 	private static void init() {
 		RH rh = ContextUtil.getRH();
-		rh.createOrga("elico", "enterprise", null);
-		rh.createUser("admin", "firstname", "lastname", "0123456789", "elico",
-				"admin");
 		WorkPackageImpl wp = ContextUtil.getWorkPackage();
-		ArrayList<Objet> listObjet = new ArrayList<Objet>();
+		WorkSpaceImpl ws = ContextUtil.getWorkSpace();
+		
+		rh.createUser("admin", "firstname", "lastname", "0123456789", "elico", "admin");
+		rh.createUser("ing", "firstname", "lastname", "0123456789", "elico", "ing");
+		
+		ArrayList<Objet> listObjet1 = new ArrayList<Objet>();
 		Objet o1 = new Objet();
 		o1.setContent("a a a");
-		listObjet.add(o1);
+		listObjet1.add(o1);
 		Objet o2 = new Objet();
 		o2.setContent("b b b");
-		listObjet.add(o2);
-		wp.createWP("wp10", listObjet);
+		listObjet1.add(o2);
+		wp.createWP("wp10", listObjet1);
+		
+		ArrayList<Objet> listObjet2 = new ArrayList<Objet>();
+		Objet o3 = new Objet();
+		o3.setContent("ccc");
+		listObjet2.add(o3);
+		Objet o4 = new Objet();
+		o4.setContent("ddd");
+		listObjet2.add(o4);
+		wp.createWP("wp20", listObjet2);
 
-		WorkSpaceImpl ws = ContextUtil.getWorkSpace();
 		WorkPackage wpToFind = new WorkPackage();
 		wpToFind.setTitle("wp10");
 		List<WorkPackage> wpFound = wp.findWP(wpToFind);
@@ -40,6 +50,12 @@ public class mainYas {
 		WorkSpace w = ws.findWS(tofind).get(0);
 		w.setUtilisateur(rh.findUser("admin").get(0));
 		ws.updateWS(w);
+
+		wpToFind = new WorkPackage();
+		wpToFind.setTitle("wp20");
+		WorkPackage wpp = wp.findWP(wpToFind).get(0);
+		wpp.setWorkSpace(ws.findWS(tofind).get(0));
+		wp.updateWP(wpp);
 	}
 
 	public static void main(String[] args) {

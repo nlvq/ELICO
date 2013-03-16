@@ -76,8 +76,8 @@ public class WorkSpaceImpl implements IWS {
 		WorkSpace ws = new WorkSpace();
 		ws.setTitle(name);
 		ws.setParent(parentWs);
-		if(list != null){	//bugfix problem detached entity
-			ArrayList<WorkPackage> wps = new ArrayList<WorkPackage>();
+		ArrayList<WorkPackage> wps = new ArrayList<WorkPackage>();	//bugfix problem detached entity
+		if(list != null){
 			for(WorkPackage wp : list){
 				wps.add(workPackageDAO.findWorkPackage(wp).get(0));
 			}
@@ -96,6 +96,9 @@ public class WorkSpaceImpl implements IWS {
 			ws.setOrganisation(organisation);
 		}
 		workSpaceDAO.createWorkSpace(ws);
+		for(WorkPackage wp : wps){	//bugfix wp
+			acquireWP(wp, ws);
+		}
 	}
 
 	@Override

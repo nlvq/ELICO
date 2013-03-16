@@ -16,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name="OBJET")
 public class Objet {
@@ -37,7 +40,8 @@ public class Objet {
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	private Objet parent;
 	
-	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Objet> childs = new ArrayList<>();
 	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
