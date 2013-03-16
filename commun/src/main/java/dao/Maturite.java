@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -33,8 +32,8 @@ public class Maturite {
 	private String commentary;
 	
 	@OneToMany(mappedBy = "maturite", cascade = CascadeType.PERSIST)
-	private List<Objet> objets = new ArrayList<>();
 	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Objet> objets = new ArrayList<>();
 	/**
 	 * @return the id
 	 */

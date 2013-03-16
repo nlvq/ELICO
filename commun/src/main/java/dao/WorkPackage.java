@@ -46,10 +46,10 @@ public class WorkPackage {
 	private WorkSpace workSpace;
 
 	@ManyToMany(cascade=CascadeType.PERSIST)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="workpackagecontientobjet",
 		joinColumns = @JoinColumn(name = "WORKPACKAGE_ID"),
 		inverseJoinColumns = @JoinColumn(name = "OBJET_ID"))
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Objet> objets = new ArrayList<>();
 	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
@@ -64,8 +64,8 @@ public class WorkPackage {
 	private WorkPackage workPackage;
 	
 	@OneToMany(mappedBy = "workPackage", cascade = CascadeType.PERSIST)
-	private List<WorkPackage> workpackages = new ArrayList<>();
 	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<WorkPackage> workpackages = new ArrayList<>();
 
 	/**
 	 * @return the id
