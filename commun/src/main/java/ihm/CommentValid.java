@@ -23,10 +23,6 @@ import dao.Maturite.Etat;
 /*Create wa window for Validator*/
 public class CommentValid extends AbstractValidateCancelWindow{
 	
-	//private SimulateObjet sim_objet;
-	//private Objet objet;
-	
-	
 	private Objet objet;
 	JTextArea area = new JTextArea();
 	JTextArea area1 = new JTextArea();
@@ -78,8 +74,7 @@ public class CommentValid extends AbstractValidateCancelWindow{
         area1.setPreferredSize(new Dimension(350, 450));
         area1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         cent.add(area1);
-        area1.setText(objet.getContent());//====================
-        //area1.setText("contenu de lobjet");
+        area1.setText(objet.getContent());
         area1.setEnabled(false);
         center.add(cent,BorderLayout.CENTER);
         area.setPreferredSize(new Dimension(350, 450));
@@ -95,7 +90,6 @@ public class CommentValid extends AbstractValidateCancelWindow{
 		b.setLayout(new BorderLayout());
 		b.add(bPanel,BorderLayout.EAST);
 		panel.add(b,BorderLayout.SOUTH);
-	objet.getMaturite().setCommentary(area.getText());//====================
 	}
 
 	 private static final Insets margins =
@@ -108,8 +102,9 @@ public class CommentValid extends AbstractValidateCancelWindow{
 	        button.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	           objet.getMaturite().setTitle(Etat.VALIDED);   // integration         	
-	            	frame.dispose();
+	          objet.getMaturite().setTitle(Etat.VALIDED);   // le bouton permet de valider un objet  
+	          objet.getMaturite().setCommentary(area.getText());
+	          frame.dispose();
 	            
 	           }
 	        });
@@ -122,8 +117,10 @@ public class CommentValid extends AbstractValidateCancelWindow{
 		 button.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	            objet.getMaturite().setTitle(Etat.REFUSED);// integration
+	           objet.getMaturite().setTitle(Etat.REFUSED); // bouton pour refuser la validation d'un objet
+	           objet.getMaturite().setCommentary(area.getText());
 	            	frame.dispose();
+	            	
 	                }
 	        });
 		
@@ -141,7 +138,6 @@ public class CommentValid extends AbstractValidateCancelWindow{
 		}
 		public void actionPerformed(ActionEvent e) {
 		objet.getMaturite().setCommentary(area.getText());
-			
 		}
 	}
 	

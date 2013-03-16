@@ -99,7 +99,7 @@ public class AddWSWindow extends AbstractValidateCancelWindow {
         remove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	  WorkPackage selectedValue = toAddWP.getSelectedValue();
+                WorkPackage selectedValue = toAddWP.getSelectedValue();
                 toAddWPList.remove(selectedValue);
                 possibleWPList.add(selectedValue);
 

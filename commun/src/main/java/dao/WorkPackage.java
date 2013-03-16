@@ -63,8 +63,9 @@ public class WorkPackage {
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	private WorkPackage workPackage;
 	
-	@OneToMany(mappedBy = "workPackage", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "workPackage", cascade = CascadeType.PERSIST)
 	private List<WorkPackage> workpackages = new ArrayList<>();
+	@LazyCollection(LazyCollectionOption.FALSE)
 
 	/**
 	 * @return the id

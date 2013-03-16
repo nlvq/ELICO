@@ -11,13 +11,11 @@ import javax.swing.JPanel;
 import dao.Utilisateur;
 
 public class WpWindowValidator extends AbstractTreeWindow {
-	private Utilisateur user;
 	 public WpWindowValidator(Utilisateur user) {
 		super(user);
-		// TODO Auto-generated constructor stub
 	}
 
-	//static Object toDisplay;
+	static Object toDisplay;
 	    	
 	
 	@Override
@@ -49,7 +47,7 @@ public class WpWindowValidator extends AbstractTreeWindow {
 	    UN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
+               System.out.println("asdfghjkl");
             }
         });
 

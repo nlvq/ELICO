@@ -44,14 +44,16 @@ public class Objet {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Objet> childs = new ArrayList<>();
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.PERSIST/*, fetch=FetchType.LAZY*/)
 	@JoinColumn(name="MATURITE_ID")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Maturite maturite;
 	
-	@ManyToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@ManyToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(name="workpackagecontientobjet",
 		joinColumns = @JoinColumn(name = "OBJET_ID"),
 		inverseJoinColumns = @JoinColumn(name = "WORKPACKAGE_ID"))
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<WorkPackage> workpackages = new ArrayList<>();
 
 	/**

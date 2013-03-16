@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name="MATURITE")
 public class Maturite {
@@ -29,9 +32,9 @@ public class Maturite {
 	@Column(name="MATURITE_COMMENTARY")
 	private String commentary;
 	
-	@OneToMany(mappedBy = "maturite", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "maturite", cascade = CascadeType.PERSIST)
 	private List<Objet> objets = new ArrayList<>();
-
+	@LazyCollection(LazyCollectionOption.FALSE)
 	/**
 	 * @return the id
 	 */

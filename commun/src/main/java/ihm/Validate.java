@@ -10,13 +10,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTree;
 
 import main.ContextUtil;
-import dao.Utilisateur;
 import dao.WorkPackage;
 import dao.WorkSpace;
 
 public abstract class Validate extends AbstractWorkPaneWindow {
 	
-	private Utilisateur user;
 
 	public Validate() {
 	}
@@ -48,13 +46,12 @@ public abstract class Validate extends AbstractWorkPaneWindow {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Object o = jTree.getLastSelectedPathComponent();
-				if /* (o instanceof SimulateWS) { */(o instanceof WorkSpace) {
-					System.out.println("WS!!");
+				if(o instanceof WorkSpace) {
 					toDisplay = o;
 					createRightPane(rightWindowComponent);
 					refreshRightPane();
 				} else if ((e.getClickCount() == 2)
-						&& /* (o instanceof SimulateWP) */(o instanceof WorkPackage)) {
+						&&(o instanceof WorkPackage)) {
 					toDisplay = o;
 					createRightPane(rightWindowComponent);
 					refreshRightPane();
@@ -73,26 +70,23 @@ public abstract class Validate extends AbstractWorkPaneWindow {
 		panel.setPreferredSize(new Dimension(390, 500));
 		if (panel.getComponents().length == 0) {
 
-			if (toDisplay instanceof WorkSpace) {// (toDisplay instanceof
-													// WorkSpace)
-				// panel.add(createWSPane((SimulateWS) toDisplay));
+			if (toDisplay instanceof WorkSpace) {
 				panel.add(createWSPane((WorkSpace) toDisplay));
 
 			} else {
-				// panel.add(createWPPane((SimulateWP) toDisplay));
+				
 				panel.add(createWPPane((WorkPackage) toDisplay));
 				ValidWindow VW = new ValidWindow(panel);
 				VW.createWindow();
 				VW.openWindow();
 			}
 		} else {
-			if (toDisplay instanceof WorkSpace) {// (toDisplay instanceof
-													// SimulateWS)
+			if (toDisplay instanceof WorkSpace) {
 				panel.remove(0);
 
 			} else {
 
-				// panel.add(createWPPane((SimulateWP) toDisplay));
+				
 				panel.add(createWPPane((WorkPackage) toDisplay));
 				ValidWindow VW = new ValidWindow(panel);
 				VW.createWindow();
@@ -102,11 +96,11 @@ public abstract class Validate extends AbstractWorkPaneWindow {
 		}
 	}
 
-	JComponent createWSPane(WorkSpace toDisplay) {// (SimulateWS toDisplay)
+	JComponent createWSPane(WorkSpace toDisplay) {
 		return new JTextArea("WS");
 	}
 
-	JComponent createWPPane(WorkPackage toDisplay) {// (SimulateWP toDisplay)
+	JComponent createWPPane(WorkPackage toDisplay) {
 		return new JTextArea("WP");
 	}
 }
