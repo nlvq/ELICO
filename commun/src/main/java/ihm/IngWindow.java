@@ -8,18 +8,27 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
-import ihm.simulate.SimulateObjet;
 
-import ihm.simulate.SimulateWP;
-import ihm.simulate.SimulateWS;
+import dao.Objet;
+import dao.Utilisateur;
+import dao.WorkPackage;
+import dao.WorkSpace;
 
-public class IngWindow extends Validate{
+public class IngWindow extends AbstractTreeWindow {
+	private Objet selectedObject;
+  private WorkPackage selectedWP;
 	
-	private SimulateObjet selectedObject;
-    private SimulateWP selectedWP;
-	
+	public IngWindow(Utilisateur utilisateur) {
+	  super(utilisateur);
+  }
+
 	@Override
 	public void createWindow() {
 		super.createWindow();
@@ -40,34 +49,80 @@ public class IngWindow extends Validate{
 		panel.setBackground(Color.WHITE);
 	}
 
-	JButton help = new JButton("?");
-
 	@Override
 	void createButtonPane(JPanel panel) {
+		JButton acquire = new JButton("A");
+		acquire.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (selectedWP != null) {
+					// TODO selectedWP.acquire();
+				}
+			}
+		});
+		
+		JButton publish = new JButton("Pu");
+		
+		publish.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (selectedWP != null) {
+					// TODO selectedWP.publish();
+				}
+			}
+		});
+		
+		JButton promote = new JButton("Pr");
+		
+		promote.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (selectedWP != null) {
+					// TODO selectedWP.promote();
+				}
+			}
+		});
+		
+		JButton sync = new JButton("S");
+		
+		sync.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (selectedWP != null) {
+					// TODO selectedWP.sync();
+				}
+			}
+		});
+		
+		JButton help = new JButton("?");
 		help.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("help indispo");	
-
 			}
 		});
 
+		panel.add(acquire);
+		panel.add(publish);
+		panel.add(promote);
+		panel.add(sync);
 		panel.add(help);
 
 	}
 
 	@Override
-	JComponent createWSPane(SimulateWS toDisplay) {
-		final List<SimulateWP> wps = toDisplay.getWorkpackages();
-		final JList<SimulateWP> jList = new JList<>(new ListModel<SimulateWP>() {
+	JComponent createWSPane(WorkSpace toDisplay) {
+		final List<WorkPackage> wps = toDisplay.getWorkpackages();
+		final JList<WorkPackage> jList = new JList<>(new ListModel<WorkPackage>() {
 			@Override
 			public int getSize() {
 				return wps.size();
 			}
 
 			@Override
-			public SimulateWP getElementAt(int index) {
+			public WorkPackage getElementAt(int index) {
 				return wps.get(index);
 			}
 
@@ -103,16 +158,16 @@ public class IngWindow extends Validate{
 	}
 
 	@Override
-	JComponent createWPPane(SimulateWP toDisplay) {
-		final List<SimulateObjet> objects = toDisplay.getObjects();
-		final JList<SimulateObjet> jList = new JList<>(new ListModel<SimulateObjet>() {
+	JComponent createWPPane(WorkPackage toDisplay) {
+		final List<Objet> objects = toDisplay.getObjets();
+		final JList<Objet> jList = new JList<>(new ListModel<Objet>() {
 			@Override
 			public int getSize() {
 				return objects.size();
 			}
 
 			@Override
-			public SimulateObjet getElementAt(int index) {
+			public Objet getElementAt(int index) {
 				return objects.get(index);
 			}
 
@@ -139,7 +194,6 @@ public class IngWindow extends Validate{
 
 				} else if (e.getClickCount() == 1) {
 					selectedObject = jList.getModel().getElementAt(jList.locationToIndex(e.getPoint()));
-
 				}
 			}
 		});
@@ -148,6 +202,4 @@ public class IngWindow extends Validate{
 		scroll.setPreferredSize(new Dimension(765, 490));
 		return  scroll;
 	}
-
-
 }

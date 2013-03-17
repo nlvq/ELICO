@@ -73,7 +73,8 @@ public class SimulateIngWP {
 
         SimulateIngWP wp = new SimulateIngWP(SimulateDroit.LDroit.WRITE,  objects, "WP", null);
 
-        obj.setParent(wp);
+        // TODO 
+        // obj.setParent(wp);
 
         return wp.getObjects().toArray(objetsType);
     }

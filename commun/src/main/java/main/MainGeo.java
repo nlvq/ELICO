@@ -1,12 +1,13 @@
 package main;
 
+import ihm.AuthentificationLoginWindow;
+import ihm.IWindow;
+
 import java.util.ArrayList;
 
 import coeur_metier.rh.RH;
 import dao.Role;
 import dao.UtilisateurOrganisationRole;
-import ihm.AuthentificationLoginWindow;
-import ihm.IWindow;
 
 public class MainGeo {
 	
@@ -16,7 +17,7 @@ public class MainGeo {
 	 *   Password = admin
 	 *   Roles : admin, supervisor, validator
 	 */
-	private static void createAdminUser() {
+	private static void createAdminUser(){
 		RH rh = ContextUtil.getRH();
 		rh.createOrga("elico", "enterprise", null);
 		rh.createUser("admin", "firstname", "lastname", "0123456789", "elico", "admin");
@@ -42,6 +43,13 @@ public class MainGeo {
 		uor3.setOrganisation(rh.findOrga("elico").get(0));
 		uor3.setUtilisateur(rh.findUser("admin").get(0));
 		appartient.add(uor3);
+		UtilisateurOrganisationRole uor4 = new UtilisateurOrganisationRole();
+		Role role4 = new Role();
+		role4.setTitle("engineer");
+		uor4.setRole(role4);
+		uor4.setOrganisation(rh.findOrga("elico").get(0));
+		uor4.setUtilisateur(rh.findUser("admin").get(0));
+		appartient.add(uor4);
 		rh.setRoles("admin", appartient);
 	}
 
@@ -56,4 +64,5 @@ public class MainGeo {
 		window.createWindow();
 		window.openWindow();
 	}
+
 }
