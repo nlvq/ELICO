@@ -13,7 +13,12 @@ public class DefaultUtilisateurDAO extends AbstractHibernateDAO<Long, Utilisateu
 
 	@Override
 	public void createUtilisateur(Utilisateur utilisateur) {
-		persist(utilisateur);
+		Utilisateur u = new Utilisateur();
+		u.setLogin(utilisateur.getLogin());
+		List<Utilisateur> found = findUtilisateur(u);
+		if(found == null || found.isEmpty()){
+			persist(utilisateur);
+		}
 	}
 
 	@Override
