@@ -48,6 +48,19 @@
 			</exclusions>
 		</dependency>
 
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
 		<!-- DAO -->
 		<dependency>
 			<groupId>fr.umlv.m2.jee</groupId>
@@ -159,44 +172,15 @@
 					<source>1.7</source>
 					<target>1.7</target>
 				</configuration>
-			</plugin><!-- 
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>install</id>
-						<phase>install</phase>
-						<goals>
-							<goal>sources</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>main.Main</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin> -->
+			</plugin><!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
+				<executions> <execution> <id>install</id> <phase>install</phase> <goals> 
+				<goal>sources</goal> </goals> </execution> </executions> </plugin> <plugin> 
+				<groupId>org.apache.maven.plugins</groupId> <artifactId>maven-resources-plugin</artifactId> 
+				<version>2.5</version> <configuration> <encoding>UTF-8</encoding> </configuration> 
+				</plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
+				<configuration> <archive> <manifest> <addClasspath>true</addClasspath> <classpathPrefix>lib/</classpathPrefix> 
+				<mainClass>main.Main</mainClass> </manifest> </archive> </configuration> 
+				</plugin> -->
 
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
