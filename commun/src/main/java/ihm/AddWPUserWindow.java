@@ -8,12 +8,16 @@ import java.util.List;
 
 import javax.swing.*;
 
+import org.h2.constant.SysProperties;
+
 import main.ContextUtil;
 
+import dao.Organisation;
 import dao.Role;
 import dao.Utilisateur;
 import dao.UtilisateurOrganisationRole;
 import dao.WorkPackage;
+import dao.impl.DefaultUtilisateurOrganisationRoleDAO;
 
 public class AddWPUserWindow extends AbstractValidateCancelWindow {
     JList<Utilisateur> users;
@@ -33,7 +37,7 @@ public class AddWPUserWindow extends AbstractValidateCancelWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Role job = jobs.getSelectedValue();
-                Utilisateur user = users.getSelectedValue();
+                Utilisateur user = ContextUtil.getRH().getUtilisateurDAO().findUtilisateur(users.getSelectedValue()).get(0);
 
                 if (job == null) {
                     JOptionPane.showMessageDialog(frame, "Veuillez choisir un rôle !", "Erreur",
@@ -46,12 +50,24 @@ public class AddWPUserWindow extends AbstractValidateCancelWindow {
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+                
+                Organisation org = ContextUtil.getRH().findOrga("Elico").get(0);
 
                 UtilisateurOrganisationRole uor = new UtilisateurOrganisationRole();
-                uor.setOrganisation(wp.getOrganisation());
+                uor.setOrganisation(org);
                 uor.setRole(job);
                 uor.setUtilisateur(user);
-                wp.getOrganisation().getAppartient().add(uor);
+                
+                System.out.println(job.getTitle());
+                
+                List<UtilisateurOrganisationRole> appartient = user.getAppartient();
+								appartient.add(uor);
+                
+								ContextUtil.getRH().setRoles(user.getLogin(), appartient);
+								
+								System.out.println(ContextUtil.getRH().findUser(user.getLogin()).get(0).getAppartient());
+								
+                org.getAppartient().add(uor);
                 frame.dispose();
             }
         });
@@ -86,19 +102,21 @@ public class AddWPUserWindow extends AbstractValidateCancelWindow {
         });
         
         List<Utilisateur> users2 = new ArrayList<>();
-        for (UtilisateurOrganisationRole uor: wp.getOrganisation().getAppartient()) {
-        	users2.add(uor.getUtilisateur());
+        if (wp.getOrganisation() != null) {
+          for (UtilisateurOrganisationRole uor: wp.getOrganisation().getAppartient()) {
+          	users2.add(uor.getUtilisateur());
+          }
         }
 
         users.setListData(users2.toArray(new Utilisateur[1]));
 
         ArrayList<Role> roles = new ArrayList<>();
         Role role1 = new Role();
-        role1.setTitle("Superviseur");
+        role1.setTitle("supervisor");
         Role role2 = new Role();
-        role2.setTitle("Ingénieur");
+        role2.setTitle("engineer");
         Role role3 = new Role();
-        role3.setTitle("Validateur");
+        role3.setTitle("validator");
         
         roles.add(role1);
         roles.add(role2);

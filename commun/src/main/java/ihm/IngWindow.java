@@ -36,20 +36,6 @@ public class IngWindow extends AbstractTreeWindow {
 	}
 
 	@Override
-	public void createLeftPane(JPanel panel) {
-		super.createLeftPane(panel);
-		panel.setBackground(Color.WHITE);
-		panel.setPreferredSize(new Dimension (1200,500));
-	}
-
-	@Override
-	public void createRightPane(JPanel panel) {
-
-		super.createRightPane(panel);
-		panel.setBackground(Color.WHITE);
-	}
-
-	@Override
 	void createButtonPane(JPanel panel) {
 		JButton acquire = new JButton("A");
 		acquire.addActionListener(new ActionListener() {
@@ -113,93 +99,80 @@ public class IngWindow extends AbstractTreeWindow {
 	}
 
 	@Override
-	JComponent createWSPane(WorkSpace toDisplay) {
-		final List<WorkPackage> wps = toDisplay.getWorkpackages();
-		final JList<WorkPackage> jList = new JList<>(new ListModel<WorkPackage>() {
-			@Override
-			public int getSize() {
-				return wps.size();
-			}
+  JComponent createWSPane(WorkSpace toDisplay) {
+      final List<WorkPackage> wps = toDisplay.getWorkpackages();
+      final JList<WorkPackage> jList = new JList<>(new ListModel<WorkPackage>() {
+          @Override
+          public int getSize() {
+              return wps.size();
+          }
 
-			@Override
-			public WorkPackage getElementAt(int index) {
-				return wps.get(index);
-			}
+          @Override
+          public WorkPackage getElementAt(int index) {
+              return wps.get(index);
+          }
 
-			@Override
-			public void addListDataListener(ListDataListener l) {
-				// TODO Auto-generated method stub
-				
-			}
+          @Override
+          public void addListDataListener(ListDataListener l) {
+              // TODO ?
+          }
 
-			@Override
-			public void removeListDataListener(ListDataListener l) {
-				// TODO Auto-generated method stub
-				
-			}
+          @Override
+          public void removeListDataListener(ListDataListener l) {
+              //TODO ?
+          }
+      });
 
-		});
+      jList.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseClicked(MouseEvent e) {
+              if (e.getClickCount() == 2) {
+                  changeRightPane(jList.getModel().getElementAt(jList.locationToIndex(e.getPoint())));
+              } else if (e.getClickCount() == 1) {
+                  selectedWP = jList.getModel().getElementAt(jList.locationToIndex(e.getPoint()));
+              }
+          }
+      });
 
-		jList.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					changeRightPane(jList.getModel().getElementAt(jList.locationToIndex(e.getPoint())));
-				} else if (e.getClickCount() == 1) {
-					selectedWP = jList.getModel().getElementAt(jList.locationToIndex(e.getPoint()));
-				}
-			}
-		});
-		JScrollPane scroll =new JScrollPane(jList);
-		scroll.setPreferredSize(new Dimension(765, 490));
-		return  scroll;
+      return new JScrollPane(jList);
+  }
 
+  @Override
+  JComponent createWPPane(WorkPackage toDisplay) {
+      final List<Objet> objects = toDisplay.getObjets();
+      final JList<Objet> jList = new JList<>(new ListModel<Objet>() {
+          @Override
+          public int getSize() {
+              return objects.size();
+          }
 
-	}
+          @Override
+          public Objet getElementAt(int index) {
+              return objects.get(index);
+          }
 
-	@Override
-	JComponent createWPPane(WorkPackage toDisplay) {
-		final List<Objet> objects = toDisplay.getObjets();
-		final JList<Objet> jList = new JList<>(new ListModel<Objet>() {
-			@Override
-			public int getSize() {
-				return objects.size();
-			}
+          @Override
+          public void addListDataListener(ListDataListener l) {
+              // TODO ?
+          }
 
-			@Override
-			public Objet getElementAt(int index) {
-				return objects.get(index);
-			}
+          @Override
+          public void removeListDataListener(ListDataListener l) {
+              //TODO ?
+          }
+      });
 
-			@Override
-			public void addListDataListener(ListDataListener l) {
+      jList.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseClicked(MouseEvent e) {
+              if (e.getClickCount() == 2) {
+                  Editor editor = new Editor(jList.getModel().getElementAt(jList.locationToIndex(e.getPoint())));
+                  editor.createWindow();
+                  editor.openWindow();
+              }
+          }
+      });
 
-
-			}
-			@Override
-			public void removeListDataListener(ListDataListener l) {
-				//TODO ?
-			}
-		});
-
-		jList.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					System.out.println("Open Editor for: " +
-							jList.getModel().getElementAt(jList.locationToIndex(e.getPoint())));
-					CommentValid cmt=new CommentValid( jList.getModel().getElementAt(jList.locationToIndex(e.getPoint())));
-					cmt.createWindow();
-					cmt.openWindow();
-
-				} else if (e.getClickCount() == 1) {
-					selectedObject = jList.getModel().getElementAt(jList.locationToIndex(e.getPoint()));
-				}
-			}
-		});
-
-		JScrollPane scroll =new JScrollPane(jList);
-		scroll.setPreferredSize(new Dimension(765, 490));
-		return  scroll;
-	}
+      return new JScrollPane(jList);
+  }
 }

@@ -117,5 +117,4 @@ public class CreateTables {
 		System.out.println("OK");
 		context.close();
 	}
-
 }

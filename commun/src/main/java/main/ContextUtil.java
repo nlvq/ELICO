@@ -7,6 +7,7 @@ import coeur_metier.livre.Livre;
 import coeur_metier.rh.RH;
 import coeur_metier.wp.WorkPackageImpl;
 import coeur_metier.ws.WorkSpaceImpl;
+import dao.UtilisateurOrganisationRole;
 
 public class ContextUtil {
 	

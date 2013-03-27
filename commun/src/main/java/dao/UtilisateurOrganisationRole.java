@@ -2,6 +2,7 @@ package dao;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -85,17 +86,17 @@ public class UtilisateurOrganisationRole {
 	@EmbeddedId
 	private Id id = new Id();
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "UTILISATEUR_ID", insertable = false, updatable = false)
 	@MapsId("utilisateurid")
 	private Utilisateur utilisateur;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ORGANISATION_ID", insertable = false, updatable = false)
 	@MapsId("organisationid")
 	private Organisation organisation;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ROLE_ID", insertable = false, updatable = false)
 	@MapsId("roleid")
 	private Role role;
@@ -156,4 +157,8 @@ public class UtilisateurOrganisationRole {
 		this.role = role;
 	}
 	
+	@Override
+	public String toString() {
+	  return "(" + utilisateur + ", " + organisation + ", " + role + ")";
+	}
 }

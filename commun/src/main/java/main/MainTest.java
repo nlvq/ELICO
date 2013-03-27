@@ -3,12 +3,15 @@ package main;
 import ihm.AddUserWindow;
 import ihm.AdminWindow;
 import ihm.AuthentificationLoginWindow;
+import ihm.Editor;
 import ihm.IWindow;
 import ihm.ValidatorWindow;
 
 import java.io.IOException;
 
 import org.junit.Test;
+
+import dao.Objet;
 
 public class MainTest {
 
@@ -40,6 +43,14 @@ public class MainTest {
 	@Test
 	public void testAjoutAdmin() throws IOException {
 		IWindow window = new AddUserWindow();
+		window.createWindow();
+		window.openWindow();
+		System.in.read();
+	}
+	
+	@Test
+	public void testEditor() throws IOException {
+		IWindow window = new Editor(new Objet());
 		window.createWindow();
 		window.openWindow();
 		System.in.read();

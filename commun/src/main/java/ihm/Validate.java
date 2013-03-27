@@ -14,7 +14,6 @@ import dao.WorkPackage;
 import dao.WorkSpace;
 
 public abstract class Validate extends AbstractWorkPaneWindow {
-	
 
 	public Validate() {
 	}
@@ -37,8 +36,7 @@ public abstract class Validate extends AbstractWorkPaneWindow {
 		JPanel container = new JPanel();
 		final JTree jTree = new JTree();
 
-		WSTreeNode WSTreeModel = new WSTreeNode(ContextUtil.getRH()
-				.findUser("admin").get(0));
+		WSTreeNode WSTreeModel = new WSTreeNode(ContextUtil.getRH().findUser("admin").get(0));
 		jTree.setModel(WSTreeModel);
 		toDisplay = WSTreeModel.getRoot();
 
@@ -46,12 +44,11 @@ public abstract class Validate extends AbstractWorkPaneWindow {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Object o = jTree.getLastSelectedPathComponent();
-				if(o instanceof WorkSpace) {
+				if (o instanceof WorkSpace) {
 					toDisplay = o;
 					createRightPane(rightWindowComponent);
 					refreshRightPane();
-				} else if ((e.getClickCount() == 2)
-						&&(o instanceof WorkPackage)) {
+				} else if ((e.getClickCount() == 2) && (o instanceof WorkPackage)) {
 					toDisplay = o;
 					createRightPane(rightWindowComponent);
 					refreshRightPane();
@@ -74,7 +71,7 @@ public abstract class Validate extends AbstractWorkPaneWindow {
 				panel.add(createWSPane((WorkSpace) toDisplay));
 
 			} else {
-				
+
 				panel.add(createWPPane((WorkPackage) toDisplay));
 				ValidWindow VW = new ValidWindow(panel);
 				VW.createWindow();
@@ -86,7 +83,6 @@ public abstract class Validate extends AbstractWorkPaneWindow {
 
 			} else {
 
-				
 				panel.add(createWPPane((WorkPackage) toDisplay));
 				ValidWindow VW = new ValidWindow(panel);
 				VW.createWindow();

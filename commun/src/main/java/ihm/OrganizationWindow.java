@@ -11,6 +11,7 @@ import javax.swing.event.ListDataListener;
 
 import main.ContextUtil;
 
+import dao.IOrganisationDAO;
 import dao.Organisation;
 import dao.Role;
 import dao.Utilisateur;
@@ -100,8 +101,10 @@ public class OrganizationWindow extends AbstractValidateCancelWindow {
 
         final List<Utilisateur> result = new ArrayList<>();
         
-        for (UtilisateurOrganisationRole uor: parent.getAppartient()) {
-        	  result.add(uor.getUtilisateur());
+        if (parent != null) {
+          for (UtilisateurOrganisationRole uor: parent.getAppartient()) {
+          	  result.add(uor.getUtilisateur());
+          }
         }
         
         users.setModel(createList(result));

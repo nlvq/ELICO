@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import main.ContextUtil;
+
 import dao.Utilisateur;
 import dao.WorkPackage;
 import dao.WorkSpace;
@@ -46,9 +48,15 @@ public abstract class AbstractTreeWindow extends AbstractWorkPaneWindow {
         JPanel container = new JPanel();
 
         final JTree jTree = new JTree();
-        WSTreeNode WSTreeModel = new WSTreeNode(user);
+        WSTreeNode WSTreeModel;
+        //if (user != null) {
+        //	WSTreeModel = new WSTreeNode(user);
+        //} else {
+        	WSTreeModel = new WSTreeNode(ContextUtil.getRH().findUser("admin").get(0));
+        //}
         jTree.setModel(WSTreeModel);
         toDisplay = WSTreeModel.getRoot();
+        System.out.println("toDis: " + toDisplay);
         if (toDisplay == null) {
         	toDisplay = new WorkSpace();
         }

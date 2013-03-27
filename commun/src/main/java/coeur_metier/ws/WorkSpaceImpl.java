@@ -86,15 +86,16 @@ public class WorkSpaceImpl implements IWS {
 		Organisation toFind = new Organisation();
 		toFind.setTitle(orga);
 		List<Organisation> listOrga = organisationDAO.findOrganisation(toFind);
-		if(listOrga != null && !listOrga.isEmpty()){
+		if(listOrga != null && !listOrga.isEmpty()) {
 			ws.setOrganisation(listOrga.get(0));
-		}
-		else{
+		} else {
 			Organisation organisation = new Organisation();
 			organisation.setTitle(orga);
 			organisation.setType("default");
 			ws.setOrganisation(organisation);
 		}
+		ws.setWorkpackages(new ArrayList<WorkPackage>());
+		ws = workSpaceDAO.merge(ws);
 		workSpaceDAO.createWorkSpace(ws);
 		for(WorkPackage wp : wps){	//bugfix wp
 			acquireWP(wp, ws);

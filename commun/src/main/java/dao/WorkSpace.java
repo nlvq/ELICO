@@ -29,22 +29,22 @@ public class WorkSpace {
 	@Column(name="WORKSPACE_TITLE")
 	private String title;
 
-	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private WorkSpace parent;
 	
-	@OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<WorkSpace> childs = new ArrayList<>();
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="UTILISATEUR_ID")
 	private Utilisateur utilisateur;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="ORGANISATION_ID")
 	private Organisation organisation;
 
-	@OneToMany(mappedBy = "workSpace", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "workSpace", cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<WorkPackage> workpackages = new ArrayList<>();
 

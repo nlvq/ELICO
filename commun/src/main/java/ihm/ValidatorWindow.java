@@ -29,8 +29,9 @@ import dao.WorkPackage;
 import dao.WorkSpace;
 
 public class ValidatorWindow extends Validate {
-	private static final String deleteString = "Delete";//************8
-public Objet getSelectedObject() {
+	private static final String deleteString = "Delete";// ************8
+
+	public Objet getSelectedObject() {
 		return selectedObject;
 	}
 
@@ -46,7 +47,8 @@ public Objet getSelectedObject() {
 		this.selectedWP = selectedWP;
 	}
 
-int j;
+	int j;
+
 	public ValidatorWindow() {
 
 	}
@@ -87,40 +89,31 @@ int j;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object[] option = {"OK"};
-	              int n = JOptionPane.showOptionDialog(frame,
-	                        "Bouton pas encore programme" +
-	                        ":  Cliquez deux fois sur votre workpackage " ,
-	                        "information ",
-	                        JOptionPane.OK_OPTION,
-	                        JOptionPane.INFORMATION_MESSAGE,
-	                        null,
-	                        option,
-	                        null); if (n == 0) {;}
-	                       
-				/*// valider le workpackage et tous ses fils
-				
-				//  Objet o=new Objet(); 
-				 // o=selectedObject.getParent();
-				  //o.getMaturite().setTitle(Etat.VALIDED);
-				 ArrayList<Objet> list = new ArrayList<Objet>();
-				 list=(ArrayList<Objet>) selectedWP.getObjets();
-				// list=(ArrayList<Objet>) o.getChilds();
-				 for(Objet oo : list){
-				 oo.getMaturite().setTitle(Etat.VALIDED); }*/
-				 
+				Object[] option = { "OK" };
+				int n = JOptionPane.showOptionDialog(frame, "Bouton pas encore programme" + ":  Cliquez deux fois sur votre workpackage ", "information ", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, null);
+				if (n == 0) {
+					;
+				}
+
+				/*
+				 * // valider le workpackage et tous ses fils
+				 * 
+				 * // Objet o=new Objet(); // o=selectedObject.getParent();
+				 * //o.getMaturite().setTitle(Etat.VALIDED); ArrayList<Objet> list = new
+				 * ArrayList<Objet>(); list=(ArrayList<Objet>) selectedWP.getObjets();
+				 * // list=(ArrayList<Objet>) o.getChilds(); for(Objet oo : list){
+				 * oo.getMaturite().setTitle(Etat.VALIDED); }
+				 */
+
 			}
 		});
-		
+
 		UN.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	frame.dispose();
-				
+				// frame.dispose();
 
-				 
-				 
 			}
 		});
 		help.addActionListener(new ActionListener() {
@@ -140,46 +133,43 @@ int j;
 
 	@Override
 	JComponent createWSPane(WorkSpace toDisplay) {// (SimulateWS toDisplay)
-		 final List<WorkPackage> wps =ContextUtil.getWorkPackage().getAllWorkPackage();
-		 final JList<WorkPackage> jList = new JList<>(
-				new ListModel<WorkPackage>() {
-					@Override
-					public int getSize() {
-						return wps.size();
-					}
+		final List<WorkPackage> wps = ContextUtil.getWorkPackage().getAllWorkPackage();
+		final JList<WorkPackage> jList = new JList<>(new ListModel<WorkPackage>() {
+			@Override
+			public int getSize() {
+				return wps.size();
+			}
+
+			@Override
+			public WorkPackage getElementAt(int index) {
+				return wps.get(index);
+			}
+
+			@Override
+			public void addListDataListener(ListDataListener l) {
+				A.addActionListener(new ActionListener() {
 
 					@Override
-					public WorkPackage getElementAt(int index) {
-						return wps.get(index);
+					public void actionPerformed(ActionEvent e) {
+
 					}
-
-					@Override
-					public void addListDataListener(ListDataListener l) {
-						A.addActionListener(new ActionListener() {
-
-							@Override
-							public void actionPerformed(ActionEvent e) {
-
-							}
-						});
-					}
-
-					@Override
-					public void removeListDataListener(ListDataListener l) {
-						// TODO ?
-					}
-					
 				});
+			}
+
+			@Override
+			public void removeListDataListener(ListDataListener l) {
+				// TODO ?
+			}
+
+		});
 
 		jList.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					changeRightPane(jList.getModel().getElementAt(
-							jList.locationToIndex(e.getPoint())));
+					changeRightPane(jList.getModel().getElementAt(jList.locationToIndex(e.getPoint())));
 				} else if (e.getClickCount() == 1) {
-					selectedWP = jList.getModel().getElementAt(
-							jList.locationToIndex(e.getPoint()));
+					selectedWP = jList.getModel().getElementAt(jList.locationToIndex(e.getPoint()));
 					UN.addActionListener(new ActionListener() {
 
 						@Override
@@ -188,8 +178,7 @@ int j;
 							selectedObject.getMaturite().setTitle(Etat.VALIDED);
 							jList.removeAll();
 							refreshRightPane();
-							 
-							 
+
 						}
 					});
 				}
@@ -203,11 +192,9 @@ int j;
 
 	@Override
 	JComponent createWPPane(WorkPackage toDisplay) {
-	
-       
-		
+
 		final List<Objet> objects = toDisplay.getObjets();
-		
+
 		final JList<Objet> jList = new JList<>(new ListModel<Objet>() {
 
 			@Override
@@ -219,7 +206,7 @@ int j;
 			public Objet getElementAt(int index) {
 				return objects.get(index);
 			}
-			
+
 			@Override
 			public void addListDataListener(ListDataListener l) {
 			}
@@ -234,62 +221,43 @@ int j;
 			@Override
 			public void mouseClicked(final MouseEvent mouseEvent) {
 				if (mouseEvent.getClickCount() == 2) {
-				//	selectedObject.getMaturite().setTitle(Etat.ASKVALID);
-					Object[] options = {"OK",
-                    "Verifier"};
-					 if (selectedObject != null) {
-		              if (selectedObject.getMaturite().getTitle()==Etat.NUL)
-		              {
-		            	  			CommentValid cmt = new CommentValid(jList.getModel()
-									.getElementAt(jList.locationToIndex(mouseEvent.getPoint())));
-							        cmt.createWindow();
-							        cmt.openWindow(); 
-							        
-		              }
-		              
-		              
-		           /* if (selectedObject.getMaturite().getTitle()==Etat.NUL)   
-		              {Object[] option = {"OK"};
-		              int n = JOptionPane.showOptionDialog(frame,
-		                        "Cet objet n'est pas a valider" ,
-		                        "erreur ",
-		                        JOptionPane.OK_OPTION,
-		                        JOptionPane.ERROR_MESSAGE,
-		                        null,
-		                        option,
-		                        null); if (n == 0) {;}}*/
-		                           
-		              }
-					 if ((selectedObject.getMaturite().getTitle()==Etat.VALIDED) ||
-							 (selectedObject.getMaturite().getTitle()==Etat.REFUSED))  
-		              {Object[] option = {"OK"};
-		              int n = JOptionPane.showOptionDialog(frame,
-		                        "Cet objet a deja ete valide ou refuse" ,
-		                        "erreur ",
-		                        JOptionPane.OK_OPTION,
-		                        JOptionPane.ERROR_MESSAGE,
-		                        null,
-		                        option,
-		                        null); if (n == 0) {;}}
-		                           
-		              
-					
-					 
-				        	
+					// selectedObject.getMaturite().setTitle(Etat.ASKVALID);
+					Object[] options = { "OK", "Verifier" };
+					if (selectedObject != null) {
+						if (selectedObject.getMaturite().getTitle() == Etat.NUL) {
+							CommentValid cmt = new CommentValid(jList.getModel().getElementAt(jList.locationToIndex(mouseEvent.getPoint())));
+							cmt.createWindow();
+							cmt.openWindow();
+
+						}
+
+						/*
+						 * if (selectedObject.getMaturite().getTitle()==Etat.NUL) {Object[]
+						 * option = {"OK"}; int n = JOptionPane.showOptionDialog(frame,
+						 * "Cet objet n'est pas a valider" , "erreur ",
+						 * JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null, option,
+						 * null); if (n == 0) {;}}
+						 */
+
+					}
+					if ((selectedObject.getMaturite().getTitle() == Etat.VALIDED) || (selectedObject.getMaturite().getTitle() == Etat.REFUSED)) {
+						Object[] option = { "OK" };
+						int n = JOptionPane.showOptionDialog(frame, "Cet objet a deja ete valide ou refuse", "erreur ", JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null, option, null);
+						if (n == 0) {
+							;
+						}
+					}
+
 				} else if (mouseEvent.getClickCount() == 1) {
-					selectedObject = jList.getModel().getElementAt(
-							jList.locationToIndex(mouseEvent.getPoint()));
-					
-					
+					selectedObject = jList.getModel().getElementAt(jList.locationToIndex(mouseEvent.getPoint()));
+
 				}
 			}
 		});
-		
+
 		JScrollPane scroll = new JScrollPane(jList);
 		scroll.setPreferredSize(new Dimension(765, 490));
 		return scroll;
 	}
 
-	
 }
-

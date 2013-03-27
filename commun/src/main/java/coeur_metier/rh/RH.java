@@ -136,9 +136,11 @@ public class RH implements IRH {
 			if(uorDAO != null){
 				for(UtilisateurOrganisationRole u : uor){
 					Organisation organisation = findOrga(u.getOrganisation().getTitle()).get(0);
+					organisation = organisationDAO.merge(organisation);
 					organisationDAO.refresh(organisation);
 					u.setOrganisation(organisation);
 					Utilisateur utilisateur = findUser(u.getUtilisateur().getLogin()).get(0);
+					utilisateur = utilisateurDAO.merge(utilisateur);
 					utilisateurDAO.refresh(utilisateur);
 					u.setUtilisateur(utilisateur);
 					uorDAO.createUtilisateurOrganisationRole(u);

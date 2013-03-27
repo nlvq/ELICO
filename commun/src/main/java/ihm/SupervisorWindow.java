@@ -6,7 +6,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
 import dao.Objet;
@@ -42,7 +48,11 @@ public class SupervisorWindow extends AbstractTreeWindow {
                 if (selectedWP != null) {
                     org.setParent(selectedWP.getWorkSpace().getOrganisation());
                 } else {
-                    org.setParent(((WorkSpace) toDisplay).getOrganisation());
+                		if (toDisplay instanceof WorkPackage) {
+                			org.setParent(((WorkPackage) toDisplay).getOrganisation());
+                		} else if (toDisplay instanceof WorkSpace) {
+                			org.setParent(((WorkSpace) toDisplay).getOrganisation());
+                		}
                 }
                 org.openWindow();
             }
@@ -106,11 +116,19 @@ public class SupervisorWindow extends AbstractTreeWindow {
         plus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (selectedWP != null) {
-                    AddWPUserWindow window = new AddWPUserWindow(selectedWP);
-                    window.createWindow();
-                    window.openWindow();
+                WorkPackage wp;
+            	
+            	  if (selectedWP != null) {
+                    wp = selectedWP;
+                } else if (toDisplay instanceof WorkPackage) {
+                	  wp = (WorkPackage) toDisplay;
+                } else {
+                	  wp = ((WorkSpace) toDisplay).getWorkpackages().get(0);
                 }
+                
+                AddWPUserWindow window = new AddWPUserWindow(wp);
+                window.createWindow();
+                window.openWindow();
             }
         });
 

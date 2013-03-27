@@ -54,5 +54,4 @@ public class AuthentificationImpl implements IAuthentification {
 		}
 		return roles;
 	}
-
 }

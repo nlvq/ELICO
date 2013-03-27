@@ -13,6 +13,7 @@ public class DefaultWorkSpaceDAO extends AbstractHibernateDAO<Long, WorkSpace> i
 
 	@Override
 	public void createWorkSpace(WorkSpace ws) {
+		
 		persist(ws);
 	}
 
@@ -30,5 +31,4 @@ public class DefaultWorkSpaceDAO extends AbstractHibernateDAO<Long, WorkSpace> i
 	public List<WorkSpace> findWorkSpace(WorkSpace ws) {
 		return findByExample(ws, new String[0]);
 	}
-
 }

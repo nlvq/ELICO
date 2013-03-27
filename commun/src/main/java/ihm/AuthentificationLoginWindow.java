@@ -27,7 +27,6 @@ public class AuthentificationLoginWindow extends AbstractValidateCancelWindow {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//SimulateAuthentification authentification = new SimulateAuthentification();
 				AuthentificationImpl authentification = ContextUtil.getAuthentification();
 				List<Role> roles = authentification.auth(loginField.getText(), passwordField.getText());
 				Utilisateur utilisateur = ContextUtil.getRH().findUser(loginField.getText()).get(0);

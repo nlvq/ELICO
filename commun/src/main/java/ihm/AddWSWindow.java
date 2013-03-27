@@ -9,6 +9,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import org.hibernate.classic.Session;
+
+import main.ContextUtil;
+
+import dao.IOrganisationDAO;
 import dao.Organisation;
 import dao.WorkPackage;
 import dao.WorkSpace;
@@ -71,6 +76,9 @@ public class AddWSWindow extends AbstractValidateCancelWindow {
         JLabel orga = new JLabel("Organisme qui aura le WS");
         JLabel possible = new JLabel("WP possibles :");
         JLabel toAdd = new JLabel("WP sélectionnés :");
+        
+        IOrganisationDAO organisationDAO = ContextUtil.getRH().getOrganisationDAO();
+        parent = organisationDAO.findOrganisation(parent).get(0);
 
         List<Organisation> orgsList = parent.getChilds();
         possibleWPList = parent.getWorkpackages();

@@ -112,4 +112,8 @@ public class Role {
 		this.appartient = appartient;
 	}
 
+	@Override
+	public String toString() {
+	  return title;
+	}
 }
